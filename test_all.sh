@@ -1,5 +1,5 @@
 #!/bin/bash
 
 
-./test.sh
+./flowers_test.sh
 
