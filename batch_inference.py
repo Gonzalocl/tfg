@@ -1026,9 +1026,9 @@ def main(_):
     total = 0
 
     for image_class in image_lists:
-      for image in image_lists[image_class]['training']:
+      for image_filename in image_lists[image_class]['training']:
         image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
-        image_path = os.path.join(image_path, image)
+        image_path = os.path.join(image_path, image_filename)
         if not tf.gfile.Exists(image_path):
           tf.logging.fatal('File does not exist %s', image_path)
         image_data = tf.gfile.GFile(image_path, 'rb').read()
