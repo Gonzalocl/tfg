@@ -1021,12 +1021,12 @@ def main(_):
     jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
 
 
-    image_lists = create_image_lists(FLAGS.image_dir, 0, 0)
+    image_lists = create_image_lists(FLAGS.image_dir, 0, FLAGS.testing_percentage)
     hits = 0
     total = 0
 
     for image_class in image_lists:
-      for image_filename in image_lists[image_class]['training']:
+      for image_filename in image_lists[image_class]['testing']:
         image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
         image_path = os.path.join(image_path, image_filename)
         if not tf.gfile.Exists(image_path):

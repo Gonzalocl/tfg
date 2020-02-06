@@ -29,5 +29,6 @@ python batch_inference.py \
   --image_dir="datasets/flower_photos/" \
   --saved_model_dir="$results_dir/saved_model/" \
   --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
 
