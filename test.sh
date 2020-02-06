@@ -4,6 +4,7 @@
 output_dir="output/test0"
 results_dir="$output_dir/r"
 rm -rf $results_dir
+mkdir -p "$results_dir"
 python retrain.py \
   --image_dir="datasets/flower_photos/" \
   --output_graph="$results_dir/output_graph.pb" \
