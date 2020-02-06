@@ -1021,31 +1021,29 @@ def main(_):
     jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
 
 
-    ilist = create_image_lists(FLAGS.image_dir, 0, 0)
-    print(ilist.keys())
+    image_lists = create_image_lists(FLAGS.image_dir, 0, 0)
     hits = 0
     total = 0
 
-    for ui in ilist:
-      for uj in ilist[ui]['training']:
-        upath = os.path.join(FLAGS.image_dir, ilist[ui]['dir'])
-        upath = os.path.join(upath, uj)
-        if not tf.gfile.Exists(upath):
-          tf.logging.fatal('File does not exist %s', upath)
-        image_data = tf.gfile.GFile(upath, 'rb').read()
+    for image_class in image_lists:
+      for image in image_lists[image_class]['training']:
+        image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
+        image_path = os.path.join(image_path, image)
+        if not tf.gfile.Exists(image_path):
+          tf.logging.fatal('File does not exist %s', image_path)
+        image_data = tf.gfile.GFile(image_path, 'rb').read()
         resized_image = sess.run(decoded_image_tensor,
                                  {jpeg_data_tensor: image_data})
 
         result = sess.run(prediction,
                           {image: resized_image})
-        pred = get_lab(result[0], list(ilist.keys()))
-        print("{} -> {} ".format(ui, pred))
-        if ui == pred:
+        predicted_class = get_lab(result[0], list(image_lists.keys()))
+        if image_class == predicted_class:
           hits = hits + 1
         total = total + 1
 
-    acc = hits/total * 100
-    print("Test Accuracy: {}%".format(acc))
+    accuracy = hits/total * 100
+    print("Total Accuracy: {}%".format(accuracy))
 
 
 if __name__ == '__main__':
