@@ -1021,11 +1021,13 @@ def main(_):
     jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
 
 
-    image_lists = create_image_lists(FLAGS.image_dir, 0, FLAGS.testing_percentage)
+    image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage, 0)
     hits = 0
     total = 0
+    confusion_matirx = dict()
 
     for image_class in image_lists:
+      confusion_matirx[image_class] = collections.defaultdict(int)
       for image_filename in image_lists[image_class]['testing']:
         image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
         image_path = os.path.join(image_path, image_filename)
@@ -1038,10 +1040,22 @@ def main(_):
         result = sess.run(prediction,
                           {image: resized_image})
         predicted_class = get_lab(result[0], list(image_lists.keys()))
+        confusion_matirx[image_class][predicted_class] += 1
         if image_class == predicted_class:
           hits = hits + 1
         total = total + 1
 
+    print("Confusion Matrix")
+    print("{:>15}".format(""), end="")
+    for image_class in image_lists:
+        print("{:>15}".format(image_class), end="")
+    print()
+
+    for image_class in image_lists:
+        print("{:>15}".format(image_class), end="")
+        for predicted_class in image_lists:
+            print("{:>15}".format(confusion_matirx[image_class][predicted_class]), end="")
+        print()
     accuracy = hits/total * 100
     print("Total Accuracy: {}%".format(accuracy))
 
