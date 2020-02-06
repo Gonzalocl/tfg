@@ -5,7 +5,7 @@ output_dir="output/test0"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 python retrain.py \
-  --image_dir="datasets/flower_few_photos/" \
+  --image_dir="datasets/flower_photos/" \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
