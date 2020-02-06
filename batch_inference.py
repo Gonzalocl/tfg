@@ -136,6 +136,7 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 from tensorflow.contrib import quantize as contrib_quantize
+from tensorflow.python.saved_model import tag_constants
 
 FLAGS = None
 
@@ -992,181 +993,59 @@ def logging_level_verbosity(logging_verbosity):
                        (str(e), list(name_to_level)))
 
 
+def get_lab(result, labels):
+  max = result[0]
+  index_max = 0
+  for i in range(len(result)):
+    if result[i] > max:
+      max = result[i]
+      index_max = i
+  # print(result)
+  # print(labels)
+  return labels[index_max]
+
 def main(_):
-  # Needed to make sure the logging output is visible.
-  # See https://github.com/tensorflow/tensorflow/issues/3047
-  logging_verbosity = logging_level_verbosity(FLAGS.logging_verbosity)
-  logging.set_verbosity(logging_verbosity)
 
-  logging.error('WARNING: This tool is deprecated in favor of '
-                'https://github.com/tensorflow/hub/tree/master/'
-                'tensorflow_hub/tools/make_image_classifier')
-
-  if not FLAGS.image_dir:
-    logging.error('Must set flag --image_dir.')
-    return -1
-
-  # Prepare necessary directories that can be used during training
-  prepare_file_system()
-
-  # Look at the folder structure, and create lists of all the images.
-  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage,
-                                   FLAGS.validation_percentage)
-  class_count = len(image_lists.keys())
-  if class_count == 0:
-    logging.error('No valid folders of images found at %s', FLAGS.image_dir)
-    return -1
-  if class_count == 1:
-    logging.error('Only one valid folder of images found at %s '
-                  ' - multiple classes are needed for classification.',
-                  FLAGS.image_dir)
-    return -1
-
-  # See if the command-line flags mean we're applying any distortions.
-  do_distort_images = should_distort_images(
-      FLAGS.flip_left_right, FLAGS.random_crop, FLAGS.random_scale,
-      FLAGS.random_brightness)
-
-  # Set up the pre-trained graph.
-  module_spec = hub.load_module_spec(FLAGS.tfhub_module)
-  graph, bottleneck_tensor, resized_image_tensor, wants_quantization = (
-      create_module_graph(module_spec))
-
-  # Add the new layer that we'll be training.
-  with graph.as_default():
-    (train_step, cross_entropy, bottleneck_input,
-     ground_truth_input, final_tensor) = add_final_retrain_ops(
-         class_count, FLAGS.final_tensor_name, bottleneck_tensor,
-         wants_quantization, is_training=True)
-
+  graph = tf.Graph()
   with tf.Session(graph=graph) as sess:
-    # Initialize all weights: for the module to their pretrained values,
-    # and for the newly added retraining layer to random initial values.
-    init = tf.global_variables_initializer()
-    sess.run(init)
+    tf.saved_model.loader.load(
+      sess,
+      [tag_constants.SERVING],
+      FLAGS.saved_model_dir
+    )
+    # resized_input_tensor
+    image = graph.get_tensor_by_name('Placeholder:0')
+    prediction = graph.get_tensor_by_name('final_result:0')
 
-    # Set up the image decoding sub-graph.
+    module_spec = hub.load_module_spec(FLAGS.tfhub_module)
     jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
 
-    if do_distort_images:
-      # We will be applying distortions, so set up the operations we'll need.
-      (distorted_jpeg_data_tensor,
-       distorted_image_tensor) = add_input_distortions(
-           FLAGS.flip_left_right, FLAGS.random_crop, FLAGS.random_scale,
-           FLAGS.random_brightness, module_spec)
-    else:
-      # We'll make sure we've calculated the 'bottleneck' image summaries and
-      # cached them on disk.
-      cache_bottlenecks(sess, image_lists, FLAGS.image_dir,
-                        FLAGS.bottleneck_dir, jpeg_data_tensor,
-                        decoded_image_tensor, resized_image_tensor,
-                        bottleneck_tensor, FLAGS.tfhub_module)
 
-    # Create the operations we need to evaluate the accuracy of our new layer.
-    evaluation_step, _ = add_evaluation_step(final_tensor, ground_truth_input)
+    ilist = create_image_lists(FLAGS.image_dir, 0, 0)
+    print(ilist.keys())
+    hits = 0
+    total = 0
 
-    # Merge all the summaries and write them out to the summaries_dir
-    merged = tf.summary.merge_all()
-    train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + '/train',
-                                         sess.graph)
+    for ui in ilist:
+      for uj in ilist[ui]['training']:
+        upath = os.path.join(FLAGS.image_dir, ilist[ui]['dir'])
+        upath = os.path.join(upath, uj)
+        if not tf.gfile.Exists(upath):
+          tf.logging.fatal('File does not exist %s', upath)
+        image_data = tf.gfile.GFile(upath, 'rb').read()
+        resized_image = sess.run(decoded_image_tensor,
+                                 {jpeg_data_tensor: image_data})
 
-    validation_writer = tf.summary.FileWriter(
-        FLAGS.summaries_dir + '/validation')
+        result = sess.run(prediction,
+                          {image: resized_image})
+        pred = get_lab(result[0], list(ilist.keys()))
+        print("{} -> {} ".format(ui, pred))
+        if ui == pred:
+          hits = hits + 1
+        total = total + 1
 
-    # Create a train saver that is used to restore values into an eval graph
-    # when exporting models.
-    train_saver = tf.train.Saver()
-
-    # Run the training for as many cycles as requested on the command line.
-    for i in range(FLAGS.how_many_training_steps):
-      # Get a batch of input bottleneck values, either calculated fresh every
-      # time with distortions applied, or from the cache stored on disk.
-      if do_distort_images:
-        (train_bottlenecks,
-         train_ground_truth) = get_random_distorted_bottlenecks(
-             sess, image_lists, FLAGS.train_batch_size, 'training',
-             FLAGS.image_dir, distorted_jpeg_data_tensor,
-             distorted_image_tensor, resized_image_tensor, bottleneck_tensor)
-      else:
-        (train_bottlenecks,
-         train_ground_truth, _) = get_random_cached_bottlenecks(
-             sess, image_lists, FLAGS.train_batch_size, 'training',
-             FLAGS.bottleneck_dir, FLAGS.image_dir, jpeg_data_tensor,
-             decoded_image_tensor, resized_image_tensor, bottleneck_tensor,
-             FLAGS.tfhub_module)
-      # Feed the bottlenecks and ground truth into the graph, and run a training
-      # step. Capture training summaries for TensorBoard with the `merged` op.
-      train_summary, _ = sess.run(
-          [merged, train_step],
-          feed_dict={bottleneck_input: train_bottlenecks,
-                     ground_truth_input: train_ground_truth})
-      train_writer.add_summary(train_summary, i)
-
-      # Every so often, print out how well the graph is training.
-      is_last_step = (i + 1 == FLAGS.how_many_training_steps)
-      if (i % FLAGS.eval_step_interval) == 0 or is_last_step:
-        train_accuracy, cross_entropy_value = sess.run(
-            [evaluation_step, cross_entropy],
-            feed_dict={bottleneck_input: train_bottlenecks,
-                       ground_truth_input: train_ground_truth})
-        logging.info('%s: Step %d: Train accuracy = %.1f%%',
-                     datetime.now(), i, train_accuracy * 100)
-        logging.info('%s: Step %d: Cross entropy = %f',
-                     datetime.now(), i, cross_entropy_value)
-        # TODO: Make this use an eval graph, to avoid quantization
-        # moving averages being updated by the validation set, though in
-        # practice this makes a negligable difference.
-        validation_bottlenecks, validation_ground_truth, _ = (
-            get_random_cached_bottlenecks(
-                sess, image_lists, FLAGS.validation_batch_size, 'validation',
-                FLAGS.bottleneck_dir, FLAGS.image_dir, jpeg_data_tensor,
-                decoded_image_tensor, resized_image_tensor, bottleneck_tensor,
-                FLAGS.tfhub_module))
-        # Run a validation step and capture training summaries for TensorBoard
-        # with the `merged` op.
-        validation_summary, validation_accuracy = sess.run(
-            [merged, evaluation_step],
-            feed_dict={bottleneck_input: validation_bottlenecks,
-                       ground_truth_input: validation_ground_truth})
-        validation_writer.add_summary(validation_summary, i)
-        logging.info('%s: Step %d: Validation accuracy = %.1f%% (N=%d)',
-                     datetime.now(), i, validation_accuracy * 100,
-                     len(validation_bottlenecks))
-
-      # Store intermediate results
-      intermediate_frequency = FLAGS.intermediate_store_frequency
-
-      if (intermediate_frequency > 0 and (i % intermediate_frequency == 0)
-          and i > 0):
-        # If we want to do an intermediate save, save a checkpoint of the train
-        # graph, to restore into the eval graph.
-        train_saver.save(sess, FLAGS.checkpoint_path)
-        intermediate_file_name = (FLAGS.intermediate_output_graphs_dir +
-                                  'intermediate_' + str(i) + '.pb')
-        logging.info('Save intermediate result to : %s', intermediate_file_name)
-        save_graph_to_file(intermediate_file_name, module_spec,
-                           class_count)
-
-    # After training is complete, force one last save of the train checkpoint.
-    train_saver.save(sess, FLAGS.checkpoint_path)
-
-    # We've completed all our training, so run a final test evaluation on
-    # some new images we haven't used before.
-    run_final_eval(sess, module_spec, class_count, image_lists,
-                   jpeg_data_tensor, decoded_image_tensor, resized_image_tensor,
-                   bottleneck_tensor)
-
-    # Write out the trained graph and labels with the weights stored as
-    # constants.
-    logging.info('Save final result to : %s', FLAGS.output_graph)
-    if wants_quantization:
-      logging.info('The model is instrumented for quantization with TF-Lite')
-    save_graph_to_file(FLAGS.output_graph, module_spec, class_count)
-    with tf.gfile.GFile(FLAGS.output_labels, 'w') as f:
-      f.write('\n'.join(image_lists.keys()) + '\n')
-
-    if FLAGS.saved_model_dir:
-      export_model(module_spec, class_count, FLAGS.saved_model_dir)
+    acc = hits/total * 100
+    print("Test Accuracy: {}%".format(acc))
 
 
 if __name__ == '__main__':

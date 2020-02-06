@@ -25,4 +25,9 @@ python retrain.py \
   --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
 
 
+python batch_inference.py \
+  --image_dir="datasets/flower_photos/" \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
 
