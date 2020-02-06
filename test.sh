@@ -32,3 +32,4 @@ python batch_inference.py \
   --testing_percentage=10 \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
 
+#tensorboard --port 0 --logdir output/test0/r/retrain_logs/
