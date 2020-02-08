@@ -6,7 +6,7 @@ results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
 python retrain.py \
-  --image_dir="datasets/flower_photos/" \
+  --image_dir="datasets/acdc/" \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -26,7 +26,7 @@ python retrain.py \
 
 
 python batch_inference.py \
-  --image_dir="datasets/flower_photos/" \
+  --image_dir="datasets/acdc/" \
   --saved_model_dir="$results_dir/saved_model/" \
   --output_labels="$results_dir/output_labels.txt" \
   --testing_percentage=10 \
