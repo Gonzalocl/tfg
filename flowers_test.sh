@@ -5,7 +5,7 @@ output_dir="output/00_flowers_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
-python flowers_retrain.py \
+python retrain.py \
   --image_dir="datasets/flower_photos/" \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
@@ -25,7 +25,7 @@ python flowers_retrain.py \
   --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
 
 
-python flowers_batch_inference.py \
+python batch_inference.py \
   --image_dir="datasets/flower_photos/" \
   --saved_model_dir="$results_dir/saved_model/" \
   --output_labels="$results_dir/output_labels.txt" \
