@@ -45,6 +45,8 @@ for sub_dir in sub_dirs:
   img = nib.load(path)
   data = img.get_fdata()
   data = np.transpose(data, (3, 2, 1, 0))
+  with open(os.path.join(path_label, "{}.shape".format(base_name)), "w") as f:
+    print("Frames: {}\nSlices: {}\nWidth: {}\nHeight: {}".format(data.shape[0], data.shape[1], data.shape[2], data.shape[3]), file=f)
   pixels = np.zeros((data.shape[2], data.shape[3], 3)).astype(np.uint8)
   for f in range(data.shape[0]):
     for s in range(data.shape[1]):
