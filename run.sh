@@ -9,5 +9,7 @@ cd ..
 
 ./acdc_extract.sh
 
+./cines.sh
+./info.sh > output/info.csv
 
 ./test_all.sh
