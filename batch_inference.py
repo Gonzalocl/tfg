@@ -1057,7 +1057,7 @@ def main(_):
             print("{:>15}".format(confusion_matirx[image_class][predicted_class]), end="")
         print()
     accuracy = hits/total * 100
-    print("Total Accuracy: {}%".format(accuracy))
+    print("Total Accuracy: {}% (N={})".format(accuracy, total))
 
 
 if __name__ == '__main__':
