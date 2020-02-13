@@ -1021,7 +1021,7 @@ def main(_):
     jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
 
 
-    image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage, 0)
+    image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage, FLAGS.validation_percentage)
     hits = 0
     total = 0
     confusion_matirx = dict()
