@@ -25,9 +25,9 @@ with graph.as_default():
   frame = frame_adjust / frame_max
   frame_scaled = frame*255
 
-tf.io.gfile.mkdir(output_dir)
+tf.gfile.MkDir(output_dir)
 
-sub_dirs = sorted(x[0] for x in tf.io.gfile.walk(path))
+sub_dirs = sorted(x[0] for x in tf.gfile.Walk(path))
 # The root directory comes first, so skip it.
 is_root_dir = True
 for sub_dir in sub_dirs:
@@ -39,8 +39,8 @@ for sub_dir in sub_dirs:
   info = read_info(path_info)
   label = info['label']
   path_label = os.path.join(output_dir, label)
-  tf.io.gfile.mkdir(path_label)
-  tf.io.gfile.copy(path_info, os.path.join(path_label, "{}.cfg".format(base_name)))
+  tf.gfile.MkDir(path_label)
+  tf.gfile.Copy(path_info, os.path.join(path_label, "{}.cfg".format(base_name)))
   path = os.path.join(sub_dir, '{}_4d.nii.gz'.format(base_name))
   img = nib.load(path)
   data = img.get_fdata()
