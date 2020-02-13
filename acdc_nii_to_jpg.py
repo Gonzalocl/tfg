@@ -17,7 +17,7 @@ def read_info(file_path):
 
 graph = tf.Graph()
 with graph.as_default():
-  frame_input = tf.compat.v1.placeholder(dtype=tf.float64)
+  frame_input = tf.placeholder(dtype=tf.float64)
   frame_min = tf.reduce_min(frame_input)
   frame_max = tf.reduce_max(frame_input)
   frame_adjust = frame_input - frame_min

@@ -30,6 +30,7 @@ python batch_inference.py \
   --saved_model_dir="$results_dir/saved_model/" \
   --output_labels="$results_dir/output_labels.txt" \
   --testing_percentage=10 \
+  --validation_percentage=10 \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
 
 #tensorboard --port 0 --logdir output/01_acdc_test/r/retrain_logs/
