@@ -188,7 +188,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
       continue
     logging.info("Looking for images in '%s'",  dir_name)
     for extension in extensions:
-      file_glob = os.path.join(image_dir, dir_name, '*.' + extension)
+      file_glob = os.path.join(image_dir, dir_name, '*frame00_slice00.' + extension)
       file_list.extend(tf.gfile.Glob(file_glob))
     if not file_list:
       logging.warning('No files found')
