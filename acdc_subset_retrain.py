@@ -147,7 +147,7 @@ FAKE_QUANT_OPS = ('FakeQuantWithMinMaxVars',
                   'FakeQuantWithMinMaxVarsPerChannel')
 
 
-def create_image_lists(image_dir, testing_percentage, validation_percentage):
+def create_image_lists(image_dir, subsets, testing_percentage, validation_percentage):
   """Builds a list of training images from the file system.
 
   Analyzes the sub folders in the image directory, splits them into stable
@@ -158,6 +158,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     image_dir: String path to a folder containing subfolders of images.
     testing_percentage: Integer percentage of the images to reserve for tests.
     validation_percentage: Integer percentage of images reserved for validation.
+    subsets: String group classes
 
   Returns:
     An OrderedDict containing an entry for each label subfolder, with images
@@ -170,6 +171,27 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
   result = collections.OrderedDict()
   sub_dirs = sorted(x[0] for x in tf.gfile.Walk(image_dir))
   # The root directory comes first, so skip it.
+  subsets_list = []
+  if not subsets:
+    is_root_dir = True
+    for sub_dir in sub_dirs:
+      if is_root_dir:
+        is_root_dir = False
+        continue
+      subsets_list.append([os.path.basename(sub_dir)])
+  else:
+    for subset in subsets.split(":"):
+      subset_list = []
+      for sub_dir in subset.split(","):
+        subset_list.append(sub_dir)
+        if not sub_dir:
+          logging.error("Error parsing subsets: {}".format(subsets))
+          return None
+        if os.path.join(image_dir, sub_dir) not in sub_dirs:
+          logging.error("Image directory '" + os.path.join(image_dir, sub_dir) + "' not found.")
+          return None
+      subsets_list.append(subset_list)
+
   is_root_dir = True
   for sub_dir in sub_dirs:
     if is_root_dir:
@@ -1011,8 +1033,8 @@ def main(_):
   prepare_file_system()
 
   # Look at the folder structure, and create lists of all the images.
-  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.testing_percentage,
-                                   FLAGS.validation_percentage)
+  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.subsets,
+                                   FLAGS.testing_percentage, FLAGS.validation_percentage)
   class_count = len(image_lists.keys())
   if class_count == 0:
     logging.error('No valid folders of images found at %s', FLAGS.image_dir)
@@ -1353,6 +1375,12 @@ if __name__ == '__main__':
       type=str,
       default='/tmp/_retrain_checkpoint',
       help='Where to save checkpoint files.'
+  )
+  parser.add_argument(
+      '--subsets',
+      type=str,
+      default='',
+      help='Group classes'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
