@@ -205,6 +205,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     validation_images = []
     for file_name in file_list:
       base_name = os.path.basename(file_name)
+      base_name = os.path.join(dir_name, base_name)
       # We want to ignore anything after '_nohash_' in the file name when
       # deciding which set to put an image in, the data set creator has a way of
       # grouping photos that are close variations of each other. For example
@@ -266,7 +267,7 @@ def get_image_path(image_lists, label_name, index, image_dir, category):
   mod_index = index % len(category_list)
   base_name = category_list[mod_index]
   sub_dir = label_lists['dir']
-  full_path = os.path.join(image_dir, sub_dir, base_name)
+  full_path = os.path.join(image_dir, base_name)
   return full_path
 
 
