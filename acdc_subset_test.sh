@@ -5,9 +5,10 @@ output_dir="output/03_acdc_DCM_subset_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
+subsets="DCM:HCM,MINF,NOR,RV"
 python acdc_subset_retrain.py \
   --image_dir="datasets/acdc/" \
-  --subsets="DCM:HCM,MINF,NOR,RV" \
+  --subsets=$subsets \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -23,17 +24,27 @@ python acdc_subset_retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
+python acdc_subset_batch_inference.py \
+  --image_dir="datasets/acdc/" \
+  --subsets=$subsets \
+  --set testing \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
 output_dir="output/03_acdc_HCM_subset_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
+subsets="HCM:DCM,MINF,NOR,RV"
 python acdc_subset_retrain.py \
   --image_dir="datasets/acdc/" \
-  --subsets="HCM:DCM,MINF,NOR,RV" \
+  --subsets=$subsets \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -49,17 +60,27 @@ python acdc_subset_retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
+python acdc_subset_batch_inference.py \
+  --image_dir="datasets/acdc/" \
+  --subsets=$subsets \
+  --set testing \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
 output_dir="output/03_acdc_MINF_subset_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
+subsets="MINF:DCM,HCM,NOR,RV"
 python acdc_subset_retrain.py \
   --image_dir="datasets/acdc/" \
-  --subsets="MINF:DCM,HCM,NOR,RV" \
+  --subsets=$subsets \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -75,17 +96,27 @@ python acdc_subset_retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
+python acdc_subset_batch_inference.py \
+  --image_dir="datasets/acdc/" \
+  --subsets=$subsets \
+  --set testing \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
 output_dir="output/03_acdc_NOR_subset_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
+subsets="NOR:DCM,HCM,MINF,RV"
 python acdc_subset_retrain.py \
   --image_dir="datasets/acdc/" \
-  --subsets="NOR:DCM,HCM,MINF,RV" \
+  --subsets=$subsets \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -101,17 +132,27 @@ python acdc_subset_retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
+python acdc_subset_batch_inference.py \
+  --image_dir="datasets/acdc/" \
+  --subsets=$subsets \
+  --set testing \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
 output_dir="output/03_acdc_RV_subset_test"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
+subsets="RV:DCM,HCM,MINF,NOR"
 python acdc_subset_retrain.py \
   --image_dir="datasets/acdc/" \
-  --subsets="RV:DCM,HCM,MINF,NOR" \
+  --subsets=$subsets \
   --output_graph="$results_dir/output_graph.pb" \
   --output_labels="$results_dir/output_labels.txt" \
   --summaries_dir="$results_dir/retrain_logs" \
@@ -127,18 +168,15 @@ python acdc_subset_retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
-
-
-
-exit
-#python batch_inference.py \
-#  --image_dir="datasets/acdc/" \
-#  --subsets="DCM,HCM:MINF,NOR,RV" \
-#  --saved_model_dir="$results_dir/saved_model/" \
-#  --output_labels="$results_dir/output_labels.txt" \
-#  --testing_percentage=10 \
-#  --validation_percentage=10 \
-#  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
+python acdc_subset_batch_inference.py \
+  --image_dir="datasets/acdc/" \
+  --subsets=$subsets \
+  --set testing \
+  --saved_model_dir="$results_dir/saved_model/" \
+  --output_labels="$results_dir/output_labels.txt" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
