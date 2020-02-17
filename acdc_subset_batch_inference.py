@@ -63,6 +63,7 @@ def main(_):
           hits = hits + 1
         total = total + 1
 
+    print("Set: {}".format(" ".join(FLAGS.set)))
     print("Confusion Matrix")
     print("{:>15}".format(""), end="")
     for image_class in image_lists:
@@ -267,6 +268,14 @@ if __name__ == '__main__':
     type=str,
     default='',
     help='Group classes'
+  )
+  parser.add_argument(
+    '--set',
+    type=str,
+    choices=['training', 'testing', 'validation'],
+    nargs='+',
+    default=['testing'],
+    help='Sets to perform inference'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
