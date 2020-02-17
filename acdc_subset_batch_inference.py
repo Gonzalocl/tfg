@@ -48,8 +48,7 @@ def main(_):
       confusion_matirx[image_class] = collections.defaultdict(int)
       for image_set in FLAGS.set:
         for image_filename in image_lists[image_class][image_set]:
-          image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
-          image_path = os.path.join(image_path, image_filename)
+          image_path = os.path.join(FLAGS.image_dir, image_filename)
           if not tf.gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
           image_data = tf.gfile.GFile(image_path, 'rb').read()
