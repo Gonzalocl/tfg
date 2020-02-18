@@ -5,14 +5,15 @@ rm -rf "$main_dir"
 mkdir -p "$main_dir"
 
 function subset_retrain {
-  output_dir="output/03_acdc_DCM_subset_test"
+  subset_name=$(echo "$1" | tr ':' '_' | tr ',' '-')
+  output_dir="$main_dir/retrain_subset_$subset_name"
   results_dir="$output_dir/r"
-  rm -rf $results_dir
+  rm -rf "$results_dir"
   mkdir -p "$results_dir"
-  subsets="DCM:HCM,MINF,NOR,RV"
+  subsets="$1"
   python acdc_subset_retrain.py \
     --image_dir="datasets/acdc/" \
-    --subsets=$subsets \
+    --subsets="$subsets" \
     --output_graph="$results_dir/output_graph.pb" \
     --output_labels="$results_dir/output_labels.txt" \
     --summaries_dir="$results_dir/retrain_logs" \
@@ -32,8 +33,8 @@ function subset_retrain {
 
   python acdc_subset_batch_inference.py \
     --image_dir="datasets/acdc/" \
-    --subsets=$subsets \
-    --set testing \
+    --subsets="$subsets" \
+    --set validation \
     --saved_model_dir="$results_dir/saved_model/" \
     --output_labels="$results_dir/output_labels.txt" \
     --testing_percentage=10 \
@@ -41,3 +42,4 @@ function subset_retrain {
     --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 }
 
+subset_retrain "DCM:HCM,MINF,NOR,RV"
