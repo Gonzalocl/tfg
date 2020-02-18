@@ -1,5 +1,6 @@
 #!/bin/bash
 
+dataset="datasets/acdc"
 main_dir="output/04_acdc_cascade_test"
 rm -rf "$main_dir"
 mkdir -p "$main_dir"
@@ -18,7 +19,7 @@ function subset_retrain {
   mkdir -p "$results_dir"
   subsets="$1"
   python acdc_subset_retrain.py \
-    --image_dir="datasets/acdc/" \
+    --image_dir="$dataset" \
     --subsets="$subsets" \
     --output_graph="$results_dir/output_graph.pb" \
     --output_labels="$results_dir/output_labels.txt" \
@@ -38,7 +39,7 @@ function subset_retrain {
     --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
 
   python acdc_subset_batch_inference.py \
-    --image_dir="datasets/acdc/" \
+    --image_dir="$dataset" \
     --subsets="$subsets" \
     --set validation \
     --saved_model_dir="$results_dir/saved_model/" \
