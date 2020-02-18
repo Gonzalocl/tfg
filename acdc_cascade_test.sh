@@ -58,12 +58,36 @@ function subset_retrain {
   echo -e "\n" >> $confusion_matrix_file
 }
 
+function fgt {
+  python -c "exit(0) if $1 > $2 else exit(1)"
+}
 
-#labels="DCM HCM MINF NOR RV"
-labels="DCM:HCM,MINF,NOR,RV DCM:HCM:MINF:NOR,RV"
-step=0
-for l in $labels; do
-  subset_retrain $l
-  ((step++))
+
+labels=$(ls "$dataset")
+label_count=$(ls "$dataset" | wc -l)
+steps=$((label_count-3))
+for step in $(seq 0 $steps); do
+  echo "Step: $step" >> $log_file
+  best_percentage=0
+  for l in $(seq "$label_count"); do
+    set1="$(echo $labels | cut -d ' ' -f $l | tr ' ' ',')"
+    set2="$(echo $labels | cut -d ' ' -f $l --complement | tr ' ' ',')"
+    subset_retrain "$set1:$set2"
+    echo "  $set1:$set2  $percentage%" >> $log_file
+    if fgt "$percentage" "$best_percentage"; then
+      best_percentage="$percentage"
+      best_set1="$set1"
+      best_set2="$set2"
+    fi
+  done
+  echo -e "\n  Best: $best_set1:$best_set2  $best_percentage%\n\n" >> $log_file
+  labels="$(echo $best_set2 | tr ',' ' ')"
+  ((label_count--))
 done
+
+step=$((steps+1))
+echo "Step: $step" >> $log_file
+sets="$(echo $labels | tr ' ' ':')"
+subset_retrain "$sets"
+echo "  $sets  $percentage%"  >> $log_file
 
