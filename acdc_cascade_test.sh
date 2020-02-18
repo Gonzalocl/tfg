@@ -1,5 +1,8 @@
 #!/bin/bash
 
+main_dir="output/04_acdc_cascade_test"
+rm -rf "$main_dir"
+mkdir -p "$main_dir"
 
 function subset_retrain {
   output_dir="output/03_acdc_DCM_subset_test"
