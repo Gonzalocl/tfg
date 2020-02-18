@@ -4,6 +4,12 @@ main_dir="output/04_acdc_cascade_test"
 rm -rf "$main_dir"
 mkdir -p "$main_dir"
 
+log_file="$main_dir/log"
+percentages_file="$main_dir/percentages"
+confusion_matrix_file="$main_dir/confusion_matrix"
+
+echo "step,subset,percentage" > $percentages_file
+
 function subset_retrain {
   subset_name=$(echo "$1" | tr ':' '_' | tr ',' '-')
   output_dir="$main_dir/retrain_subset_$subset_name"
@@ -40,6 +46,23 @@ function subset_retrain {
     --testing_percentage=10 \
     --validation_percentage=10 \
     --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
+
+  percentage=$(tail -n 1 "$results_dir/out_inference" | cut -d ' ' -f 3 | tr -d '%')
+  echo "$step,$subset_name,$percentage" >> $percentages_file
+
+  subsets_count=$(echo $subsets | grep -o ':' | wc -l)
+  ((subsets_count++))
+  echo "Subset: $subsets" >> $confusion_matrix_file
+  tail -n $((subsets_count + 4)) "$results_dir/out_inference" >> $confusion_matrix_file
+  echo -e "\n" >> $confusion_matrix_file
 }
 
-subset_retrain "DCM:HCM,MINF,NOR,RV"
+
+#labels="DCM HCM MINF NOR RV"
+labels="DCM:HCM,MINF,NOR,RV DCM:HCM:MINF:NOR,RV"
+step=0
+for l in $labels; do
+  subset_retrain $l
+  ((step++))
+done
+
