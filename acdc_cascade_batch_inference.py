@@ -55,25 +55,13 @@ def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module):
   return graphs
 
 def cascade_inference(graphs):
-  pass
+  return ""
 
 def main(_):
 
-  subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
+    subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
 
-  graph = tf.Graph()
-  with tf.Session(graph=graph) as sess:
-    tf.saved_model.loader.load(
-      sess,
-      [tag_constants.SERVING],
-      FLAGS.saved_model_dir
-    )
-    # resized_input_tensor
-    image = graph.get_tensor_by_name('Placeholder:0')
-    prediction = graph.get_tensor_by_name('final_result:0')
-
-    module_spec = hub.load_module_spec(FLAGS.tfhub_module)
-    jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
+    graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module)
 
     image_lists = create_image_lists(FLAGS.image_dir, FLAGS.subsets,
                                      FLAGS.testing_percentage, FLAGS.validation_percentage)
@@ -88,13 +76,7 @@ def main(_):
           image_path = os.path.join(FLAGS.image_dir, image_filename)
           if not tf.gfile.Exists(image_path):
             tf.logging.fatal('File does not exist %s', image_path)
-          image_data = tf.gfile.GFile(image_path, 'rb').read()
-          resized_image = sess.run(decoded_image_tensor,
-                                   {jpeg_data_tensor: image_data})
-
-          result = sess.run(prediction,
-                            {image: resized_image})
-          predicted_class = get_lab(result[0], list(image_lists.keys()))
+          predicted_class = cascade_inference(graphs)
           confusion_matirx[image_class][predicted_class] += 1
           if image_class == predicted_class:
             hits = hits + 1
