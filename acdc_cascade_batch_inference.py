@@ -54,8 +54,15 @@ def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module):
       graphs['decoded_image_tensor'].append(decoded_image_tensor)
   return graphs
 
-def cascade_inference(graphs):
-  return ""
+def cascade_inference(graphs, image_path):
+  for graph, image, prediction, jpeg_data_tensor, decoded_image_tensor in zip(graphs['graph'], graphs['image'], graphs['prediction'], graphs['jpeg_data_tensor'], graphs['decoded_image_tensor']):
+    with tf.Session(graph=graph) as sess:
+      image_data = tf.gfile.GFile(image_path, 'rb').read()
+      resized_image = sess.run(decoded_image_tensor,
+                               {jpeg_data_tensor: image_data})
+      result = sess.run(prediction,
+                        {image: resized_image})
+      # return get_lab(result[0], list(image_lists.keys()))
 
 def main(_):
 
@@ -76,7 +83,7 @@ def main(_):
         image_path = os.path.join(FLAGS.image_dir, image_filename)
         if not tf.gfile.Exists(image_path):
           tf.logging.fatal('File does not exist %s', image_path)
-        predicted_class = cascade_inference(graphs)
+        predicted_class = cascade_inference(graphs, image_path)
         confusion_matirx[image_class][predicted_class] += 1
         if image_class == predicted_class:
           hits = hits + 1
