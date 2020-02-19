@@ -37,6 +37,7 @@ def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module, output_la
     labels_full_path = os.path.join(main_dir, "retrain_subset_{}".format(subset_name), output_labels)
     with open(labels_full_path) as f:
       labels = f.readlines()
+    labels = [l.strip() for l in labels]
     print("Loading model: {}".format(model_full_path))
     with tf.Graph().as_default() as graph:
       with tf.Session(graph=graph).as_default() as sess:
