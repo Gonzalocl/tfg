@@ -18,21 +18,24 @@ def get_lab(result, labels):
     if result[i] > max:
       max = result[i]
       index_max = i
-  # print(result)
-  # print(labels)
   return labels[index_max]
 
-def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module):
+def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module, output_labels):
   graphs = {
     'graph': [],
     'image': [],
     'prediction': [],
     'jpeg_data_tensor': [],
     'decoded_image_tensor': [],
+    'labels': [],
+    'is_last_step': []
   }
   for subsets in subsets_list:
-    subset_name=subsets.replace(":", "_").replace(",", "-")
+    subset_name = subsets.replace(":", "_").replace(",", "-")
     model_full_path = os.path.join(main_dir, "retrain_subset_{}".format(subset_name), saved_model_dir)
+    labels_full_path = os.path.join(main_dir, "retrain_subset_{}".format(subset_name), output_labels)
+    with open(labels_full_path) as f:
+      labels = f.readlines()
     print("Loading model: {}".format(model_full_path))
     graph = tf.Graph()
     with tf.Session(graph=graph) as sess:
@@ -47,15 +50,19 @@ def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module):
 
       module_spec = hub.load_module_spec(tfhub_module)
       jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
+
       graphs['graph'].append(graph)
       graphs['image'].append(image)
       graphs['prediction'].append(prediction)
       graphs['jpeg_data_tensor'].append(jpeg_data_tensor)
       graphs['decoded_image_tensor'].append(decoded_image_tensor)
+      graphs['labels'].append(labels)
+      graphs['is_last_step'].append(False)
+  graphs['is_last_step'][-1] = True
   return graphs
 
 def cascade_inference(graphs, image_path):
-  for graph, image, prediction, jpeg_data_tensor, decoded_image_tensor in zip(graphs['graph'], graphs['image'], graphs['prediction'], graphs['jpeg_data_tensor'], graphs['decoded_image_tensor']):
+  for graph, image, prediction, jpeg_data_tensor, decoded_image_tensor, labels, is_last_step in zip(graphs['graph'], graphs['image'], graphs['prediction'], graphs['jpeg_data_tensor'], graphs['decoded_image_tensor'], graphs['labels'], graphs['is_last_step']):
     with tf.Session(graph=graph) as sess:
       image_data = tf.gfile.GFile(image_path, 'rb').read()
       resized_image = sess.run(decoded_image_tensor,
@@ -68,7 +75,7 @@ def main(_):
 
   subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
 
-  graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module)
+  graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module, FLAGS.output_labels)
 
   image_lists = create_image_lists(FLAGS.image_dir, FLAGS.subsets,
                                    FLAGS.testing_percentage, FLAGS.validation_percentage)
