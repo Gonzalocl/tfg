@@ -59,43 +59,43 @@ def cascade_inference(graphs):
 
 def main(_):
 
-    subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
+  subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
 
-    graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module)
+  graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module)
 
-    image_lists = create_image_lists(FLAGS.image_dir, FLAGS.subsets,
-                                     FLAGS.testing_percentage, FLAGS.validation_percentage)
-    hits = 0
-    total = 0
-    confusion_matirx = dict()
+  image_lists = create_image_lists(FLAGS.image_dir, FLAGS.subsets,
+                                   FLAGS.testing_percentage, FLAGS.validation_percentage)
+  hits = 0
+  total = 0
+  confusion_matirx = dict()
 
-    for image_class in image_lists:
-      confusion_matirx[image_class] = collections.defaultdict(int)
-      for image_set in FLAGS.set:
-        for image_filename in image_lists[image_class][image_set]:
-          image_path = os.path.join(FLAGS.image_dir, image_filename)
-          if not tf.gfile.Exists(image_path):
-            tf.logging.fatal('File does not exist %s', image_path)
-          predicted_class = cascade_inference(graphs)
-          confusion_matirx[image_class][predicted_class] += 1
-          if image_class == predicted_class:
-            hits = hits + 1
-          total = total + 1
+  for image_class in image_lists:
+    confusion_matirx[image_class] = collections.defaultdict(int)
+    for image_set in FLAGS.set:
+      for image_filename in image_lists[image_class][image_set]:
+        image_path = os.path.join(FLAGS.image_dir, image_filename)
+        if not tf.gfile.Exists(image_path):
+          tf.logging.fatal('File does not exist %s', image_path)
+        predicted_class = cascade_inference(graphs)
+        confusion_matirx[image_class][predicted_class] += 1
+        if image_class == predicted_class:
+          hits = hits + 1
+        total = total + 1
 
-    print("Set: {}".format(" ".join(FLAGS.set)))
-    print("Confusion Matrix")
-    print("{:>15}".format(""), end="")
-    for image_class in image_lists:
-        print("{:>15}".format(image_class), end="")
-    print()
+  print("Set: {}".format(" ".join(FLAGS.set)))
+  print("Confusion Matrix")
+  print("{:>15}".format(""), end="")
+  for image_class in image_lists:
+      print("{:>15}".format(image_class), end="")
+  print()
 
-    for image_class in image_lists:
-        print("{:>15}".format(image_class), end="")
-        for predicted_class in image_lists:
-            print("{:>15}".format(confusion_matirx[image_class][predicted_class]), end="")
-        print()
-    accuracy = hits/total * 100
-    print("Total Accuracy: {}% (N={})".format(accuracy, total))
+  for image_class in image_lists:
+      print("{:>15}".format(image_class), end="")
+      for predicted_class in image_lists:
+          print("{:>15}".format(confusion_matirx[image_class][predicted_class]), end="")
+      print()
+  accuracy = hits/total * 100
+  print("Total Accuracy: {}% (N={})".format(accuracy, total))
 
 
 if __name__ == '__main__':
