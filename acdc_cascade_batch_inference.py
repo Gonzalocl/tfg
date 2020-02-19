@@ -74,9 +74,7 @@ def cascade_inference(graphs, image_path):
         result = sess.run(prediction,
                           {image: resized_image})
         label = get_lab(result[0], labels)
-        if is_last_step:
-          return label
-        else:
+        if is_last_step or label == labels[0]:
           return label
 
 def main(_):
