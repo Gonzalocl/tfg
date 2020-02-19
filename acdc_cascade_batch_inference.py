@@ -62,14 +62,18 @@ def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module, output_la
   return graphs
 
 def cascade_inference(graphs, image_path):
+  image_data = tf.gfile.GFile(image_path, 'rb').read()
   for graph, image, prediction, jpeg_data_tensor, decoded_image_tensor, labels, is_last_step in zip(graphs['graph'], graphs['image'], graphs['prediction'], graphs['jpeg_data_tensor'], graphs['decoded_image_tensor'], graphs['labels'], graphs['is_last_step']):
     with tf.Session(graph=graph) as sess:
-      image_data = tf.gfile.GFile(image_path, 'rb').read()
       resized_image = sess.run(decoded_image_tensor,
                                {jpeg_data_tensor: image_data})
       result = sess.run(prediction,
                         {image: resized_image})
-      # return get_lab(result[0], list(image_lists.keys()))
+      label = get_lab(result[0], labels)
+      if is_last_step:
+        return label
+      else:
+        return label
 
 def main(_):
 
