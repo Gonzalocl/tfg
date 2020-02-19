@@ -22,7 +22,44 @@ def get_lab(result, labels):
   # print(labels)
   return labels[index_max]
 
+def load_graphs(subsets_list, main_dir, saved_model_dir, tfhub_module):
+  graphs = {
+    'graph': [],
+    'image': [],
+    'prediction': [],
+    'jpeg_data_tensor': [],
+    'decoded_image_tensor': [],
+  }
+  for subsets in subsets_list:
+    subset_name=subsets.replace(":", "_").replace(",", "-")
+    model_full_path = os.path.join(main_dir, "retrain_subset_{}".format(subset_name), saved_model_dir)
+    print("Loading model: {}".format(model_full_path))
+    graph = tf.Graph()
+    with tf.Session(graph=graph) as sess:
+      tf.saved_model.loader.load(
+        sess,
+        [tag_constants.SERVING],
+        model_full_path
+      )
+      # resized_input_tensor
+      image = graph.get_tensor_by_name('Placeholder:0')
+      prediction = graph.get_tensor_by_name('final_result:0')
+
+      module_spec = hub.load_module_spec(tfhub_module)
+      jpeg_data_tensor, decoded_image_tensor = add_jpeg_decoding(module_spec)
+      graphs['graph'].append(graph)
+      graphs['image'].append(image)
+      graphs['prediction'].append(prediction)
+      graphs['jpeg_data_tensor'].append(jpeg_data_tensor)
+      graphs['decoded_image_tensor'].append(decoded_image_tensor)
+  return graphs
+
+def cascade_inference(graphs):
+  pass
+
 def main(_):
+
+  subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
 
   graph = tf.Graph()
   with tf.Session(graph=graph) as sess:
@@ -276,6 +313,12 @@ if __name__ == '__main__':
     nargs='+',
     default=['testing'],
     help='Sets to perform inference'
+  )
+  parser.add_argument(
+    '--main_dir',
+    type=str,
+    default='',
+    help='Main directory'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
