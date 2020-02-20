@@ -1031,23 +1031,24 @@ def main(_):
 
     for image_class in image_lists:
       confusion_matirx[image_class] = collections.defaultdict(int)
-      for image_filename in image_lists[image_class]['testing']:
-        image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
-        image_path = os.path.join(image_path, image_filename)
-        if not tf.gfile.Exists(image_path):
-          tf.logging.fatal('File does not exist %s', image_path)
-        image_data = tf.gfile.GFile(image_path, 'rb').read()
-        resized_image = sess.run(decoded_image_tensor,
-                                 {jpeg_data_tensor: image_data})
+      for image_set in FLAGS.set:
+        for image_filename in image_lists[image_class][image_set]:
+          image_path = os.path.join(FLAGS.image_dir, image_lists[image_class]['dir'])
+          image_path = os.path.join(image_path, image_filename)
+          if not tf.gfile.Exists(image_path):
+            tf.logging.fatal('File does not exist %s', image_path)
+          image_data = tf.gfile.GFile(image_path, 'rb').read()
+          resized_image = sess.run(decoded_image_tensor,
+                                   {jpeg_data_tensor: image_data})
 
-        result = sess.run(prediction,
-                          {image: resized_image})
-        predicted_class = get_lab(result[0], list(image_lists.keys()))
-        confusion_matirx[image_class][predicted_class] += 1
-        print("{},{},{},{}".format(image_path, 'testing', image_class, predicted_class), file=output_predictions_file)
-        if image_class == predicted_class:
-          hits = hits + 1
-        total = total + 1
+          result = sess.run(prediction,
+                            {image: resized_image})
+          predicted_class = get_lab(result[0], list(image_lists.keys()))
+          confusion_matirx[image_class][predicted_class] += 1
+          print("{},{},{},{}".format(image_path, image_set, image_class, predicted_class), file=output_predictions_file)
+          if image_class == predicted_class:
+            hits = hits + 1
+          total = total + 1
 
     output_predictions_file.close()
     print("Confusion Matrix")
