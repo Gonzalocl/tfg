@@ -89,6 +89,9 @@ def main(_):
   total = 0
   confusion_matirx = dict()
 
+  output_predictions_file = open(FLAGS.output_predictions, "w")
+  print("image_path,set,class,predicted_class", file=output_predictions_file)
+
   for image_class in image_lists:
     confusion_matirx[image_class] = collections.defaultdict(int)
     for image_set in FLAGS.set:
@@ -98,10 +101,12 @@ def main(_):
           tf.logging.fatal('File does not exist %s', image_path)
         predicted_class = cascade_inference(graphs, image_path)
         confusion_matirx[image_class][predicted_class] += 1
+        print("{},{},{},{}".format(image_path, image_set, image_class, predicted_class), file=output_predictions_file)
         if image_class == predicted_class:
           hits = hits + 1
         total = total + 1
 
+  output_predictions_file.close()
   print("Set: {}".format(" ".join(FLAGS.set)))
   print("Confusion Matrix")
   print("{:>15}".format(""), end="")
@@ -321,6 +326,12 @@ if __name__ == '__main__':
     type=str,
     default='',
     help='Main directory'
+  )
+  parser.add_argument(
+    '--output_predictions',
+    type=str,
+    default='/tmp/output_predictions.csv',
+    help='csv file to output predictions'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

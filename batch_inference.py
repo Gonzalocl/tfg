@@ -1026,6 +1026,9 @@ def main(_):
     total = 0
     confusion_matirx = dict()
 
+    output_predictions_file = open(FLAGS.output_predictions, "w")
+    print("image_path,set,class,predicted_class", file=output_predictions_file)
+
     for image_class in image_lists:
       confusion_matirx[image_class] = collections.defaultdict(int)
       for image_filename in image_lists[image_class]['testing']:
@@ -1041,10 +1044,12 @@ def main(_):
                           {image: resized_image})
         predicted_class = get_lab(result[0], list(image_lists.keys()))
         confusion_matirx[image_class][predicted_class] += 1
+        print("{},{},{},{}".format(image_path, 'testing', image_class, predicted_class), file=output_predictions_file)
         if image_class == predicted_class:
           hits = hits + 1
         total = total + 1
 
+    output_predictions_file.close()
     print("Confusion Matrix")
     print("{:>15}".format(""), end="")
     for image_class in image_lists:
@@ -1243,6 +1248,20 @@ if __name__ == '__main__':
       type=str,
       default='/tmp/_retrain_checkpoint',
       help='Where to save checkpoint files.'
+  )
+  parser.add_argument(
+    '--set',
+    type=str,
+    choices=['training', 'testing', 'validation'],
+    nargs='+',
+    default=['testing'],
+    help='Sets to perform inference'
+  )
+  parser.add_argument(
+    '--output_predictions',
+    type=str,
+    default='/tmp/output_predictions.csv',
+    help='csv file to output predictions'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
