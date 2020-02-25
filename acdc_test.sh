@@ -35,4 +35,7 @@ python batch_inference.py \
   --validation_percentage=10 \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
 
+python per_patient_prediction.py \
+  --output_predictions="$results_dir/output_predictions.csv"
+
 #tensorboard --port 0 --logdir output/01_acdc_test/r/retrain_logs/
