@@ -91,3 +91,60 @@ sets="$(echo $labels | tr ' ' ':')"
 subset_retrain "$sets"
 echo "  $sets  $percentage%"  >> $log_file
 
+inference_set="training"
+inference_output="$results_dir/${inference_set}_inference_output"
+predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+python acdc_cascade_batch_inference.py \
+  --image_dir="$dataset" \
+  --subsets="DCM:HCM:MINF:NOR:RV" \
+  --set="$inference_set" \
+  --main_dir="$main_dir" \
+  --saved_model_dir="r/saved_model" \
+  --output_labels="r/output_labels.txt" \
+  --output_predictions="$predictions_output" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$inference_output"
+
+python per_patient_prediction.py \
+  --output_predictions="$predictions_output"
+
+
+
+inference_set="validation"
+inference_output="$results_dir/${inference_set}_inference_output"
+predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+python acdc_cascade_batch_inference.py \
+  --image_dir="$dataset" \
+  --subsets="DCM:HCM:MINF:NOR:RV" \
+  --set="$inference_set" \
+  --main_dir="$main_dir" \
+  --saved_model_dir="r/saved_model" \
+  --output_labels="r/output_labels.txt" \
+  --output_predictions="$predictions_output" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$inference_output"
+
+python per_patient_prediction.py \
+  --output_predictions="$predictions_output"
+
+
+
+inference_set="testing"
+inference_output="$results_dir/${inference_set}_inference_output"
+predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+python acdc_cascade_batch_inference.py \
+  --image_dir="$dataset" \
+  --subsets="DCM:HCM:MINF:NOR:RV" \
+  --set="$inference_set" \
+  --main_dir="$main_dir" \
+  --saved_model_dir="r/saved_model" \
+  --output_labels="r/output_labels.txt" \
+  --output_predictions="$predictions_output" \
+  --testing_percentage=10 \
+  --validation_percentage=10 \
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$inference_output"
+
+python per_patient_prediction.py \
+  --output_predictions="$predictions_output"
