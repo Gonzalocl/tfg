@@ -1051,6 +1051,7 @@ def main(_):
           total = total + 1
 
     output_predictions_file.close()
+    print("Set: {}".format(" ".join(FLAGS.set)))
     print("Confusion Matrix")
     print("{:>15}".format(""), end="")
     for image_class in image_lists:

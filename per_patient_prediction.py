@@ -24,15 +24,18 @@ def main():
     per_patient_predicted_class = collections.defaultdict(lambda : collections.defaultdict(int))
     per_patient_class = dict()
     classes = set()
+    patient_sets = set()
 
     for row in reader:
 
       patient = os.path.basename(row['image_path']).split('_')[0]
       patient_class = row['class']
       patient_predicted_class = row['predicted_class']
+      patient_set = row['set']
 
       classes.add(patient_class)
       classes.add(patient_predicted_class)
+      patient_sets.add(patient_set)
 
       per_patient_predicted_class[patient][patient_predicted_class] += 1
       per_patient_class[patient] = patient_class
@@ -54,6 +57,7 @@ def main():
 
       print("{} {} {}".format(p, patient_class, predicted_class))
 
+    print("Set: {}".format(" ".join(patient_sets)))
     print("Confusion Matrix")
     print("{:>15}".format(""), end="")
     for patient_class in classes:

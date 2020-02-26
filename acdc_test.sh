@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-output_dir="output/01_acdc_test"
+output_dir="$1"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
@@ -22,7 +22,7 @@ python retrain.py \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
-  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out"
+  --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/output_retrain"
 
 
 python batch_inference.py \
@@ -33,9 +33,9 @@ python batch_inference.py \
   --output_predictions="$results_dir/output_predictions.csv" \
   --testing_percentage=10 \
   --validation_percentage=10 \
-  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3"
+  --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/output_inference"
 
 python per_patient_prediction.py \
-  --output_predictions="$results_dir/output_predictions.csv"
+  --output_predictions="$results_dir/output_predictions.csv" 2>&1 | tee "$results_dir/output_per_patient_prediction"
 
 #tensorboard --port 0 --logdir output/01_acdc_test/r/retrain_logs/
