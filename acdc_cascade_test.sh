@@ -92,8 +92,8 @@ subset_retrain "$sets"
 echo "  $sets  $percentage%"  >> $log_file
 
 inference_set="training"
-inference_output="$results_dir/${inference_set}_inference_output"
-predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+inference_output="$main_dir/${inference_set}_inference_output"
+predictions_output="$main_dir/${inference_set}_predictions_output.csv"
 python acdc_cascade_batch_inference.py \
   --image_dir="$dataset" \
   --subsets="DCM:HCM:MINF:NOR:RV" \
@@ -112,8 +112,8 @@ python per_patient_prediction.py \
 
 
 inference_set="validation"
-inference_output="$results_dir/${inference_set}_inference_output"
-predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+inference_output="$main_dir/${inference_set}_inference_output"
+predictions_output="$main_dir/${inference_set}_predictions_output.csv"
 python acdc_cascade_batch_inference.py \
   --image_dir="$dataset" \
   --subsets="DCM:HCM:MINF:NOR:RV" \
@@ -132,8 +132,8 @@ python per_patient_prediction.py \
 
 
 inference_set="testing"
-inference_output="$results_dir/${inference_set}_inference_output"
-predictions_output="$results_dir/${inference_set}_predictions_output.csv"
+inference_output="$main_dir/${inference_set}_inference_output"
+predictions_output="$main_dir/${inference_set}_predictions_output.csv"
 python acdc_cascade_batch_inference.py \
   --image_dir="$dataset" \
   --subsets="DCM:HCM:MINF:NOR:RV" \
