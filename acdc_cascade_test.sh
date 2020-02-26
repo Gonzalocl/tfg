@@ -36,7 +36,7 @@ function subset_retrain {
     --final_tensor_name="final_result" \
     --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
     --saved_model_dir="$results_dir/saved_model/" \
-    --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/out_retrain"
+    --checkpoint_path="$results_dir/_retrain_checkpoint" 2>&1 | tee "$results_dir/output_retrain"
 
   python acdc_subset_batch_inference.py \
     --image_dir="$dataset" \
@@ -46,7 +46,7 @@ function subset_retrain {
     --output_labels="$results_dir/output_labels.txt" \
     --testing_percentage=10 \
     --validation_percentage=10 \
-    --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
+    --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/output_inference"
 
   percentage=$(tail -n 1 "$results_dir/out_inference" | cut -d ' ' -f 3 | tr -d '%')
   echo "$step,$subset_name,$percentage" >> $percentages_file
