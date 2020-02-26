@@ -94,8 +94,9 @@ echo "  $sets  $percentage%"  >> $log_file
 
 function cascade_batch_inference {
   inference_set="$1"
-  inference_output="$main_dir/${inference_set}_inference_output"
-  predictions_output="$main_dir/${inference_set}_predictions_output.csv"
+  output_inference="$main_dir/${inference_set}_output_inference"
+  output_per_patient_prediction="$main_dir/${inference_set}_output_per_patient_prediction"
+  output_predictions="$main_dir/${inference_set}_output_predictions.csv"
   python acdc_cascade_batch_inference.py \
     --image_dir="$dataset" \
     --subsets="DCM:HCM:MINF:NOR:RV" \
@@ -103,13 +104,13 @@ function cascade_batch_inference {
     --main_dir="$main_dir" \
     --saved_model_dir="r/saved_model" \
     --output_labels="r/output_labels.txt" \
-    --output_predictions="$predictions_output" \
+    --output_predictions="$output_predictions" \
     --testing_percentage=10 \
     --validation_percentage=10 \
-    --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$inference_output"
+    --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$output_inference"
 
   python per_patient_prediction.py \
-    --output_predictions="$predictions_output"
+    --output_predictions="$output_predictions" 2>&1 | tee "$output_per_patient_prediction"
 }
 
 
