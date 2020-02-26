@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dataset="datasets/acdc"
-main_dir="output/04_acdc_cascade_test"
+main_dir="$1"
 rm -rf "$main_dir"
 mkdir -p "$main_dir"
 
