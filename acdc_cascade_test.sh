@@ -48,13 +48,13 @@ function subset_retrain {
     --validation_percentage=10 \
     --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/output_inference"
 
-  percentage=$(tail -n 1 "$results_dir/out_inference" | cut -d ' ' -f 3 | tr -d '%')
+  percentage=$(tail -n 1 "$results_dir/output_inference" | cut -d ' ' -f 3 | tr -d '%')
   echo "$step,$subset_name,$percentage" >> $percentages_file
 
   subsets_count=$(echo $subsets | grep -o ':' | wc -l)
   ((subsets_count++))
   echo "Subset: $subsets" >> $confusion_matrix_file
-  tail -n $((subsets_count + 4)) "$results_dir/out_inference" >> $confusion_matrix_file
+  tail -n $((subsets_count + 4)) "$results_dir/output_inference" >> $confusion_matrix_file
   echo -e "\n" >> $confusion_matrix_file
 }
 
