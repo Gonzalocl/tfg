@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-output_dir="output/03_acdc_DCM_subset_test"
+output_dir="$1/DCM"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
@@ -37,7 +37,7 @@ python acdc_subset_batch_inference.py \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
-output_dir="output/03_acdc_HCM_subset_test"
+output_dir="$1/HCM"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
@@ -73,7 +73,7 @@ python acdc_subset_batch_inference.py \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
-output_dir="output/03_acdc_MINF_subset_test"
+output_dir="$1/MINF"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
@@ -109,7 +109,7 @@ python acdc_subset_batch_inference.py \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
-output_dir="output/03_acdc_NOR_subset_test"
+output_dir="$1/NOR"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
@@ -145,7 +145,7 @@ python acdc_subset_batch_inference.py \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" 2>&1 | tee "$results_dir/out_inference"
 
 
-output_dir="output/03_acdc_RV_subset_test"
+output_dir="$1/RV"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"

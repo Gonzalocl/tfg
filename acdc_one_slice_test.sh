@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-output_dir="output/02_acdc_one_slice_test"
+output_dir="$1"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"

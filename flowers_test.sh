@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-output_dir="output/00_flowers_test"
+output_dir="$1"
 results_dir="$output_dir/r"
 rm -rf $results_dir
 mkdir -p "$results_dir"
