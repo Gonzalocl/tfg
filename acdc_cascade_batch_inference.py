@@ -79,7 +79,9 @@ def cascade_inference(graphs, image_path):
 
 def main(_):
 
-  subsets_list = ["RV:DCM,HCM,MINF,NOR", "DCM:HCM,MINF,NOR", "MINF:HCM,NOR", "HCM:NOR"]
+  with open(FLAGS.subsets_list) as f:
+    subsets_list = f.readlines()
+  subsets_list = [l.strip() for l in subsets_list]
 
   graphs = load_graphs(subsets_list, FLAGS.main_dir, FLAGS.saved_model_dir, FLAGS.tfhub_module, FLAGS.output_labels)
 
@@ -332,6 +334,12 @@ if __name__ == '__main__':
     type=str,
     default='/tmp/output_predictions.csv',
     help='csv file to output predictions'
+  )
+  parser.add_argument(
+    '--subsets_list',
+    type=str,
+    default='/tmp/subsets_list',
+    help='Subsets list file'
   )
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

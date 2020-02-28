@@ -8,6 +8,7 @@ mkdir -p "$main_dir"
 log_file="$main_dir/log"
 percentages_file="$main_dir/percentages"
 confusion_matrix_file="$main_dir/confusion_matrix"
+subsets_list_file="$main_dir/subsets_list"
 
 echo "step,subset,percentage" > $percentages_file
 
@@ -81,6 +82,7 @@ for step in $(seq 0 $steps); do
     fi
   done
   echo -e "\n  Best: $best_set1:$best_set2  $best_percentage%\n\n" >> $log_file
+  echo "$best_set1:$best_set2" >> $subsets_list_file
   labels="$(echo $best_set2 | tr ',' ' ')"
   ((label_count--))
 done
@@ -90,6 +92,7 @@ echo "Step: $step" >> $log_file
 sets="$(echo $labels | tr ' ' ':')"
 subset_retrain "$sets"
 echo "  $sets  $percentage%"  >> $log_file
+echo "$sets" >> $subsets_list_file
 
 
 function cascade_batch_inference {
@@ -100,6 +103,7 @@ function cascade_batch_inference {
   python acdc_cascade_batch_inference.py \
     --image_dir="$dataset" \
     --subsets="DCM:HCM:MINF:NOR:RV" \
+    --subsets_list="$subsets_list_file" \
     --set="$inference_set" \
     --main_dir="$main_dir" \
     --saved_model_dir="r/saved_model" \
