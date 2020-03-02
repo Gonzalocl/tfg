@@ -18,7 +18,7 @@ python retrain.py \
   --train_batch_size=100 \
   --test_batch_size=-1 \
   --validation_batch_size=100 \
-  --bottleneck_dir="$output_dir/bottleneck" \
+  --bottleneck_dir="output/01_acdc_test/bottleneck" \
   --final_tensor_name="final_result" \
   --tfhub_module="https://tfhub.dev/google/imagenet/inception_v3/feature_vector/3" \
   --saved_model_dir="$results_dir/saved_model/" \
