@@ -14,3 +14,5 @@
 ./acdc_one_slice_test.sh "output/02_distortion_acdc_one_slice_test"
 ./acdc_subset_test.sh "output/03_distortion_acdc_subset_test"
 ./acdc_cascade_test.sh "output/04_distortion_acdc_cascade_test"
+
+./summary.sh
