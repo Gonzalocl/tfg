@@ -15,15 +15,13 @@ function out_accuracy {
   echo "$test,$accuracy"
 }
 
+
 echo test,accuracy
 
-
-output_dir="output/00_flowers_test"
-results_dir="$output_dir/r"
+results_dir="output/00_flowers_test/r"
 if [[ -d $results_dir ]]; then
   out_accuracy "00_flowers_test" "$results_dir/out"
 fi
-
 
 results_dir="output/01_acdc_test/r"
 if [[ -d $results_dir ]]; then
