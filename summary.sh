@@ -5,18 +5,18 @@ function inference_accuracy {
   test="$1"
   results_file="$2"
   accuracy=$(tail -n 1 "$results_file" | cut -d '%' -f 1 | cut -d ':' -f 2 | tr -d [:blank:])
-  echo "$test,$accuracy"
+  echo "$test,$accuracy" >> "$output_file"
 }
 
 function out_accuracy {
   test="$1"
   results_file="$2"
   accuracy=$(grep "Final test accuracy" "$results_file" | cut -d '%' -f 1 | cut -d '=' -f 2 | tr -d [:blank:])
-  echo "$test,$accuracy"
+  echo "$test,$accuracy" >> "$output_file"
 }
 
-
-echo test,accuracy
+output_file="output/summary.csv"
+echo test,accuracy > "$output_file"
 
 results_dir="output/00_flowers_test/r"
 if [[ -d $results_dir ]]; then
@@ -70,3 +70,5 @@ if [[ -d $results_dir ]]; then
   inference_accuracy "04_distortion_acdc_cascade_test" "$results_dir/testing_output_inference"
   inference_accuracy "04_distortion_acdc_cascade_test_per_patient_prediction" "$results_dir/testing_output_per_patient_prediction"
 fi
+
+cat "$output_file"
