@@ -672,6 +672,49 @@ Esta idea se usa como base para hacer la siguiente prueba.
 
 
 \subsubsection{En cascada}
+Esta idea consiste en partiendo de la idea anterior hacer modelos que vayan identificando o descartando enfermedades cada uno una. Los cuales se ejecutan en secuencia uno tras otro, cada uno teniendo solo que identificar entre dos grupos de clases. De esta forma se pretende mejorar la precisión final simplificando el problema para cada uno de los modelos. Cada modelo solo tiene que decir si una imagen pertenece o no a una clase.
+
+\begin{itemize}
+
+\item \textbf{Entrenamineto}: El entrenamiento de los modelos se hace por pasos, primero se entrena un modelo por cada clase que hay en el \textit{dataset}. Los modelos se entrenan usando la idea del apartado anterior y las clases se dividen en la clase a la que el modelo hace referencia y el resto. Con estos modelos lo que se pretende es decir si la imagen de entrada pertenece a la clase a la que hace referencia el modelo o no. Al final del primer paso se acaba con tantos modelos como clases haya, cada uno haciendo referencia a una clase que la identifica o la descarta.
+\bigskip
+
+De los modelos del paso anterior se escoge el que mas precision haya obtenido, se elimina del conjunto de clases la clase a la que hace referencia el modelo que se ha escogido y se repite el paso anterior con las clases que quedan hasta que queden solo dos clases.
+\bigskip
+
+Por último cuando ya solo quedan dos clases ya no se entrena un modelo por cada clase que queda, no tiene sentido ya que la clase a la que hace referencia el modelo sería una y en el grupo de otros solo quedaría una y viceversa. Es decir cuando ya solo quedan dos clases solo se entrena un modelo que dice si es una clase u otra.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Entrenamiento cascada.}
+\end{figure}
+
+\item \textbf{Inferencia}: Al final del entrenamiento de todos los modelos se acaba con unos modelos de los cuales solo se usan los que hayan obtenido los mejores resultados en cada paso, el resto ya no son necesarios. Los modelos de cada paso que se escogen son el modelo del paso, cada uno. La inferencia se hace siguiendo los siguientes pasos:
+
+\begin{itemize}
+\item Se hace la inferencia en el modelo del primer paso en el que se identifica o se descarta una enfermedad.
+
+\item Si en el paso anterior se identifica la enfermedad, la inferencia termina y el resultado es la clase que se ha identificado en el paso anterior, si la clase del paso anterior se ha descartado se continúa con el modelo del siguiente paso, que igualmente identifica o descarta una clase. Esto se repite con todos los pasos hasta el último paso.
+
+\item En el último paso ya no se identifica o se descarta una clase porque el último paso solo queda identificar dos clases. Si se llega a este paso entonces el resultado de la inferencia es el resultado de este último modelo.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Inferencia cascada.}
+\end{figure}
+
+\item \textbf{Reuso de \textit{bottleneck}}: En esta idea aunque se reentrenan varios modelos distintos el modelo de partida es el mismo para todos por lo tanto los \textit{bottleneck} se calculan una vez y se usan en todos los pasos como entrada de los modelos que se reentrenan.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Reuso de \textit{bottleneck}.}
+\end{figure}
+
+\end{itemize}
 
 \subsubsection{Inferencia por paciente}
 
