@@ -363,6 +363,15 @@ Hay distintos tipos de capas con diferentes características y funciones.
 
 \item \textbf{\textit{Softmax}}: Esta capa no hace nada realmente de inteligencia artificial simplemente aplica una fórmula matemática para que todos los valores estén en un rango y con una distribución concreta.
 
+\end{itemize}
+
+\subsubsection{Backpropagation}
+Es el proceso en el que se calculan los errores para cada etapa del entrenamiento y según el error se ajustan los pesos de cada capa para reducir el error al maximo. En este proceso se calcula el gradiente de la función \textit{loss} con respecto a los pesos de la red. Uno de los métodos para actualizar los pesos de la red es \textit{stochastic gradient descent}.
+
+\begin{itemize}
+\item \textbf{\textit{Stochastic gradient descent}}: Es un método iterativo para optimizar una función objetivo.
+
+\item \textbf{Función \textit{loss}}: Esta función calcula el error entre el resultado de la red neuronal y el resultado correcto que luego se usará en el proceso de \textit{backpropagation} para reajustar los parámetros del modelo que se está entrenando.
 
 \end{itemize}
 
