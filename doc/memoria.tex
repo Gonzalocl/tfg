@@ -640,6 +640,36 @@ En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa 
 En esta prueba el resultado obtenido es un 42\% de precisión que es bastante malo, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
 
 \subsubsection{Entrenamiento por subsets}
+La idea consiste en agrupar las clases en varios grupos de esta forma reducir el número de posibilidades entre las que tiene que diferenciar el modelo.
+\bigskip
+
+A continuación se muestran los resultados obtenidos de agrupar las clases de la siguiente manera: se hacen dos grupos uno con una clase por separado en un grupo y el resto de clases en otro grupo, esta forma de agrupar las clases también se puede ver como un modelo que te diga si cierta imagen pertenece a una clase o no.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados entrenamientos por subsets.}
+\end{table}
+
+Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 clases.
+\bigskip
+
+Esta idea no se puede considerar una idea completa porque realmente se han entrenado 5 modelos y cada uno da una salida, en el caso de que quisiéramos usarlo, por ejemplo haciendo la inferencia en estos 5 modelos, se pueden dar una situación en la que sí podría dar una solución pero otras dos situaciones en las que daría una respuesta sin solución.
+\bigskip
+
+La mejor situación que se puede presentar es que solo un modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar y el resto de modelos la clasifiquen como que la imagen no identifique la imagen como la enfermedad para la que el modelo ha sido entrenado para identificar.
+\bigskip
+
+Las dos situaciones en las que no se puede dar una solución, son que ningún modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar o que más de un modelo identifique la imagen como la enfermedad para la que  el modelo ha sido entrenado para identificar.
+\bigskip
+
+Esta idea se usa como base para hacer la siguiente prueba.
+
 
 \subsubsection{En cascada}
 
