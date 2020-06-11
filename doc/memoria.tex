@@ -716,7 +716,21 @@ Por último cuando ya solo quedan dos clases ya no se entrena un modelo por cada
 
 \end{itemize}
 
-%TODO resultados
+Utilizando la técnica descrita anteriormente el resultado es el siguiente:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultado cascada.}
+\end{table}
+
+El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el mejor resultado que había obtenido hasta ahora (63.2\% de precisión con la prueba, añadir una capa totalmente conectada). Esta prueba no ha supuesto ningún avance ya que se han obtenido resultados muy parecidos a los que ya tenía. Incluso el resultado es ligeramente peor, pero no es significativo ya que puede estar dentro de lo que puede variar la precisión de una ejecución a otra.
+
 
 \subsubsection{Inferencia por paciente}
 En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida en todas las imágenes de cada paciente. También de esta forma se tiene en cuenta que las imagenes estan relacionadas por paciente y se da un resultado por cada paciente, no como en pruebas anteriores donde las imágenes que pertenecen a un mismo paciente, podían ser clasificadas como enfermedades distintas.
