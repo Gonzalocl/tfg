@@ -325,6 +325,46 @@ x = \frac{y}{z}
 
 \end{itemize}
 
+\subsubsection{Tipos de capas}
+Hay distintos tipos de capas con diferentes características y funciones.
+
+\begin{itemize}
+\item \textbf{Convolución}: Esta capa es de las más usadas y da nombre al tipo de red que se crea. Funciona seleccionando un conjunto de la entrada y combinando los valores en uno solo mediante una función matemática. De esta forma dichos valores se reducen pero el resultado de salida tiene más información comprimida o más significativa. Es como una simplificación.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Convolución.}
+\end{figure}
+
+\item \textbf{Convolución dilatada}: Es una convolución en la que los valores de entrada no se abordan todos juntos sino que se agrupan en círculos, separados por unos espacios, de esta forma los datos de entrada, a cada una de las neuronas de este tipo de capa, abarcan más.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Convolución dilatada.}
+\end{figure}
+
+\item \textbf{\textit{Pooling}}: Consiste en agrupar los datos en una dimensión usando alguna función matemática. En el caso de \textit{average pool} se usa la media y en el caso de \textit{max pool} el valor máximo.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{\textit{Pooling}.}
+\end{figure}
+
+\item \textbf{Concatenación}: La única función de esta capa es agregar los valores sin hacerles ningún tipo de modificación. No tiene ningún efecto en los resultados.
+
+\item \textbf{\textit{Dropout}}: En esta capa de se modifican aleatoriamente algunos valores asignándoles a su vez a estos otros valores aleatorios. Esto puede parecer contraproducente pero ayuda a reducir el \textit{overfitting}.
+
+\item \textbf{Totalmente conectada}: En esta capa todos las neuronas de la capa anterior están conectadas a todas las neuronas de la capa siguiente. Este tipo de capa se suele poner al final ya que hacer una conexión todos con todos es bastante costoso, pero es la que tiene más potencial para aprender, por estas razones se suelen poner estas capas al final de la red que es donde los tamaños de las capas son más reducidos y la información que proporcionan las capas es más significativa. También esta capa al tener más potencial de aprender también es más propensa a tener \textit{overfitting}, por eso se suele poner antes una capa de \textit{dropout}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Totalmente conectada.}
+\end{figure}
+
+\item \textbf{\textit{Softmax}}: Esta capa no hace nada realmente de inteligencia artificial simplemente aplica una fórmula matemática para que todos los valores estén en un rango y con una distribución concreta.
+
+
+\end{itemize}
 
 \newpage
 \section{Conclusión}
