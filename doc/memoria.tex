@@ -478,7 +478,7 @@ La primera prueba consiste en hacer un entrenamiento completo y así poder compa
  &  &  \\ \hline
  &  &  \\ \hline
 \end{tabular}
-\caption{Tabla}
+\caption{Resultado entrenamiento completo.}
 \end{table}
 
 En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este resultado es mejor que con la técnica de \textit{transfer learning}. Los resultados son mejores porque en este caso estamos entrenando el modelo por completo y de esta forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
@@ -486,6 +486,81 @@ En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este
 
 Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
 
+\subsection{Añadir una capa totalmente conectada y softmax}
+Esta prueba consiste en, a partir del modelo de partida eliminar la última capa y añadir una capa totalmente conectada y una capa de \textit{softmax}, esto se ha realizado con los \textit{datasets}: flores, \textit{cifar 10}, \textit{cifar 100} (20 clases) y \textit{cifar 100} (100 clases). El modelo de partida es \textit{inception v3}. Los resultados se pueden ver en la siguiente tabla:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados añadir una capa totalmente conectada y \textit{softmax}.}
+\end{table}
+
+En la tabla se puede ver que cuantas más clases se requiera identificar menos precisión se obtiene, esto se debe a que el problema a resolver es más difícil.
+\bigskip
+
+A continuación se hace la misma prueba pero usando como modelo de partida \textit{resnet v2 152} que es un modelo basado también en convoluciones pero de mayor tamaño.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados prueba usando modelo basado en la arquitectura \textit{resnet v2 512}.}
+\end{table}
+
+En los resultados de estas pruebas podemos observar que para el mismo número de clases se obtienen unos resultados ligeramente mejores, esto se debe a que la información a la salida del modelo de partida es más significativa ya que a pasado por más capas, por lo tanto la información de entrada ha sido más procesada.
+
+\subsection{Añadir 3 capas totalmente conectadas}
+En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados añadir 3 capas totalmente conectadas.}
+\end{table}
+
+En estos resultados podemos ver que al poner más capas, especialmente capas totalmente conectadas, el entrenamiento requiere más iteraciones (en la primera prueba el modelo no llegó a converger en la configuración más óptima), y por lo tanto más tiempo para obtener los mismos resultados que con una capa. También podemos ver que los resultados son similares o incluso ligeramente peores que solo con una capa totalmente conectada.
+
+\subsection{Quitar capas}
+\subsubsection{Quitar 2 capas}
+Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito dos capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados quitar 2 capas.}
+\end{table}
+
+En estas pruebas se puede ver que no se obtienen diferencias en cuanto a la precisión, quitar dos capas no ha producido ningún resultado notablemente distinto. Mediante esta prueba se puede deducir que el modelo de partida es tan grande que aunque le quitemos dos capas sigue teniendo el mismo rendimiento, la capa que se a quitado se puede pensar como redundante y no comprimía la información más de lo que ya estaba.
+
+\subsubsection{Quitar 3 capas}
+Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito tres capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados quitar 3 capas.}
+\end{table}
+
+En este caso, al contrario que en el anterior sí que se puede observar una degradación de la precisión en el resultado, en el caso del problema de tres clases sigue obteniendo un resultado parecido pero en el problema de diez clases si se puede apreciar un importante pérdida de precisión.
 
 \newpage
 \section{Conclusión}
