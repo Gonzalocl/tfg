@@ -282,11 +282,11 @@ Las neuronas artificiales son la unidad básica de una red neuronal reciben una 
 \caption{Formula de suma de pesos e imagen de una neurona.}
 \end{figure}
 
-%TODO
+%TODO phi
 Donde phi es la función, wi son los pesos xi son las entradas e y es la salida.
 \bigskip
 
-%TODO
+%TODO u
 Algunas de las funciones de activación más usadas son las siguientes. En los siguientes apartados u se refiere a la entrada de la función según la fórmula:
 \begin{equation}
 x = \frac{y}{z}
@@ -303,7 +303,7 @@ x = \frac{y}{z}
 \end{figure}
 
 \item \textbf{Combinación lineal}: En esta función la salida simplemente se le suma un bias. Esta función aplica una transformación lineal a la entrada
-%TODO
+%TODO formula
 
 \item \textbf{Sigmoide}: Una función sigmoide es una función matemática que tiene la característica que su curva tiene forma de \textit{s}. Con esta función las entradas negativas tienden a cero y conforme la entrada se acerca a cero la salida va aumentando hasta que el valor de entrada es positivo, conforme se aleja de cero tiende a uno. La función más utilizada es la función logística pero otras funciones matemáticas con forma de \textit{s} también se usan como la tangente o la tangente hiperbólica.
 \begin{figure}[H]
@@ -326,6 +326,7 @@ x = \frac{y}{z}
 \end{itemize}
 
 \subsubsection{Tipos de capas}
+%TODO extender
 Hay distintos tipos de capas con diferentes características y funciones.
 
 \begin{itemize}
@@ -374,6 +375,64 @@ Es el proceso en el que se calculan los errores para cada etapa del entrenamient
 \item \textbf{Función \textit{loss}}: Esta función calcula el error entre el resultado de la red neuronal y el resultado correcto que luego se usará en el proceso de \textit{backpropagation} para reajustar los parámetros del modelo que se está entrenando.
 
 \end{itemize}
+
+\subsection{Transfer learning}
+La técnica de \textit{transfer learning} consiste en partir de una red neuronal entrenada en un conjunto de datos para resolver un problema y eliminar las últimas capas para reentrenarlas y que resuelvan otro problema. De esta manera se consiguen dos beneficios: se puede entrenar más rápido y con menos recursos y gracias al aprovechamiento del conocimiento adquirido en la red de la que se parte se puede alcanzar una buena precisión con menos recursos.
+
+\subsection{Random forest}
+Esta técnica consiste en dividir el problema en varios subproblemas en el caso de la clasificación dividir el conjunto de clases en varios grupos. Y utilizar múltiples modelos de inteligencia artificial para resolver el problema. De esta forma se consigue reducir la dificultad de cada modelo individual y así conseguir más precisión a cambio de incrementar el tiempo de cómputo, ya que hay que entrenar y ejecutar más modelos.
+
+\subsection{Cascada}
+Es parecida a \textit{random forest} pero en este caso el problema se divide en tantos como clases tenga la clasificación y la forma de proceder sería la siguiente: el primer modelo distingue entre una clase y el resto, el segundo modelo diferencia entre las clases que quedan y otra clase que no sea la anterior y así sucesivamente hasta que el último modelo tiene que diferenciar entre dos clases.
+
+\subsection{Inception}
+Esta arquitectura está basada en \textit{AlexNet}, su objetivo es reducir el coste computacional gracias a la factorización de convoluciones. La forma de esta arquitectura es la siguiente: se divide en bloques de convoluciones. Al principio tiene varias convoluciones una detrás de otra con una capa max \textit{pool} entre medias. Cada uno de los bloques usa la salida del bloque anterior y se pasa como entrada a 4 caminos distintos e independientes uno con una convolución 1x1 otro con convolución 3x3 otro con convolución 5x5 y otro que tiene un \textit{average pool} y una convolución 1x1. Las salidas de los 4 caminos se concatenan y esa será la salida del bloque. Tiene una salida auxiliar que se usará para el entrenamiento. Y al final tiene unas capas de \textit{average pool} seguida de una de \textit{dropout}, una totalmente conectada y finalmente una de \textit{softmax}. La capa totalmente conectada se sitúa al final de la red porque es donde la información está más concentrada y la de \textit{dropout} también porque es donde más posibilidad de \textit{overfitting} hay.
+
+%TODO reduccion de matriz
+
+\subsection{Entrada de datos}
+En el campo del \textit{machine learning} un factor muy importante para el éxito del modelo es el conjunto de datos del que se parte, el que representa el problema que se quiere resolver. Uno de los problemas que puede causar un mal conjunto de datos es que no resuelva el problema que queremos o que nos encontremos problemas de \textit{overfitting}. Las características de un buen conjunto de datos son:
+
+\begin{itemize}
+\item Las clases de los datos deben de estar en en una proporción igual todos.
+\item Al dividir los datos en conjuntos de entrenamiento validación y test tener en cuenta que también hay que mantener la proporción.
+\item Si hay datos relacionados entre sí también habrá que tenerlo en cuenta a la hora de hacer la división en los conjuntos de entrenamiento validación y test.
+
+\end{itemize}
+
+\subsubsection{Distorsión}
+Consiste en coger el conjunto de datos de entrada y aplicarle algunas transformaciones como por ejemplo en el caso de las imágenes, rotación, traslación o cortes.
+\bigskip
+
+Las ventajas de usar distorsión son, aumentar el tamaño del conjunto de datos de entrada, haciendo así posible que ese conjunto de datos sea lo suficientemente grande para poder ser usado. O también otra ventaja es mejorar la calidad de un conjunto de datos con el fin de obtener unos mejores resultados, esto se debe a que al aplicar distorsión la cantidad de posibilidades que el modelo ve se aumenta.
+
+%TODO parrafo en este trabajo ...
+
+\subsubsection{Conjuntos de datos}
+Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia artificial son los siguientes.
+
+\begin{itemize}
+\item \textbf{Flores}: Este conjunto de datos está compuesto de aproximadamente 3500 fotos de flores divididas en 5 clases de fotos, cada una aproximadamente 700 fotos. Las imagenes estan en formato comprimido \textit{jpg} y son a color. Las clases son: \textit{daisy}, \textit{dandelion}, \textit{roses}, \textit{sunflowers} y \textit{tulips}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Muestra del dataset flores.}
+\end{figure}
+
+\item \textbf{\textit{ACDC}}: El dataset se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los frames claves de las resonancias. El dataset pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imagenes estan en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Muestra del dataset \textit{ACDC}.}
+\end{figure}
+
+%TODO parrafo los datos ...
+
+%TODO apartado imagenet
+
+\end{itemize}
+
+%TODO apartado framework
 
 \newpage
 \section{Conclusión}
