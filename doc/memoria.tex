@@ -227,6 +227,23 @@ Estas tareas son muy repetitivas siendo esto una ventaja para los programas de i
 \newpage
 \section{Estado del arte}
 
+\subsection{Inteligencia artificial}
+Se entiende por inteligencia artificial como los programas que intentan simular el comportamiento humano para resolver un problema. Hay muchos formas de enfocar un programa de inteligencia artificial unas más fáciles de entender como la simbólica, que es un programa basado en reglas que intenta imitar el comportamiento humano, o un enfoque sin símbolos en el que se encontraría el \textit{machine learning}, en el que podemos tener millones de parámetros que entrenar y no saber qué representa cada uno.
+
+\subsection{Machine learning}
+Es un tipo de inteligencia artificial sin símbolos que consiste en algoritmos que resuelven un problema sin darle instrucciones explícitas de cómo se resuelve el problema. Estos algoritmos construyen un modelo matemático que suele tener millones de parámetros, que se entrenan, difíciles de analizar para saber qué es lo que hace que dé el resultado que da. Generalmente el \textit{machine learning} se usa para resolver problemas para los que no es factible o es muy difícil hacer un algoritmo tradicional.
+\bigskip
+
+Para ello parte de unos datos de muestra o datos de entrada de los que aprenderá a resolver el problema que tiene que resolver, mediante repetición de cálculo del error y ajuste del modelo. Estos datos se suelen dividir en tres conjuntos o sets:
+
+\begin{itemize}
+\item \textbf{\textit{Training} set}: este set se usa para que el modelo se entrene. Con este set se calculan los errores en el momento del entrenamiento y se usan para ajustar los parámetros del modelo que se está entrenando.
+\item \textbf{\textit{Validation} set}: este set se usa durante el entrenamiento para evaluar el modelo y poder ver el progreso.
+\item \textbf{\textit{Test} set}: este set se usa al final, cuando el modelo ya ha sido entrenado, para evaluar el modelo con unos datos que nunca hayan sido vistos de ninguna manera por el modelo.
+\end{itemize}
+
+Hay principalmente tres formas de hacer que un modelo aprenda a resolver el problema cada enfoque es más apropiado para resolver un tipo de problema.
+
 \newpage
 \section{Conclusión}
 
