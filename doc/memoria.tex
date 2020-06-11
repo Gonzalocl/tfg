@@ -737,11 +737,11 @@ En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un p
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Prueba} & \multicolumn{1}{l|}{\textbf{Sin inferencia por paciente}} & \multicolumn{1}{l|}{\textbf{Con inferencia por paciente}} \\ \hline
+Añadir una capa & 63.2                                                      & 71.4                                                      \\ \hline
+Cascada         & 62.9                                                      & 57.1                                                      \\ \hline
 \end{tabular}
 \caption{Resultados inferencia por paciente.}
 \end{table}
