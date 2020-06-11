@@ -435,6 +435,17 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 %TODO apartado framework
 
 \newpage
+\section{Objetivos y metodología}
+\subsection{Objetivos}
+El objetivo de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el dataset \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
+\bigskip
+
+A diferencia del paper ~\cite{DBLP:journals/corr/abs-1708-01141} en el que se diseña una arquitectura específica y se entrena un modelo exclusivamente para ese problema, en este trabajo se parte de arquitecturas y modelos ya desarrollados y entrenados para resolver otro problema y se usa la técnica de \textit{transfer learning} para adaptarlo al nuevo problema.
+
+\subsection{Metodología}
+La forma de realizar el trabajo es realizando distintas pruebas de diferentes características para estudiar cuál es la opción más interesante o que obtenga los mejores resultados.
+
+\newpage
 \section{Conclusión}
 
 \newpage
