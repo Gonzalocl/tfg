@@ -416,19 +416,21 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
-\caption{Muestra del dataset flores.}
+\caption{Muestra del \textit{dataset} flores.}
 \end{figure}
 
-\item \textbf{\textit{ACDC}}: El dataset se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los frames claves de las resonancias. El dataset pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imagenes estan en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
+\item \textbf{\textit{ACDC}}: El \textit{dataset} se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los frames claves de las resonancias. El \textit{dataset} pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imagenes estan en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
-\caption{Muestra del dataset \textit{ACDC}.}
+\caption{Muestra del \textit{dataset} \textit{ACDC}.}
 \end{figure}
 
 %TODO parrafo los datos ...
 
 %TODO apartado imagenet
+
+%TODO apartado cifar 10 100
 
 \end{itemize}
 
@@ -437,13 +439,53 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 \newpage
 \section{Objetivos y metodología}
 \subsection{Objetivos}
-El objetivo de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el dataset \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
+El objetivo de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el \textit{dataset} \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
 \bigskip
 
 A diferencia del paper ~\cite{DBLP:journals/corr/abs-1708-01141} en el que se diseña una arquitectura específica y se entrena un modelo exclusivamente para ese problema, en este trabajo se parte de arquitecturas y modelos ya desarrollados y entrenados para resolver otro problema y se usa la técnica de \textit{transfer learning} para adaptarlo al nuevo problema.
 
 \subsection{Metodología}
 La forma de realizar el trabajo es realizando distintas pruebas de diferentes características para estudiar cuál es la opción más interesante o que obtenga los mejores resultados.
+
+\newpage
+\section{Trabajo realizado}
+En esta sección describo los pasos y las pruebas que he realizado y el proceso que he seguido para llegar a la solución que finalmente he obtenido, que consisten en realizar pruebas con diferentes modelos de partida ver los resultados obtenidos y analizar los resultados.
+\bigskip
+
+En estas pruebas todos los modelos de partida que he usado se han obtenido de la herramienta \textit{TensorFlow Hub}, los cuales ya vienen preparados para ser reentrenados para que solucionen otro problema. Todos los modelos han sido entrenados en el \textit{dataset} \textit{ImageNet} con 1000 clases, por lo tanto tienen el suficiente ``conocimiento'' como para resolver otro problema de clasificación menos exigente como por ejemplo la clasificación de 10 clases.
+
+\subsection{Técnica bottleneck}
+La técnica de \textit{bottleneck} consiste en obtener primero los valores del \textit{tensor} de salida de todos las imágenes de entrada, y guardar los valores, de esta manera no se tiene que ejecutar toda la red cada vez que vamos a entrenar con cierta imagen. De esta manera se entrena un modelo más pequeño, solamente las últimas capas y se usa como entrada de ese pequeño modelo la salida de toda la parte del modelo que no vamos a entrenar.
+\bigskip
+
+En cuanto a la inferencia usando esta técnica no cambia y se realiza de la misma manera que se haría con el resto de modelos que no usen esta técnica.
+
+\begin{figure}[H]
+\centering
+\subfloat[Entrenamiento]{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\qquad
+\subfloat[Inferencia]{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\caption{Pasos para realizar el entrenamiento usando la técnica de \textit{bottleneck} y para la inferencia.}
+\end{figure}
+
+\subsection{Entrenamiento completo}
+La primera prueba consiste en hacer un entrenamiento completo y así poder comparar los resultados con otras técnicas que voy a usar. En esta prueba se entrena de 0 la arquitectura \textit{AlexNet} para clasificar las imágenes del \textit{dataset} \textit{cifar 10}.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Tabla}
+\end{table}
+
+En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este resultado es mejor que con la técnica de \textit{transfer learning}. Los resultados son mejores porque en este caso estamos entrenando el modelo por completo y de esta forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
+\bigskip
+
+Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
+
 
 \newpage
 \section{Conclusión}
