@@ -735,7 +735,18 @@ El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el 
 \subsubsection{Inferencia por paciente}
 En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida en todas las imágenes de cada paciente. También de esta forma se tiene en cuenta que las imagenes estan relacionadas por paciente y se da un resultado por cada paciente, no como en pruebas anteriores donde las imágenes que pertenecen a un mismo paciente, podían ser clasificadas como enfermedades distintas.
 
-%TODO resultados
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultados inferencia por paciente.}
+\end{table}
+
+En este caso se puede ver que en una prueba a tenido un efecto positivo y en otra a tenido un efecto negativo. En la prueba, añadir una capa totalmente conectada, hacer la inferencia por paciente ha resultado en una mejora del 8.2\% respecto de la prueba sin hacer la inferencia por paciente lo que es una mejora significativa, mejorando el mejor resultado hasta ahora. Por el contrario en la prueba usando la técnica de cascada ha tenido un efecto negativo.
 
 \subsubsection{Distorsión}
 Con el fin de mejorar los resultados hago las mismas pruebas anteriores pero antes aplicando unas transformaciones en todas las imágenes de entrada del dataset. En el dataset las imágenes de entrada de los pacientes vienen en diferentes posiciones. En este caso las transformaciones que se han realizado a las imágenes es rotarlas 90, 180 y 270 grados cada una.
