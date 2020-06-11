@@ -647,16 +647,20 @@ A continuación se muestran los resultados obtenidos de agrupar las clases de la
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Prueba}                                                              & \textbf{Modelo}                                        & \textbf{Subsets de clases}                                     & \multicolumn{1}{l|}{\textbf{Iteraciones}} & \multicolumn{1}{l|}{\textbf{\begin{tabular}[c]{@{}l@{}}Learning\\ rate\end{tabular}}} & \multicolumn{1}{l|}{\textbf{Precisión}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (DCM)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}DCM:\\ HCM,MINF,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 83.9                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (HCM)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}HCM:\\ DCM,MINF,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 76.5                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (MINF)\end{tabular} & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}MINF:\\ DCM,HCM,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 81.6                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (NOR)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}NOR:\\ DCM,HCM,MINF,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 89.8                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (RV)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}RV:\\ DCM,HCM,MINF,NOR\end{tabular} & 4000                                      & 0.01                                                                                  & 85.8                                    \\ \hline
 \end{tabular}
-\caption{Resultados entrenamientos por subsets.}
+\caption{Resultados entrenamientos por subsets. Nota: en la columna ``Subsets de clases'', ``:'' indican la separación de subsets.}
+\label{tab:my-table}
 \end{table}
 
-Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 clases.
+Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
 \bigskip
 
 Esta idea no se puede considerar una idea completa porque realmente se han entrenado 5 modelos y cada uno da una salida, en el caso de que quisiéramos usarlo, por ejemplo haciendo la inferencia en estos 5 modelos, se pueden dar una situación en la que sí podría dar una solución pero otras dos situaciones en las que daría una respuesta sin solución.
@@ -725,7 +729,7 @@ Utilizando la técnica descrita anteriormente el resultado es el siguiente:
 \textbf{Prueba} & \textbf{Modelo}                   & \textbf{Clases}        & \textbf{Iteraciones}      & \textbf{Learning rate}    & \textbf{Precisión}        \\ \hline
 Cascada         & \multicolumn{1}{c|}{inception v3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4000} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{62.9} \\ \hline
 \end{tabular}
-\caption{Resultado cascada. \textbf{NOTA}: parámetros usados en cada uno de los modelos.}
+\caption{Resultado cascada. Nota: parámetros usados en cada uno de los modelos.}
 \end{table}
 
 El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el mejor resultado que había obtenido hasta ahora (63.2\% de precisión con la prueba, añadir una capa totalmente conectada). Esta prueba no ha supuesto ningún avance ya que se han obtenido resultados muy parecidos a los que ya tenía. Incluso el resultado es ligeramente peor, pero no es significativo ya que puede estar dentro de lo que puede variar la precisión de una ejecución a otra.
