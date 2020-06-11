@@ -646,16 +646,19 @@ A continuación se muestran los resultados obtenidos de agrupar las clases de la
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|c|c|c|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|l|c|c|c|}
 \hline
-\textbf{Prueba}                                                              & \textbf{Modelo}                                        & \textbf{Subsets de clases}                                     & \multicolumn{1}{l|}{\textbf{Iteraciones}} & \multicolumn{1}{l|}{\textbf{\begin{tabular}[c]{@{}l@{}}Learning\\ rate\end{tabular}}} & \multicolumn{1}{l|}{\textbf{Precisión}} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (DCM)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}DCM:\\ HCM,MINF,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 83.9                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (HCM)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}HCM:\\ DCM,MINF,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 76.5                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (MINF)\end{tabular} & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}MINF:\\ DCM,HCM,NOR,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 81.6                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (NOR)\end{tabular}  & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}NOR:\\ DCM,HCM,MINF,RV\end{tabular} & 4000                                      & 0.01                                                                                  & 89.8                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (RV)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}RV:\\ DCM,HCM,MINF,NOR\end{tabular} & 4000                                      & 0.01                                                                                  & 85.8                                    \\ \hline
-\end{tabular}
+\textbf{Prueba}                                                              & \textbf{Modelo}                                        & \multicolumn{1}{c|}{\textbf{Subsets de clases}}                & \textbf{Iteraciones} & \textbf{\begin{tabular}[c]{@{}c@{}}Learning\\ rate\end{tabular}} & \textbf{Precisión} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (DCM)\end{tabular}  & \begin{tabular}[c]{@{}c@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}DCM:\\ HCM,MINF,NOR,RV\end{tabular} & 4000                 & 0.01                                                             & 83.9               \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (HCM)\end{tabular}  & \begin{tabular}[c]{@{}c@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}HCM:\\ DCM,MINF,NOR,RV\end{tabular} & 4000                 & 0.01                                                             & 76.5               \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (MINF)\end{tabular} & \begin{tabular}[c]{@{}c@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}MINF:\\ DCM,HCM,NOR,RV\end{tabular} & 4000                 & 0.01                                                             & 81.6               \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (NOR)\end{tabular}  & \begin{tabular}[c]{@{}c@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}NOR:\\ DCM,HCM,MINF,RV\end{tabular} & 4000                 & 0.01                                                             & 89.8               \\ \hline
+\begin{tabular}[c]{@{}l@{}}Entrenamiento\\ por subsets\\ (RV)\end{tabular}   & \begin{tabular}[c]{@{}c@{}}inception\\ v3\end{tabular} & \begin{tabular}[c]{@{}l@{}}RV:\\ DCM,HCM,MINF,NOR\end{tabular} & 4000                 & 0.01                                                             & 85.8               \\ \hline
+\end{tabular}%
+}
 \caption{Resultados entrenamientos por subsets. Nota: en la columna ``Subsets de clases'', ``:'' indican la separación de subsets.}
+\label{tab:my-table}
 \end{table}
 
 Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
