@@ -185,7 +185,7 @@ GRADO EN INGENIERÍA INFORMÁTICA\\
 \vspace{1cm}
 \end{center}
 \end{titlepage}
-%\pagenumbering{roman}
+\pagenumbering{roman}
 % *********************** Fin Portada del Documento
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.0pt}
@@ -208,7 +208,12 @@ GRADO EN INGENIERÍA INFORMÁTICA\\
 \listoftables
 
 \newpage
-%\pagenumbering{arabic}
+\pagenumbering{arabic}
+\section*{Declaración firmada sobre originalidad del trabajo}
+\fancyhead[L]{Declaración firmada sobre originalidad del trabajo}
+\addcontentsline{toc}{section}{Declaración firmada sobre originalidad del trabajo}
+
+\newpage
 \section*{Resumen}
 \fancyhead[L]{Resumen}
 \addcontentsline{toc}{section}{Resumen}
@@ -437,7 +442,7 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 %TODO apartado framework
 
 \newpage
-\section{Objetivos y metodología}
+\section{Análisis de objetivos y metodología}
 \subsection{Objetivos}
 El objetivo de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el \textit{dataset} \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
 \bigskip
@@ -448,7 +453,7 @@ A diferencia del paper ~\cite{DBLP:journals/corr/abs-1708-01141} en el que se di
 La forma de realizar el trabajo es realizando distintas pruebas de diferentes características para estudiar cuál es la opción más interesante o que obtenga los mejores resultados.
 
 \newpage
-\section{Trabajo realizado}
+\section{Diseño y resolución del trabajo realizado}
 En esta sección describo los pasos y las pruebas que he realizado y el proceso que he seguido para llegar a la solución que finalmente he obtenido, que consisten en realizar pruebas con diferentes modelos de partida ver los resultados obtenidos y analizar los resultados.
 \bigskip
 
@@ -468,7 +473,8 @@ En cuanto a la inferencia usando esta técnica no cambia y se realiza de la mism
 \caption{Pasos para realizar el entrenamiento usando la técnica de \textit{bottleneck} y para la inferencia.}
 \end{figure}
 
-\subsection{Entrenamiento completo}
+\subsection{Pruebas en otros datasets}
+\subsubsection{Entrenamiento completo}
 La primera prueba consiste en hacer un entrenamiento completo y así poder comparar los resultados con otras técnicas que voy a usar. En esta prueba se entrena de 0 la arquitectura \textit{AlexNet} para clasificar las imágenes del \textit{dataset} \textit{cifar 10}.
 \begin{table}[H]
 \centering
@@ -486,7 +492,7 @@ En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este
 
 Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
 
-\subsection{Añadir una capa totalmente conectada y softmax}
+\subsubsection{Añadir una capa totalmente conectada y softmax}
 Esta prueba consiste en, a partir del modelo de partida eliminar la última capa y añadir una capa totalmente conectada y una capa de \textit{softmax}, esto se ha realizado con los \textit{datasets}: flores, \textit{cifar 10}, \textit{cifar 100} (20 clases) y \textit{cifar 100} (100 clases). El modelo de partida es \textit{inception v3}. Los resultados se pueden ver en la siguiente tabla:
 \begin{table}[H]
 \centering
@@ -516,7 +522,7 @@ A continuación se hace la misma prueba pero usando como modelo de partida \text
 
 En los resultados de estas pruebas podemos observar que para el mismo número de clases se obtienen unos resultados ligeramente mejores, esto se debe a que la información a la salida del modelo de partida es más significativa ya que a pasado por más capas, por lo tanto la información de entrada ha sido más procesada.
 
-\subsection{Añadir 3 capas totalmente conectadas}
+\subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
 \begin{table}[H]
 \centering
@@ -531,7 +537,6 @@ En esta prueba al modelo de partida se le añaden tres capas totalmente conectad
 
 En estos resultados podemos ver que al poner más capas, especialmente capas totalmente conectadas, el entrenamiento requiere más iteraciones (en la primera prueba el modelo no llegó a converger en la configuración más óptima), y por lo tanto más tiempo para obtener los mismos resultados que con una capa. También podemos ver que los resultados son similares o incluso ligeramente peores que solo con una capa totalmente conectada.
 
-\subsection{Quitar capas}
 \subsubsection{Quitar 2 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito dos capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
 \begin{table}[H]
@@ -562,8 +567,30 @@ Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quita
 
 En este caso, al contrario que en el anterior sí que se puede observar una degradación de la precisión en el resultado, en el caso del problema de tres clases sigue obteniendo un resultado parecido pero en el problema de diez clases si se puede apreciar un importante pérdida de precisión.
 
+\subsection{Pruebas en el dataset ACDC}
+A continuación detallo las diferentes pruebas realizadas sobre el dataset \textit{ACDC} y analizo los resultados obtenidos.
+
+\subsubsection{Añadir una capa}
+
+\subsubsection{Repartir bien los sets}
+
+\subsubsection{Usar un slice por paciente}
+
+\subsubsection{Entrenamiento por subsets}
+
+\subsubsection{En cascada}
+
+\subsubsection{Inferencia por paciente}
+
+\subsubsection{Distorsión}
+
+\subsubsection{Resultado final}
+
 \newpage
-\section{Conclusión}
+\section{Conclusiones y vías futuras}
+\subsection{Conclusiones}
+
+\subsection{Vías futuras}
 
 \newpage
 \appendix
