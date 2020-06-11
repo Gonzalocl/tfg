@@ -720,13 +720,12 @@ Utilizando la técnica descrita anteriormente el resultado es el siguiente:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Prueba} & \textbf{Modelo}                   & \textbf{Clases}        & \textbf{Iteraciones}      & \textbf{Learning rate}    & \textbf{Precisión}        \\ \hline
+Cascada         & \multicolumn{1}{c|}{inception v3} & \multicolumn{1}{c|}{5} & \multicolumn{1}{c|}{4000} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{62.9} \\ \hline
 \end{tabular}
-\caption{Resultado cascada.}
+\caption{Resultado cascada. \textbf{NOTA}: parámetros usados en cada uno de los modelos.}
 \end{table}
 
 El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el mejor resultado que había obtenido hasta ahora (63.2\% de precisión con la prueba, añadir una capa totalmente conectada). Esta prueba no ha supuesto ningún avance ya que se han obtenido resultados muy parecidos a los que ya tenía. Incluso el resultado es ligeramente peor, pero no es significativo ya que puede estar dentro de lo que puede variar la precisión de una ejecución a otra.
