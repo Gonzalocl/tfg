@@ -671,7 +671,7 @@ Las dos situaciones en las que no se puede dar una solución, son que ningún mo
 Esta idea se usa como base para hacer la siguiente prueba.
 
 
-\subsubsection{En cascada}
+\subsubsection{Cascada}
 Esta idea consiste en partiendo de la idea anterior hacer modelos que vayan identificando o descartando enfermedades cada uno una. Los cuales se ejecutan en secuencia uno tras otro, cada uno teniendo solo que identificar entre dos grupos de clases. De esta forma se pretende mejorar la precisión final simplificando el problema para cada uno de los modelos. Cada modelo solo tiene que decir si una imagen pertenece o no a una clase.
 
 \begin{itemize}
@@ -756,11 +756,19 @@ La distorsión se puede usar en dos casos, en el caso de que los datos del datas
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Prueba}                             & \multicolumn{1}{l|}{\textbf{Sin distorsión}} & \multicolumn{1}{l|}{\textbf{Con distorsión}} \\ \hline
+Añadir una capa                             & 63.2                                         & 57                                           \\ \hline
+Añadir una capa con inferencia por paciente & 71.4                                         & 85.7                                         \\ \hline
+Usar un slice por paciente                  & 42.9                                         & 35.7                                         \\ \hline
+Entrenamiento por subsets (DCM)             & 83.9                                         & 76.2                                         \\ \hline
+Entrenamiento por subsets (HCM)             & 76.5                                         & 68.5                                         \\ \hline
+Entrenamiento por subsets (MINF)            & 81.6                                         & 84.7                                         \\ \hline
+Entrenamiento por subsets (NOR)             & 89.8                                         & 88.9                                         \\ \hline
+Entrenamiento por subsets (RV)              & 85.8                                         & 85.2                                         \\ \hline
+Cascada                                     & 62.9                                         & 56.3                                         \\ \hline
+Cascada con inferencia por paciente         & 57.1                                         & 85.7                                         \\ \hline
 \end{tabular}
 \caption{Resultados pruebas con distorsión.}
 \end{table}
