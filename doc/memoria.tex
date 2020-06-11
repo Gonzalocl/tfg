@@ -612,11 +612,10 @@ También se tiene en cuenta que todas las clases deben de estar representadas po
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|c|c|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Prueba} & \textbf{Modelo} & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Precisión} \\ \hline
+Añadir una capa & inception v3    & 5               & 4000                 & 0.01                   & 63.2               \\ \hline
 \end{tabular}
 \caption{Resultado repartir bien los sets.}
 \end{table}
@@ -658,7 +657,6 @@ A continuación se muestran los resultados obtenidos de agrupar las clases de la
 \end{tabular}%
 }
 \caption{Resultados entrenamientos por subsets. Nota: en la columna ``Subsets de clases'', ``:'' indican la separación de subsets.}
-\label{tab:my-table}
 \end{table}
 
 Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
