@@ -299,6 +299,7 @@ x = \frac{y}{z}
 
 \begin{itemize}
 \item \textbf{Función escalonada}: La salida de esta función es 1 si el valor de entrada es mayor que cierto umbral o 0 si está por debajo del umbral.
+
 \begin{figure}[H]
 \centering
 \subfloat{{\huge $x = \frac{y}{z}$}}%
@@ -311,6 +312,7 @@ x = \frac{y}{z}
 %TODO formula
 
 \item \textbf{Sigmoide}: Una función sigmoide es una función matemática que tiene la característica que su curva tiene forma de \textit{s}. Con esta función las entradas negativas tienden a cero y conforme la entrada se acerca a cero la salida va aumentando hasta que el valor de entrada es positivo, conforme se aleja de cero tiende a uno. La función más utilizada es la función logística pero otras funciones matemáticas con forma de \textit{s} también se usan como la tangente o la tangente hiperbólica.
+
 \begin{figure}[H]
 \centering
 \subfloat{{\huge $x = \frac{y}{z}$}}%
@@ -320,6 +322,7 @@ x = \frac{y}{z}
 \end{figure}
 
 \item \textbf{Rectificador}: Esta función se define como la parte positiva de la entrada. Es decir si la entrada es positiva esa es la salida sin embargo si la entrada es negativa la salida es cero.
+
 \begin{figure}[H]
 \centering
 \subfloat{{\huge $x = \frac{y}{z}$}}%
@@ -336,6 +339,7 @@ Hay distintos tipos de capas con diferentes características y funciones.
 
 \begin{itemize}
 \item \textbf{Convolución}: Esta capa es de las más usadas y da nombre al tipo de red que se crea. Funciona seleccionando un conjunto de la entrada y combinando los valores en uno solo mediante una función matemática. De esta forma dichos valores se reducen pero el resultado de salida tiene más información comprimida o más significativa. Es como una simplificación.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -343,6 +347,7 @@ Hay distintos tipos de capas con diferentes características y funciones.
 \end{figure}
 
 \item \textbf{Convolución dilatada}: Es una convolución en la que los valores de entrada no se abordan todos juntos sino que se agrupan en círculos, separados por unos espacios, de esta forma los datos de entrada, a cada una de las neuronas de este tipo de capa, abarcan más.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -350,6 +355,7 @@ Hay distintos tipos de capas con diferentes características y funciones.
 \end{figure}
 
 \item \textbf{\textit{Pooling}}: Consiste en agrupar los datos en una dimensión usando alguna función matemática. En el caso de \textit{average pool} se usa la media y en el caso de \textit{max pool} el valor máximo.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -361,6 +367,7 @@ Hay distintos tipos de capas con diferentes características y funciones.
 \item \textbf{\textit{Dropout}}: En esta capa de se modifican aleatoriamente algunos valores asignándoles a su vez a estos otros valores aleatorios. Esto puede parecer contraproducente pero ayuda a reducir el \textit{overfitting}.
 
 \item \textbf{Totalmente conectada}: En esta capa todos las neuronas de la capa anterior están conectadas a todas las neuronas de la capa siguiente. Este tipo de capa se suele poner al final ya que hacer una conexión todos con todos es bastante costoso, pero es la que tiene más potencial para aprender, por estas razones se suelen poner estas capas al final de la red que es donde los tamaños de las capas son más reducidos y la información que proporcionan las capas es más significativa. También esta capa al tener más potencial de aprender también es más propensa a tener \textit{overfitting}, por eso se suele poner antes una capa de \textit{dropout}.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -418,6 +425,7 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 
 \begin{itemize}
 \item \textbf{Flores}: Este conjunto de datos está compuesto de aproximadamente 3500 fotos de flores divididas en 5 clases de fotos, cada una aproximadamente 700 fotos. Las imagenes estan en formato comprimido \textit{jpg} y son a color. Las clases son: \textit{daisy}, \textit{dandelion}, \textit{roses}, \textit{sunflowers} y \textit{tulips}.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -425,6 +433,7 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 \end{figure}
 
 \item \textbf{\textit{ACDC}}: El \textit{dataset} se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los frames claves de las resonancias. El \textit{dataset} pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imagenes estan en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{example-image}
@@ -476,6 +485,7 @@ En cuanto a la inferencia usando esta técnica no cambia y se realiza de la mism
 \subsection{Pruebas en otros datasets}
 \subsubsection{Entrenamiento completo}
 La primera prueba consiste en hacer un entrenamiento completo y así poder comparar los resultados con otras técnicas que voy a usar. En esta prueba se entrena de 0 la arquitectura \textit{AlexNet} para clasificar las imágenes del \textit{dataset} \textit{cifar 10}.
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -494,6 +504,7 @@ Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo r
 
 \subsubsection{Añadir una capa totalmente conectada y softmax}
 Esta prueba consiste en, a partir del modelo de partida eliminar la última capa y añadir una capa totalmente conectada y una capa de \textit{softmax}, esto se ha realizado con los \textit{datasets}: flores, \textit{cifar 10}, \textit{cifar 100} (20 clases) y \textit{cifar 100} (100 clases). El modelo de partida es \textit{inception v3}. Los resultados se pueden ver en la siguiente tabla:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -509,6 +520,7 @@ En la tabla se puede ver que cuantas más clases se requiera identificar menos p
 \bigskip
 
 A continuación se hace la misma prueba pero usando como modelo de partida \textit{resnet v2 152} que es un modelo basado también en convoluciones pero de mayor tamaño.
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -524,6 +536,7 @@ En los resultados de estas pruebas podemos observar que para el mismo número de
 
 \subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -539,6 +552,7 @@ En estos resultados podemos ver que al poner más capas, especialmente capas tot
 
 \subsubsection{Quitar 2 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito dos capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -554,6 +568,7 @@ En estas pruebas se puede ver que no se obtienen diferencias en cuanto a la prec
 
 \subsubsection{Quitar 3 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito tres capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -572,6 +587,7 @@ A continuación detallo las diferentes pruebas realizadas sobre el dataset \text
 
 \subsubsection{Añadir una capa}
 La primera idea consiste en a partir del \textit{dataset} extraer todos los \textit{slices} de todos los pacientes y de todo ese conjunto de imágenes dividirlas en los sets de entrenamiento, validación y test. En cuanto al modelo se usa \textit{inception v3} de partida y se le añade una capa totalmente conectada al final. El resultado obtenido es el siguiente:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -593,6 +609,7 @@ Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero t
 \bigskip
 
 También se tiene en cuenta que todas las clases deben de estar representadas por igual en todos los sets, es decir no debe de haber una diferencia muy grande entre la cantidad de pacientes en cada set, de lo contrario se podría generar \textit{overfitting} porque hay más imágenes de una clase que harían que el modelo tendiese a dar más resultados de la clase que más imagenes tiene simplemente porque aparece más.
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -607,6 +624,20 @@ También se tiene en cuenta que todas las clases deben de estar representadas po
 En este caso se obtiene un resultado más realista ya que las imágenes del set de test no están relacionadas con las del entrenamiento ni las de validación. En las siguientes secciones explicaré otras técnicas que he usado para enfocar el problema de clasificar los pacientes de forma que se puede obtener una mejor precisión. Desde esta prueba y en adelante el reparto de los sets se hará como en esta prueba para no volver a tener el problema del \textit{overfitting}.
 
 \subsubsection{Usar un slice por paciente}
+En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa solo una imagen de cada paciente, de esta forma se pretende reducir el \textit{overfitting} que hay en el modelo al haber muchas imágenes relacionadas de cada paciente, que hace que el modelo converja a algo que no quiero. En esta prueba uso solamente el primer \textit{slice} del primer \textit{frame} de cada paciente.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultado usar un \textit{slice} por pacientesets.}
+\end{table}
+
+En esta prueba el resultado obtenido es un 42\% de precisión que es bastante malo, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
 
 \subsubsection{Entrenamiento por subsets}
 
