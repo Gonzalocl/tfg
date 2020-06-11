@@ -571,8 +571,40 @@ En este caso, al contrario que en el anterior sí que se puede observar una degr
 A continuación detallo las diferentes pruebas realizadas sobre el dataset \textit{ACDC} y analizo los resultados obtenidos.
 
 \subsubsection{Añadir una capa}
+La primera idea consiste en a partir del \textit{dataset} extraer todos los \textit{slices} de todos los pacientes y de todo ese conjunto de imágenes dividirlas en los sets de entrenamiento, validación y test. En cuanto al modelo se usa \textit{inception v3} de partida y se le añade una capa totalmente conectada al final. El resultado obtenido es el siguiente:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultado añadir una capa.}
+\end{table}
+
+El resultado parece augurar que con esta primera prueba ya he solucionado el problema, pero la realidad es que la forma en la que se ha repartido el \textit{dataset} ha originado \textit{overfitting}. El reparto del \textit{dataset} en los conjuntos de entrenamiento, validación y test ha hecho que sea posible que en los tres conjuntos haya imágenes de cualquier paciente por lo que la red realmente no estaba aprendiendo a clasificar las enfermedades sino a recordar que paciente del \textit{dataset} tiene que enfermedad.
+\bigskip
+
+El efecto de esto es que cuando se hace la inferencia sobre imágenes de los pacientes que están en el \textit{dataset}, aunque realmente esa imagen no haya sido usada en el entrenamiento, el modelo funcionará. Pero si se hace la inferencia sobre imágenes de otro paciente totalmente nuevo para este modelo probablemente no funcione bien. En la siguiente sección explicaré cómo solucionar el problema del \textit{overfitting} que he tenido en esta prueba.
 
 \subsubsection{Repartir bien los sets}
+Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero teniendo en cuenta que los sets de entrenamiento, validación y test deben de estar repartidos por paciente. Es decir todos las imágenes de un paciente deben de ir al mismo set y no se pueden encontrar en más de un set imagenes del mismo paciente. De esta forma se evita que haya imagenes relacionadas en sets distintos y por lo tanto no se pueda saber la enfermedad relacionándolas.
+\bigskip
+
+También se tiene en cuenta que todas las clases deben de estar representadas por igual en todos los sets, es decir no debe de haber una diferencia muy grande entre la cantidad de pacientes en cada set, de lo contrario se podría generar \textit{overfitting} porque hay más imágenes de una clase que harían que el modelo tendiese a dar más resultados de la clase que más imagenes tiene simplemente porque aparece más.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\caption{Resultado repartir bien los sets.}
+\end{table}
+
+En este caso se obtiene un resultado más realista ya que las imágenes del set de test no están relacionadas con las del entrenamiento ni las de validación. En las siguientes secciones explicaré otras técnicas que he usado para enfocar el problema de clasificar los pacientes de forma que se puede obtener una mejor precisión. Desde esta prueba y en adelante el reparto de los sets se hará como en esta prueba para no volver a tener el problema del \textit{overfitting}.
 
 \subsubsection{Usar un slice por paciente}
 
