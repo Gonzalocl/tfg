@@ -17,6 +17,9 @@
 \usepackage[printonlyused,withpage]{acronym}
 \usepackage[justification=centering]{caption}
 \usepackage{afterpage}
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
+\usepackage{float}
 
 \usepackage{appendix}
 \renewcommand{\appendixname}{Anexos}
@@ -257,10 +260,70 @@ El aprendizaje por refuerzo consisten en agentes que se mueven por un entorno re
 Inspiradas en el funcionamiento de las redes neuronales biológicas, una red neuronal es una forma de organizar los modelos de inteligencia artificial para abordar ciertos problemas que son difíciles de resolver con la programación ordinaria basada en ``Reglas'' obteniendo muy buenos resultados en una amplia variedad de tareas como por ejemplo: la visión por ordenador o el reconocimiento de la voz.
 \bigskip
 
-Este tipo de inteligencia artificial se organiza en varias capas interconectadas entre sí. Las capas se suelen nombrar como capas de entrada, que es la primera capa, a la que se le pasan directamente los datos de entrada, capa de salida, que es la última capa, la que da el resultado de la predicción que hace la red neural y capas ocultas, que son las que están entre la primera y la última.
+Este tipo de inteligencia artificial se organiza en varias capas interconectadas entre sí. Las capas se suelen nombrar como capa de entrada, que es la primera capa, a la que se le pasan directamente los datos de entrada, capa de salida, que es la última capa, la que da el resultado de la predicción que hace la red neural y capas ocultas, que son las que están entre la primera y la última.
 \bigskip
 
 Las capas de una red neuronal están compuestas por neuronas artificiales.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{example-image}
+\caption{Ejemplo de red neuronal con capa de entrada, capa de salida y una capa oculta.}
+\end{figure}
+
+\subsubsection{Neuronas artificiales}
+Las neuronas artificiales son la unidad básica de una red neuronal reciben una entrada y producen una salida. La entrada la reciben de la capa inmediatamente anterior a la capa a la que pertenecen y la salida es la entrada de la capa inmediatamente a continuación. El funcionamiento básico de una neurona es el siguiente: las entradas se multiplican por un peso y se suman, el valor se le aplica una función que dará la salida de la neurona, también llamada función de activación.
+
+\begin{figure}[H]
+\centering
+\subfloat{{\huge $x = \frac{y}{z}$}}%
+\qquad
+\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\caption{Formula de suma de pesos e imagen de una neurona.}
+\end{figure}
+
+%TODO
+Donde phi es la función, wi son los pesos xi son las entradas e y es la salida.
+\bigskip
+
+%TODO
+Algunas de las funciones de activación más usadas son las siguientes. En los siguientes apartados u se refiere a la entrada de la función según la fórmula:
+\begin{equation}
+x = \frac{y}{z}
+\end{equation}
+
+\begin{itemize}
+\item \textbf{Función escalonada}: La salida de esta función es 1 si el valor de entrada es mayor que cierto umbral o 0 si está por debajo del umbral.
+\begin{figure}[H]
+\centering
+\subfloat{{\huge $x = \frac{y}{z}$}}%
+\qquad
+\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\caption{Formula y gráfica.}
+\end{figure}
+
+\item \textbf{Combinación lineal}: En esta función la salida simplemente se le suma un bias. Esta función aplica una transformación lineal a la entrada
+%TODO
+
+\item \textbf{Sigmoide}: Una función sigmoide es una función matemática que tiene la característica que su curva tiene forma de \textit{s}. Con esta función las entradas negativas tienden a cero y conforme la entrada se acerca a cero la salida va aumentando hasta que el valor de entrada es positivo, conforme se aleja de cero tiende a uno. La función más utilizada es la función logística pero otras funciones matemáticas con forma de \textit{s} también se usan como la tangente o la tangente hiperbólica.
+\begin{figure}[H]
+\centering
+\subfloat{{\huge $x = \frac{y}{z}$}}%
+\qquad
+\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\caption{Formula y gráfica.}
+\end{figure}
+
+\item \textbf{Rectificador}: Esta función se define como la parte positiva de la entrada. Es decir si la entrada es positiva esa es la salida sin embargo si la entrada es negativa la salida es cero.
+\begin{figure}[H]
+\centering
+\subfloat{{\huge $x = \frac{y}{z}$}}%
+\qquad
+\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\caption{Formula y gráfica.}
+\end{figure}
+
+\end{itemize}
 
 
 \newpage
