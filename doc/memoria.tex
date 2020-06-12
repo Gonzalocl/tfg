@@ -565,12 +565,14 @@ Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quita
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
-\end{tabular}
+\textbf{Modelo} & \textbf{Dataset}                                                  & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
+inception v3    & cifar 10                                                          & 10              & 100000               & 0.01                   & 100                 & 79.8               \\ \hline
+inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 70000                & 0.01                   & 100                 & 95.5               \\ \hline
+\end{tabular}%
+}
 \caption{Resultados quitar 2 capas.}
 \end{table}
 
@@ -581,12 +583,14 @@ Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quita
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
-\end{tabular}
+\textbf{Modelo} & \textbf{Dataset}                                                  & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
+inception v3    & cifar 10                                                          & 10              & 90000                & 0.01                   & 100                 & 56.0               \\ \hline
+inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 70000                & 0.01                   & 100                 & 95.9               \\ \hline
+\end{tabular}%
+}
 \caption{Resultados quitar 3 capas.}
 \end{table}
 
