@@ -279,6 +279,7 @@ Las capas de una red neuronal están compuestas por neuronas artificiales.
 \subsubsection{Neuronas artificiales}
 Las neuronas artificiales son la unidad básica de una red neuronal reciben una entrada y producen una salida. La entrada la reciben de la capa inmediatamente anterior a la capa a la que pertenecen y la salida es la entrada de la capa inmediatamente a continuación. El funcionamiento básico de una neurona es el siguiente: las entradas se multiplican por un peso y se suman, el valor se le aplica una función que dará la salida de la neurona, también llamada función de activación.
 
+%TODO use minipage
 \begin{figure}[H]
 \centering
 \subfloat{{\huge $y_{i} = f\left(\sum_{j=0}^{k}w_{ij}x_{j}\right)$}}%
@@ -293,20 +294,29 @@ Donde $f$ es la función de activación, $w_{ij}$ son los pesos, $x_{i}$ son las
 
 %TODO que es x w 
 Algunas de las funciones de activación más usadas son las siguientes. En los siguientes apartados $z$ se refiere a la entrada de la función según la fórmula:
-\begin{equation}
+\begin{equation*}
 z = \sum_{j=0}^{k} w_{j} x_{j}
-\end{equation}
+\end{equation*}
 
 \begin{itemize}
 \item \textbf{Función escalonada}: La salida de esta función es 1 si el valor de entrada es mayor que cierto umbral o 0 si está por debajo del umbral.
 
 \begin{figure}[H]
-\centering
-\subfloat{{\huge $x = \frac{y}{z}$}}%
-\qquad
-\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\centering\begin{minipage}[H]{0.5\textwidth}
+\large
+\begin{equation*}
+y = \begin{cases}
+1 & si \: z \geq \alpha \\
+0 & si \: z < \alpha
+\end{cases}
+\end{equation*}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\includegraphics[valign=c, width=0.8\textwidth]{img/escalonada}
+\end{minipage}
 \caption{Formula y gráfica.}
 \end{figure}
+%TODO que es alpha y en este caso alpha es 0
 
 \item \textbf{Combinación lineal}: En esta función la salida simplemente se le suma un bias. Esta función aplica una transformación lineal a la entrada
 %TODO formula
