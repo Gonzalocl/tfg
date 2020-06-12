@@ -282,7 +282,7 @@ Las neuronas artificiales son la unidad básica de una red neuronal reciben una 
 %TODO use minipage
 \begin{figure}[H]
 \centering
-\subfloat{{\huge $y_{i} = f\left(\sum_{j=0}^{k}w_{ij}x_{j}\right)$}}%
+\subfloat{{\large $y_{i} = f\left(\sum_{j=0}^{k}w_{ij}x_{j}\right)$}}%
 \qquad
 \subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{img/neurona} }}%
 \caption{Formula de suma de pesos e imagen de una neurona.}
@@ -324,12 +324,18 @@ y = \begin{cases}
 \item \textbf{Sigmoide}: Una función sigmoide es una función matemática que tiene la característica que su curva tiene forma de \textit{s}. Con esta función las entradas negativas tienden a cero y conforme la entrada se acerca a cero la salida va aumentando hasta que el valor de entrada es positivo, conforme se aleja de cero tiende a uno. La función más utilizada es la función logística pero otras funciones matemáticas con forma de \textit{s} también se usan como la tangente o la tangente hiperbólica.
 
 \begin{figure}[H]
-\centering
-\subfloat{{\huge $x = \frac{y}{z}$}}%
-\qquad
-\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\centering\begin{minipage}[H]{0.5\textwidth}
+\large
+\begin{equation*}
+y = \frac{1}{1+e^{-x}}
+\end{equation*}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\includegraphics[valign=c, width=0.8\textwidth]{img/sig}
+\end{minipage}
 \caption{Formula y gráfica.}
 \end{figure}
+%TODO en este caso se plot la logistica; usar e bien en el plot
 
 \item \textbf{Rectificador}: Esta función se define como la parte positiva de la entrada. Es decir si la entrada es positiva esa es la salida sin embargo si la entrada es negativa la salida es cero.
 
