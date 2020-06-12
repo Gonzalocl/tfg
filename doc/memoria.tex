@@ -281,20 +281,20 @@ Las neuronas artificiales son la unidad básica de una red neuronal reciben una 
 
 \begin{figure}[H]
 \centering
-\subfloat{{\huge $x = \frac{y}{z}$}}%
+\subfloat{{\huge $y_{i} = f\left(\sum_{j=0}^{k}w_{ij}x_{j}\right)$}}%
 \qquad
-\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{img/neurona} }}%
 \caption{Formula de suma de pesos e imagen de una neurona.}
 \end{figure}
 
-%TODO phi
-Donde phi es la función, wi son los pesos xi son las entradas e y es la salida.
+%TODO son los pesos que
+Donde $f$ es la función de activación, $w_{ij}$ son los pesos, $x_{i}$ son las entradas e $y$ es la salida.
 \bigskip
 
-%TODO u
-Algunas de las funciones de activación más usadas son las siguientes. En los siguientes apartados u se refiere a la entrada de la función según la fórmula:
+%TODO que es x w 
+Algunas de las funciones de activación más usadas son las siguientes. En los siguientes apartados $z$ se refiere a la entrada de la función según la fórmula:
 \begin{equation}
-x = \frac{y}{z}
+z = \sum_{j=0}^{k} w_{j} x_{j}
 \end{equation}
 
 \begin{itemize}
