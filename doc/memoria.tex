@@ -340,10 +340,15 @@ y = \frac{1}{1+e^{-x}}
 \item \textbf{Rectificador}: Esta función se define como la parte positiva de la entrada. Es decir si la entrada es positiva esa es la salida sin embargo si la entrada es negativa la salida es cero.
 
 \begin{figure}[H]
-\centering
-\subfloat{{\huge $x = \frac{y}{z}$}}%
-\qquad
-\subfloat{{\includegraphics[valign=c, width=0.3\textwidth]{example-image} }}%
+\centering\begin{minipage}[H]{0.5\textwidth}
+\large
+\begin{equation*}
+y = max(0, x)
+\end{equation*}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\includegraphics[valign=c, width=0.8\textwidth]{img/rectificador}
+\end{minipage}
 \caption{Formula y gráfica.}
 \end{figure}
 
