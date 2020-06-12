@@ -488,13 +488,13 @@ La primera prueba consiste en hacer un entrenamiento completo y así poder compa
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
+\textbf{Modelo} & \textbf{Dataset}              & \textbf{Clases}         & \textbf{Iteraciones}        & \textbf{Learning rate}   & \textbf{Batch size}      & \textbf{Precisión}        \\ \hline
+AlexNet         & \multicolumn{1}{c|}{cifar 10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{100000} & \multicolumn{1}{c|}{0.1} & \multicolumn{1}{c|}{128} & \multicolumn{1}{c|}{86.0} \\ \hline
 \end{tabular}
 \caption{Resultado entrenamiento completo.}
+\label{tab:my-table}
 \end{table}
 
 En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este resultado es mejor que con la técnica de \textit{transfer learning}. Los resultados son mejores porque en este caso estamos entrenando el modelo por completo y de esta forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
