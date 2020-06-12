@@ -494,7 +494,6 @@ La primera prueba consiste en hacer un entrenamiento completo y así poder compa
 AlexNet         & \multicolumn{1}{c|}{cifar 10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{100000} & \multicolumn{1}{c|}{0.1} & \multicolumn{1}{c|}{128} & \multicolumn{1}{c|}{86.0} \\ \hline
 \end{tabular}
 \caption{Resultado entrenamiento completo.}
-\label{tab:my-table}
 \end{table}
 
 En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este resultado es mejor que con la técnica de \textit{transfer learning}. Los resultados son mejores porque en este caso estamos entrenando el modelo por completo y de esta forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
@@ -507,12 +506,17 @@ Esta prueba consiste en, a partir del modelo de partida eliminar la última capa
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
-\end{tabular}
+\textbf{Modelo} & \textbf{Dataset}                                                  & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
+inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 4000                 & 0.01                   & 100                 & 93.8               \\ \hline
+inception v3    & flores                                                            & 5               & 4000                 & 0.01                   & 100                 & 90.9               \\ \hline
+inception v3    & cifar 10                                                          & 10              & 4000                 & 0.01                   & 100                 & 79.5               \\ \hline
+inception v3    & cifar 100                                                         & 20              & 4000                 & 0.01                   & 100                 & 64.1               \\ \hline
+inception v3    & cifar 100                                                         & 100             & 4000                 & 0.01                   & 100                 & 51.7               \\ \hline
+\end{tabular}%
+}
 \caption{Resultados añadir una capa totalmente conectada y \textit{softmax}.}
 \end{table}
 
@@ -523,12 +527,15 @@ A continuación se hace la misma prueba pero usando como modelo de partida \text
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|c|}
 \hline
- &  &  \\ \hline
- &  &  \\ \hline
- &  &  \\ \hline
-\end{tabular}
+\textbf{Modelo} & \textbf{Dataset}                                                  & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
+resnet v2 152   & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 4000                 & 0.01                   & 100                 & 94.4               \\ \hline
+resnet v2 152   & cifar 10                                                          & 10              & 40000                & 0.01                   & 100                 & 82.9               \\ \hline
+resnet v2 152   & cifar 10                                                          & 20              & 14000                & 0.01                   & 100                 & 70.8               \\ \hline
+\end{tabular}%
+}
 \caption{Resultados prueba usando modelo basado en la arquitectura \textit{resnet v2 512}.}
 \end{table}
 
