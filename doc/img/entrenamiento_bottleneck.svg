@@ -20,11 +20,28 @@
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="0" ry="0"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Bottleneck</text>
     </symbol>
+    <symbol id="last" viewBox="0 0 200 200">
+      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 2 2 H 198 V 188 A 10 10 0 0 1 188 198 H 12 A 10 10 0 0 1 2 188 V 2 Z" bx:shape="rect 2 2 196 196 0 0 10 10 1@ab3b7cfe"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" y="107.207" x="14.009">Última capa</text>
+    </symbol>
+    <symbol id="output" viewBox="0 0 200 100">
+      <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="10" y="10" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="10" ry="10"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Output</text>
+    </symbol>
   </defs>
   <g>
     <use width="200" height="100" xlink:href="#dataset"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 140)" xlink:href="#model"/>
     <use width="100" height="100" transform="matrix(1, 0, 0, 1, 50, 318)" xlink:href="#arrow"/>
     <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 400)" xlink:href="#bottleneck"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 298, 0)">
+    <use width="200" height="100" xlink:href="#bottleneck"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 120)" xlink:href="#arrow"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 150)" xlink:href="#last"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 370)" xlink:href="#arrow"/>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 400)" xlink:href="#output"/>
   </g>
 </svg>
