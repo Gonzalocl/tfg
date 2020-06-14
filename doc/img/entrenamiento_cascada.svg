@@ -9,11 +9,12 @@
       <line style="stroke: black; stroke-width: 3px; stroke-linecap: round;" x1="10" y1="33" x2="90" y2="33"/>
       <line style="stroke: black; stroke-linecap: round;" x1="10" y1="75" x2="90" y2="75"/>
     </symbol>
-    <symbol id="model_best" viewBox="0 0 100 100">
-      <rect style="fill: none; stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 8px;" x="4" y="4" width="92" height="92" rx="10" ry="10"/>
-      <use width="100" height="100" xlink:href="#separator"/>
-    </symbol>
   </defs>
-  <use width="100" height="100" xlink:href="#model"/>
-  <use width="100" height="100" xlink:href="#model_best"/>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">XYZ</text>
+    <text x="36.385" y="46" style="font-size: 14px;">XYZ</text>
+    <text x="36.388" y="58" style="font-size: 14px;">XYZ</text>
+    <text x="36.385" y="90" style="font-size: 14px;">XYZ</text>
+  </g>
 </svg>
