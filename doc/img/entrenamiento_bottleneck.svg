@@ -11,7 +11,11 @@
       <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 12 2 H 188 A 10 10 0 0 1 198 12 V 198 H 2 V 12 A 10 10 0 0 1 12 2 Z" bx:shape="rect 2 2 196 196 10 10 0 0 1@fefb5c13"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" transform="matrix(1, 0, 0, 1, -0.875, 67.703125)"><tspan x="14.884" y="28.613">Modelo de</tspan><tspan x="14.884" dy="1em">​</tspan><tspan>partida</tspan></text>
     </symbol>
+    <symbol id="arrow" viewBox="0 0 50 10" bx:pinned="true">
+      <path d="M 23.899 -6.384 L 48.899 3.605 L -1.101 3.605 L 23.899 -6.384 Z" style="fill: rgb(216, 216, 216);" transform="matrix(1, 0.000075, -0.047101, -1.000004, 1.270799, 3.605095)" bx:shape="triangle -1.101 -6.384 50 9.989 0.5 0 1@ce3990a1" bx:origin="0.480535 -0.327439"/>
+    </symbol>
   </defs>
   <use width="200" height="100" transform="matrix(0.775194, 0, 0, 0.775194, 180, 80)" xlink:href="#dataset"/>
   <use width="200" height="200" transform="matrix(0.775194, 0, 0, 0.775194, 180, 210)" xlink:href="#model"/>
+  <use width="100" height="100" transform="matrix(0.775194, 0, 0, 0.775194, 220, 150)" xlink:href="#arrow"/>
 </svg>
