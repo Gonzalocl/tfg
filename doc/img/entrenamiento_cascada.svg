@@ -3,7 +3,7 @@
   <defs>
     <symbol id="model" viewBox="0 0 100 100">
       <rect style="fill: none; stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 3px;" x="4" y="4" width="92" height="92" rx="10" ry="10"/>
-      <use width="100" height="100" xlink:href="#separator"/>
+      <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#separator"/>
     </symbol>
     <symbol id="separator" viewBox="0 0 100 100">
       <line style="stroke: black; stroke-width: 3px; stroke-linecap: round;" x1="10" y1="33" x2="90" y2="33"/>
@@ -11,90 +11,90 @@
     </symbol>
   </defs>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">DCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
-    <text x="36.385" y="90" style="font-size: 14px;">83.9%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.059" y="29" style="font-size: 14px; white-space: pre;">DCM</text>
+    <text x="15.018" y="46" style="font-size: 14px; white-space: pre;">HCM MINF</text>
+    <text x="22.732" y="58" style="font-size: 14px; white-space: pre;">NOR RV</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">83.9%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM MINF</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
-    <text x="36.385" y="90" style="font-size: 14px;">60.7%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.067" y="29" style="font-size: 14px; white-space: pre;">HCM</text>
+    <text x="15.018" y="46" style="font-size: 14px; white-space: pre;">DCM MINF</text>
+    <text x="22.732" y="58" style="font-size: 14px; white-space: pre;">NOR RV</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">60.7%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
-    <text x="36.385" y="90" style="font-size: 14px;">71.2%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="32.903" y="29" style="font-size: 14px; white-space: pre;">MINF</text>
+    <text x="16.182" y="46" style="font-size: 14px; white-space: pre;">DCM HCM</text>
+    <text x="22.732" y="58" style="font-size: 14px; white-space: pre;">NOR RV</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">71.2%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
-    <text x="36.388" y="58" style="font-size: 14px;">MINF RV</text>
-    <text x="36.385" y="90" style="font-size: 14px;">69.6%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.45" y="29" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="16.182" y="46" style="font-size: 14px; white-space: pre;">DCM HCM</text>
+    <text x="21.185" y="58" style="font-size: 14px; white-space: pre;">MINF RV</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">69.6%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">RV</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
-    <text x="36.388" y="58" style="font-size: 14px;">MINF NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">92.2%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="40.231" y="29" style="font-size: 14px; white-space: pre;">RV</text>
+    <text x="16.182" y="46" style="font-size: 14px; white-space: pre;">DCM HCM</text>
+    <text x="15.404" y="58" style="font-size: 14px; white-space: pre;">MINF NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">92.2%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">DCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">83.5%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.067" y="29" style="font-size: 14px; white-space: pre;">DCM</text>
+    <text x="15.018" y="46" style="font-size: 14px; white-space: pre;">HCM MINF</text>
+    <text x="34.451" y="58" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">83.5%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM MINF</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">53.3%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.067" y="29" style="font-size: 14px; white-space: pre;">HCM</text>
+    <text x="15.018" y="46" style="font-size: 14px; white-space: pre;">DCM MINF</text>
+    <text x="34.451" y="58" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">53.3%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
-    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">71.9%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="32.903" y="29" style="font-size: 14px; white-space: pre;">MINF</text>
+    <text x="16.182" y="46" style="font-size: 14px; white-space: pre;">DCM HCM</text>
+    <text x="34.451" y="58" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">71.9%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
-    <text x="36.388" y="58" style="font-size: 14px;">MINF</text>
-    <text x="36.385" y="90" style="font-size: 14px;">66.8%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.45" y="29" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="16.182" y="46" style="font-size: 14px; white-space: pre;">DCM HCM</text>
+    <text x="32.904" y="58" style="font-size: 14px; white-space: pre;">MINF</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">66.8%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">MINF NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">49.2%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.067" y="29" style="font-size: 14px; white-space: pre;">HCM</text>
+    <text x="15.401" y="46" style="font-size: 14px; white-space: pre;">MINF NOR</text>
+    <text x="30.354" y="90" style="font-size: 14px; white-space: pre;">49.2%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
-    <text x="36.385" y="46" style="font-size: 14px;">HCM NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">71.0%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="32.903" y="29" style="font-size: 14px; white-space: pre;">MINF</text>
+    <text x="16.572" y="46" style="font-size: 14px; white-space: pre;">HCM NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">71.0%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
-    <text x="36.385" y="90" style="font-size: 14px;">57.2%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.45" y="29" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="15.018" y="46" style="font-size: 14px; white-space: pre;">HCM MINF</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">57.2%</text>
   </g>
   <g>
-    <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
-    <text x="36.385" y="46" style="font-size: 14px;">NOR</text>
-    <text x="36.385" y="90" style="font-size: 14px;">54.6%</text>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 0, 0)" xlink:href="#model"/>
+    <text x="34.067" y="29" style="font-size: 14px; white-space: pre;">HCM</text>
+    <text x="34.447" y="46" style="font-size: 14px; white-space: pre;">NOR</text>
+    <text x="30.158" y="90" style="font-size: 14px; white-space: pre;">54.6%</text>
   </g>
 </svg>
