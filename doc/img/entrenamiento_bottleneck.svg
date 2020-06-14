@@ -7,12 +7,12 @@
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="10" ry="10"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Dataset</text>
     </symbol>
+    <symbol id="arrow" viewBox="0 0 50 10" bx:pinned="true">
+      <path d="M 25.057 5.107 L 49.057 13.098 L 1.057 13.098 L 25.057 5.107 Z" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linejoin: round;" transform="matrix(1, 0.000075, -0.047101, -1.000004, 0.559929, 14.097974)" bx:shape="triangle 1.057 5.107 48 7.991 0.5 0 1@46e15351" bx:origin="0.480535 -0.327439"/>
+    </symbol>
     <symbol id="model" viewBox="0 0 200 200" bx:pinned="true">
       <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 12 2 H 188 A 10 10 0 0 1 198 12 V 198 H 2 V 12 A 10 10 0 0 1 12 2 Z" bx:shape="rect 2 2 196 196 10 10 0 0 1@fefb5c13"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" transform="matrix(1, 0, 0, 1, -0.875, 67.703125)"><tspan x="14.884" y="28.613">Modelo de</tspan><tspan x="14.884" dy="1em">​</tspan><tspan>partida</tspan></text>
-    </symbol>
-    <symbol id="arrow" viewBox="0 0 50 10" bx:pinned="true">
-      <path d="M 25.057 5.107 L 49.057 13.098 L 1.057 13.098 L 25.057 5.107 Z" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linejoin: round;" transform="matrix(1, 0.000075, -0.047101, -1.000004, 0.559929, 14.097974)" bx:shape="triangle 1.057 5.107 48 7.991 0.5 0 1@46e15351" bx:origin="0.480535 -0.327439"/>
     </symbol>
     <symbol id="bottleneck" viewBox="0 0 200 100" bx:pinned="true">
       <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="0" ry="0"/>
@@ -32,12 +32,15 @@
     </symbol>
   </defs>
   <g>
+    <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;">1º Ejecutar</text>
     <use width="200" height="100" xlink:href="#dataset"/>
+    <use width="50" height="10" xlink:href="#arrow"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 140)" xlink:href="#model"/>
-    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 50, 318)" xlink:href="#arrow"/>
+    <use width="50" height="10" xlink:href="#arrow"/>
     <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 400)" xlink:href="#bottleneck"/>
   </g>
   <g transform="matrix(1, 0, 0, 1, 298, 0)">
+    <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;">2º Entrenar</text>
     <use width="200" height="100" xlink:href="#bottleneck"/>
     <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 120)" xlink:href="#arrow"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 150)" xlink:href="#last"/>
