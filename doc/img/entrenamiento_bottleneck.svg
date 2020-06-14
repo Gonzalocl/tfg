@@ -33,18 +33,18 @@
   </defs>
   <g>
     <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="29.594" y="29.438">1º Ejecutar</text>
-    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 45)" xlink:href="#dataset"/>
-    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 155)" xlink:href="#arrow"/>
-    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 175)" xlink:href="#model"/>
-    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 385)" xlink:href="#arrow"/>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 46.575001)" xlink:href="#dataset"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 156.181244)" xlink:href="#arrow"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 175.787491)" xlink:href="#model"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 385.393738)" xlink:href="#arrow"/>
     <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 405)" xlink:href="#bottleneck"/>
   </g>
   <g transform="matrix(1, 0, 0, 1, 305, 0)">
     <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" y="29.438" x="23.516">2º Entrenar</text>
-    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 45)" xlink:href="#bottleneck"/>
-    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 155)" xlink:href="#arrow"/>
-    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 175)" xlink:href="#last"/>
-    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 385)" xlink:href="#arrow"/>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 46.575001)" xlink:href="#bottleneck"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 156.181244)" xlink:href="#arrow"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 175.787491)" xlink:href="#last"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 385.393738)" xlink:href="#arrow"/>
     <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 405)" xlink:href="#output"/>
   </g>
 </svg>
