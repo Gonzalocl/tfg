@@ -32,14 +32,14 @@
     </symbol>
   </defs>
   <g>
-    <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;">1º Ejecutar</text>
-    <use width="200" height="100" xlink:href="#dataset"/>
-    <use width="50" height="10" xlink:href="#arrow"/>
-    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 140)" xlink:href="#model"/>
-    <use width="50" height="10" xlink:href="#arrow"/>
-    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 400)" xlink:href="#bottleneck"/>
+    <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="29.594" y="29.438">1º Ejecutar</text>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 45)" xlink:href="#dataset"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 155)" xlink:href="#arrow"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 175)" xlink:href="#model"/>
+    <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 385)" xlink:href="#arrow"/>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 405)" xlink:href="#bottleneck"/>
   </g>
-  <g transform="matrix(1, 0, 0, 1, 298, 0)">
+  <g transform="matrix(1, 0, 0, 1, 298, 0)" style="visibility: hidden;">
     <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;">2º Entrenar</text>
     <use width="200" height="100" xlink:href="#bottleneck"/>
     <use width="50" height="10" transform="matrix(1, 0, 0, 1, 75, 120)" xlink:href="#arrow"/>
