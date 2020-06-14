@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 505 505" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol id="input" viewBox="0 0 200 100">
+      <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="10" y="10" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="10" ry="10"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Entrada</text>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 50 10">
+      <path d="M 1 1 L 49 1 L 25 9 Z" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linejoin: round;"/>
+    </symbol>
+    <symbol id="model" viewBox="0 0 200 100">
+      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 12 2 H 188 A 10 10 0 0 1 198 12 V 98 H 2 V 12 A 10 10 0 0 1 12 2 Z"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" transform="matrix(1, 0, 0, 1, -0.875, 18.304688)"><tspan x="14.884" y="28.613">Modelo de</tspan><tspan x="14.884" dy="1em">​</tspan><tspan>partida</tspan></text>
+    </symbol>
+    <symbol id="last" viewBox="0 0 200 100">
+      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 2 2 H 198 V 88 A 10 10 0 0 1 188 98 H 12 A 10 10 0 0 1 2 88 V 2 Z"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" y="60.871" x="14.009">Última capa</text>
+    </symbol>
+    <symbol id="output" viewBox="0 0 200 100">
+      <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="10" y="10" width="180" height="80" rx="10" ry="10"/>
+      <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="10" ry="10"/>
+      <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Salida</text>
+    </symbol>
+  </defs>
+  <use width="200" height="100" transform="matrix(1, 0, 0, 1, 152.5, 0)" xlink:href="#input"/>
+  <use width="50" height="10" transform="matrix(1, 0, 0, 1, 227.5, 112.5)" xlink:href="#arrow"/>
+  <use width="200" height="100" transform="matrix(1, 0, 0, 1, 152.5, 135)" xlink:href="#model"/>
+  <use width="50" height="10" transform="matrix(1, 0, 0, 1, 227.5, 247.5)" xlink:href="#arrow"/>
+  <use width="200" height="100" transform="matrix(1, 0, 0, 1, 152.5, 270)" xlink:href="#last"/>
+  <use width="50" height="10" transform="matrix(1, 0, 0, 1, 227.5, 382.5)" xlink:href="#arrow"/>
+  <use width="200" height="100" transform="matrix(1, 0, 0, 1, 152.5, 405)" xlink:href="#output"/>
+</svg>
