@@ -23,8 +23,8 @@
   </defs>
   <g>
     <use width="200" height="100" xlink:href="#dataset"/>
-    <use width="200" height="200" xlink:href="#model"/>
-    <use width="100" height="100" xlink:href="#arrow"/>
-    <use width="200" height="100" xlink:href="#bottleneck"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 0, 140)" xlink:href="#model"/>
+    <use width="100" height="100" transform="matrix(1, 0, 0, 1, 50, 318)" xlink:href="#arrow"/>
+    <use width="200" height="100" transform="matrix(1, 0, 0, 1, 0, 400)" xlink:href="#bottleneck"/>
   </g>
 </svg>
