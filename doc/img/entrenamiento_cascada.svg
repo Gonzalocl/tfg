@@ -12,9 +12,89 @@
   </defs>
   <g>
     <use width="100" height="100" xlink:href="#model"/>
-    <text x="36.387" y="29" style="font-size: 14px;">XYZ</text>
-    <text x="36.385" y="46" style="font-size: 14px;">XYZ</text>
-    <text x="36.388" y="58" style="font-size: 14px;">XYZ</text>
-    <text x="36.385" y="90" style="font-size: 14px;">XYZ</text>
+    <text x="36.387" y="29" style="font-size: 14px;">DCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
+    <text x="36.385" y="90" style="font-size: 14px;">83.9%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM MINF</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
+    <text x="36.385" y="90" style="font-size: 14px;">60.7%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR RV</text>
+    <text x="36.385" y="90" style="font-size: 14px;">71.2%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
+    <text x="36.388" y="58" style="font-size: 14px;">MINF RV</text>
+    <text x="36.385" y="90" style="font-size: 14px;">69.6%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">RV</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
+    <text x="36.388" y="58" style="font-size: 14px;">MINF NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">92.2%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">DCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">83.5%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM MINF</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">53.3%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
+    <text x="36.388" y="58" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">71.9%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="46" style="font-size: 14px;">DCM HCM</text>
+    <text x="36.388" y="58" style="font-size: 14px;">MINF</text>
+    <text x="36.385" y="90" style="font-size: 14px;">66.8%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">MINF NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">49.2%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">MINF</text>
+    <text x="36.385" y="46" style="font-size: 14px;">HCM NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">71.0%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="46" style="font-size: 14px;">HCM MINF</text>
+    <text x="36.385" y="90" style="font-size: 14px;">57.2%</text>
+  </g>
+  <g>
+    <use width="100" height="100" xlink:href="#model"/>
+    <text x="36.387" y="29" style="font-size: 14px;">HCM</text>
+    <text x="36.385" y="46" style="font-size: 14px;">NOR</text>
+    <text x="36.385" y="90" style="font-size: 14px;">54.6%</text>
   </g>
 </svg>
