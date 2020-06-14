@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <symbol id="dataset" viewBox="0 0 200 100" bx:pinned="true">
+    <symbol id="dataset" viewBox="0 0 200 100">
       <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="10" ry="10"/>
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="10" y="10" width="180" height="80" rx="10" ry="10"/>
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="10" ry="10"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Dataset</text>
     </symbol>
-    <symbol id="arrow" viewBox="0 0 50 10" bx:pinned="true">
-      <path d="M 1 1 L 49 1 L 25 9 Z" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linejoin: round;" bx:shape="triangle 0.791 -11.112 48 7.991 0.5 0 1@ee6425a7" bx:origin="0.480535 -0.327439"/>
+    <symbol id="arrow" viewBox="0 0 50 10">
+      <path d="M 1 1 L 49 1 L 25 9 Z" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linejoin: round;"/>
     </symbol>
-    <symbol id="model" viewBox="0 0 200 200" bx:pinned="true">
-      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 12 2 H 188 A 10 10 0 0 1 198 12 V 198 H 2 V 12 A 10 10 0 0 1 12 2 Z" bx:shape="rect 2 2 196 196 10 10 0 0 1@fefb5c13"/>
+    <symbol id="model" viewBox="0 0 200 200">
+      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 12 2 H 188 A 10 10 0 0 1 198 12 V 198 H 2 V 12 A 10 10 0 0 1 12 2 Z"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" transform="matrix(1, 0, 0, 1, -0.875, 67.703125)"><tspan x="14.884" y="28.613">Modelo de</tspan><tspan x="14.884" dy="1em">​</tspan><tspan>partida</tspan></text>
     </symbol>
-    <symbol id="bottleneck" viewBox="0 0 200 100" bx:pinned="true">
+    <symbol id="bottleneck" viewBox="0 0 200 100">
       <rect style="stroke-linejoin: round; stroke-width: 4px; stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" x="2" y="2" width="180" height="80" rx="0" ry="0"/>
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="10" y="10" width="180" height="80" rx="0" ry="0"/>
       <rect style="stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px; fill: rgb(255, 255, 255);" x="18" y="18" width="180" height="80" rx="0" ry="0"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Bottleneck</text>
     </symbol>
     <symbol id="last" viewBox="0 0 200 200">
-      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 2 2 H 198 V 188 A 10 10 0 0 1 188 198 H 12 A 10 10 0 0 1 2 188 V 2 Z" bx:shape="rect 2 2 196 196 0 0 10 10 1@ab3b7cfe"/>
+      <path style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0); stroke-linejoin: round; stroke-width: 4px;" d="M 2 2 H 198 V 188 A 10 10 0 0 1 188 198 H 12 A 10 10 0 0 1 2 188 V 2 Z"/>
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" y="107.207" x="14.009">Última capa</text>
     </symbol>
     <symbol id="output" viewBox="0 0 200 100">
