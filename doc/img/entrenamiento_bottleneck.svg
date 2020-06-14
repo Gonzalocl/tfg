@@ -21,8 +21,10 @@
       <text style="font-family: &quot;Roboto Slab&quot;; font-size: 28px; white-space: pre;" x="30" y="65.335">Bottleneck</text>
     </symbol>
   </defs>
-  <use width="200" height="100" transform="matrix(0.775194, 0, 0, 0.775194, 180, 80)" xlink:href="#dataset"/>
-  <use width="200" height="200" transform="matrix(0.775194, 0, 0, 0.775194, 180, 210)" xlink:href="#model"/>
-  <use width="100" height="100" transform="matrix(0.775194, 0, 0, 0.775194, 220, 150)" xlink:href="#arrow"/>
-  <use width="200" height="100" transform="matrix(0.775194, 0, 0, 0.775194, 190, 430)" xlink:href="#bottleneck"/>
+  <g>
+    <use width="200" height="100" xlink:href="#dataset"/>
+    <use width="200" height="200" xlink:href="#model"/>
+    <use width="100" height="100" xlink:href="#arrow"/>
+    <use width="200" height="100" xlink:href="#bottleneck"/>
+  </g>
 </svg>
