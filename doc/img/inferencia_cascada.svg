@@ -16,9 +16,10 @@
       <rect style="" transform="matrix(0.707107, -0.707107, 0.707107, 0.707107, -22.627415, 65.760948)" y="32" width="125" height="16" rx="8" ry="8"/>
     </symbol>
     <symbol id="node_last" viewBox="0 0 200 200">
-      <circle style="fill: none; stroke: rgb(0, 0, 0);" cx="100" cy="100" r="40"/>
-      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
-      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+      <circle style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 3px;" cx="100" cy="100" r="40"/>
+      <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
+      <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+      <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="75" y1="100" x2="125" y2="100"/>
     </symbol>
   </defs>
   <g>
