@@ -2,9 +2,18 @@
 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <symbol id="node" viewBox="0 0 200 200">
-      <circle style="fill: none; stroke: rgb(0, 0, 0);" cx="100" cy="100" r="40"/>
-      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
-      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+      <circle style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 3px;" cx="100" cy="100" r="40"/>
+      <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
+      <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+      <use width="100" height="100" transform="matrix(0.3, 0, 0, 0.3, 39.579056, 113.886932)" xlink:href="#ok"/>
+      <use width="100" height="100" transform="matrix(0.1, 0, 0, 0.1, 140, 123.886932)" xlink:href="#nok"/>
+    </symbol>
+    <symbol id="ok" viewBox="0 0 100 100">
+      <path style="stroke: rgb(0, 0, 0);" d="M 46.563 67.564 C 41.141 67.663 34.07 48.769 37.546 52.95 C 41.022 57.131 41.62 59.22 45.764 59.243 C 52.299 59.279 60.811 34.852 63.159 32.509 C 65.096 30.577 53.703 67.434 46.563 67.564 Z"/>
+    </symbol>
+    <symbol id="nok" viewBox="0 0 100 100">
+      <rect style="" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 33.941135, -22.627409)" y="32" width="125" height="16" rx="8" ry="8"/>
+      <rect style="" transform="matrix(0.707107, -0.707107, 0.707107, 0.707107, -22.627415, 65.760948)" y="32" width="125" height="16" rx="8" ry="8"/>
     </symbol>
     <symbol id="node_last" viewBox="0 0 200 200">
       <circle style="fill: none; stroke: rgb(0, 0, 0);" cx="100" cy="100" r="40"/>
