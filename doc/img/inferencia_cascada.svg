@@ -18,4 +18,20 @@
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 212, 212)" xlink:href="#node"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 318, 318)" xlink:href="#node_last"/>
   </g>
+  <g>
+    <g>
+      <text x="86.412" y="104.802" style="font-size: 14px; white-space: pre;">RV?</text>
+      <text x="186.078" y="210.789" style="font-size: 14px; white-space: pre;">DCM?</text>
+      <text x="290.907" y="316.789" style="font-size: 14px; white-space: pre;">MINF?</text>
+      <text x="398.07" y="410.789" style="font-size: 14px; white-space: pre;">HCM?</text>
+      <text x="398.453" y="434.796" style="font-size: 14px; white-space: pre;">NOR?</text>
+    </g>
+    <g>
+      <text x="-5.996" y="198.791" style="font-size: 14px; white-space: pre;">RV</text>
+      <text x="94.055" y="304.793" style="font-size: 14px; white-space: pre;">DCM</text>
+      <text x="198.89" y="410.79" style="font-size: 14px; white-space: pre;">MINF</text>
+      <text x="306.05" y="516.791" style="font-size: 14px; white-space: pre;">HCM</text>
+      <text x="487.033" y="516.796" style="font-size: 14px; white-space: pre;">NOR</text>
+    </g>
+  </g>
 </svg>
