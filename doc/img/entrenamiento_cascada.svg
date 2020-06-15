@@ -19,8 +19,12 @@
     <line style="stroke: black; stroke-width: 2px; stroke-linecap: round;" x1="5" y1="162" x2="695" y2="162"/>
     <line style="stroke: black; stroke-width: 2px; stroke-linecap: round;" x1="5" y1="274" x2="695" y2="274"/>
     <line style="stroke: black; stroke-width: 2px; stroke-linecap: round;" x1="5" y1="386" x2="695" y2="386"/>
-    <text x="26.19" y="31.345" style="font-size: 24px;">Paso</text>
-    <text x="345.942" y="34.019" style="font-size: 24px; white-space: pre;">Modelos</text>
+    <text x="47.003" y="34.025" style="font-size: 24px;">Paso</text>
+    <text x="354.145" y="34.019" style="font-size: 24px;">Modelos</text>
+    <text x="63.033" y="114.293" style="font-size: 24px;">1º</text>
+    <text x="63.035" y="226.294" style="font-size: 24px;">2º</text>
+    <text x="63.033" y="338.297" style="font-size: 24px;">3º</text>
+    <text x="63.363" y="450.293" style="font-size: 24px;">4º</text>
   </g>
   <g transform="matrix(1, 0, 0, 1, 146, 56)">
     <g>
