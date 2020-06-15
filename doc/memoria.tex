@@ -220,7 +220,7 @@ GRADO EN INGENIERÍA INFORMÁTICA\\
 En medicina hay trabajos muy tediosos que requieren mucho tiempo de profesionales, como por ejemplo el diagnóstico de enfermedades cardiacas, en el que primero hay que hacer un proceso de señalar las partes de un corazón para luego poder obtener un diagnóstico.
 \bigskip
 
-La inteligencia artificial son algoritmos que intenta simular el comportamiento humano, una forma de intentar hacer eso ha sido la programación tradicional mediante reglas u órdenes, para especificar el comportamiento de un programa en todo momento. Con el paso del tiempo se han planteado problemas para los que esta forma de enfrentarse a los problemas ya no es factible o directamente imposible debido a la gran cantidad de posibilidades que hay. Un enfoque para solucionar este problema es hacer algoritmos en los que no sea necesario dar las reglas explícitas de cómo resolver un problema, sino que el algoritmo aprenda a resolver el problema, ha esto se le llama machine learning. El machine learning es un algoritmo que, a partir de unos datos de entrada, aprende a resolver el problema que representan esos datos de entrada, mediante prueba y error.
+La inteligencia artificial son algoritmos que intenta simular el comportamiento humano, una forma de intentar hacer eso ha sido la programación tradicional mediante reglas u órdenes, para especificar el comportamiento de un programa en todo momento. Con el paso del tiempo se han planteado problemas para los que esta forma de enfrentarse a los problemas ya no es factible o directamente imposible debido a la gran cantidad de posibilidades que hay. Un enfoque para solucionar este problema es hacer algoritmos en los que no sea necesario dar las reglas explícitas de cómo resolver un problema, sino que el algoritmo aprenda a resolver el problema, a esto se le llama machine learning. El machine learning es un algoritmo que, a partir de unos datos de entrada, aprende a resolver el problema que representan esos datos de entrada, mediante prueba y error.
 \bigskip
 
 Hay principalmente tres formas para hacer que un algoritmo aprenda. En el aprendizaje supervisado y en el aprendizaje no supervisado hay un conjunto de datos del que se aprende, la diferencia es que en el primero los datos están etiquetados mientras que en el segundo no están etiquetados. En aprendizaje por refuerzo, no hay un conjunto de datos del que entrenar, la entrada consiste en recompensas y penalizaciones que reciben los agentes, en este caso el objetivo es maximizar la recompensa. El conjunto de entrada se divide en tres subconjuntos de entrenamiento, validación y test, donde el primero se usa para ajustar los valores del modelo y los últimos para la evaluación del modelo.
@@ -265,7 +265,7 @@ A continuación pruebo eliminado más de una capa al final de modelo primero pru
 Después de hacer pruebas con datasets de ejemplo empiezo a usar el dataset principal. El dataset consiste en 100 imágenes de resonancias magnéticas (MRI). cada MRI es una serie de fotogramas tridimensionales del corazón del paciente. Cada paciente es etiquetado en una enfermedad (myocardial infarction, dilated cardiomyopathy, hypertrophic cardiomyopathy, abnormal right ventricle) o normal.
 \bigskip
 
-La primera prueba con este dataset consiste en extraer todos los fotogramas y dividir estos fotogramas tridimensionales en imágenes bidimensionales. Con todas esas imágenes hacer los conjuntos de entrenamiento, validacion y test. Para el modelo de partido uso inception v3 al que le elimino una capa al final y le añado una nueva capa totalmente conectada que será entrenada. El resultado de esta prueba es 99\% de precisión, pero hay un problema en esta prueba, al haber hecho la división de los conjuntos de entrenamiento, validación y test sin tener en cuenta que hay imágenes relacionadas por pacientes a surgido overfitting.
+La primera prueba con este dataset consiste en extraer todos los fotogramas y dividir estos fotogramas tridimensionales en imágenes bidimensionales. Con todas esas imágenes hacer los conjuntos de entrenamiento, validacion y test. Para el modelo de partido uso inception v3 al que le elimino una capa al final y le añado una nueva capa totalmente conectada que será entrenada. El resultado de esta prueba es 99\% de precisión, pero hay un problema en esta prueba, al haber hecho la división de los conjuntos de entrenamiento, validación y test sin tener en cuenta que hay imágenes relacionadas por pacientes ha surgido overfitting.
 \bigskip
 
 Para solucionar el problema del overfitting haga básicamente la misma prueba pero en este caso haga la división de los conjuntos de forma correcta. Teniendo en cuenta que la división debe de ser por paciente, es decir todas las imágenes de un mismo paciente deben de estar en el mismo conjunto. Y no puede haber imágenes de un mismo paciente en conjuntos distintos. El resultado haciendo esto es de 63\% de precisión, que no es lo suficientemente bueno.
@@ -743,7 +743,7 @@ inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabul
 \caption{Resultados quitar 2 capas.}
 \end{table}
 
-En estas pruebas se puede ver que no se obtienen diferencias en cuanto a la precisión, quitar dos capas no ha producido ningún resultado notablemente distinto. Mediante esta prueba se puede deducir que el modelo de partida es tan grande que aunque le quitemos dos capas sigue teniendo el mismo rendimiento, la capa que se a quitado se puede pensar como redundante y no comprimía la información más de lo que ya estaba.
+En estas pruebas se puede ver que no se obtienen diferencias en cuanto a la precisión, quitar dos capas no ha producido ningún resultado notablemente distinto. Mediante esta prueba se puede deducir que el modelo de partida es tan grande que aunque le quitemos dos capas sigue teniendo el mismo rendimiento, la capa que se ha quitado se puede pensar como redundante y no comprimía la información más de lo que ya estaba.
 
 \subsubsection{Quitar 3 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito tres capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
@@ -839,7 +839,7 @@ A continuación se muestran los resultados obtenidos de agrupar las clases de la
 \caption{Resultados entrenamientos por subsets. Nota: en la columna ``Subsets de clases'', ``:'' indican la separación de subsets.}
 \end{table}
 
-Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado a pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
+Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado, ha pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
 \bigskip
 
 Esta idea no se puede considerar una idea completa porque realmente se han entrenado 5 modelos y cada uno da una salida, en el caso de que quisiéramos usarlo, por ejemplo haciendo la inferencia en estos 5 modelos, se pueden dar una situación en la que sí podría dar una solución pero otras dos situaciones en las que daría una respuesta sin solución.
@@ -928,7 +928,7 @@ Cascada         & 62.9                                                      & 57
 \caption{Resultados inferencia por paciente.}
 \end{table}
 
-En este caso se puede ver que en una prueba a tenido un efecto positivo y en otra a tenido un efecto negativo. En la prueba, añadir una capa totalmente conectada, hacer la inferencia por paciente ha resultado en una mejora del 8.2\% respecto de la prueba sin hacer la inferencia por paciente lo que es una mejora significativa, mejorando el mejor resultado hasta ahora. Por el contrario en la prueba usando la técnica de cascada ha tenido un efecto negativo.
+En este caso se puede ver que en una prueba ha tenido un efecto positivo y en otra ha tenido un efecto negativo. En la prueba, añadir una capa totalmente conectada, hacer la inferencia por paciente ha resultado en una mejora del 8.2\% respecto de la prueba sin hacer la inferencia por paciente lo que es una mejora significativa, mejorando el mejor resultado hasta ahora. Por el contrario en la prueba usando la técnica de cascada ha tenido un efecto negativo.
 
 \subsubsection{Distorsión}
 Con el fin de mejorar los resultados hago las mismas pruebas anteriores pero antes aplicando unas transformaciones en todas las imágenes de entrada del dataset. En el dataset las imágenes de entrada de los pacientes vienen en diferentes posiciones. En este caso las transformaciones que se han realizado a las imágenes es rotarlas 90, 180 y 270 grados cada una.
