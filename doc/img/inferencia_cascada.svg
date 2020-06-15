@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol id="node" viewBox="0 0 200 200">
+      <circle style="fill: none; stroke: rgb(0, 0, 0);" cx="100" cy="100" r="40"/>
+      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
+      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+    </symbol>
+    <symbol id="node_last" viewBox="0 0 200 200">
+      <circle style="fill: none; stroke: rgb(0, 0, 0);" cx="100" cy="100" r="40"/>
+      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(-0.707107, 0.707107, -0.707107, -0.707107, 241.421356, 100.000024)"/>
+      <line style="stroke: black; stroke-linecap: round;" x1="150" y1="100" x2="200" y2="100" transform="matrix(0.707107, 0.707107, -0.707107, 0.707107, 100, -41.421356)"/>
+    </symbol>
+  </defs>
+  <g>
+    <use width="200" height="200" xlink:href="#node"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 106, 106)" xlink:href="#node"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 212, 212)" xlink:href="#node"/>
+    <use width="200" height="200" transform="matrix(1, 0, 0, 1, 318, 318)" xlink:href="#node_last"/>
+  </g>
+</svg>
