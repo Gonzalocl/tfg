@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 525 505" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <symbol id="node" viewBox="0 0 200 200">
       <circle style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 3px;" cx="100" cy="100" r="40"/>
@@ -22,13 +22,15 @@
       <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="75" y1="100" x2="125" y2="100"/>
     </symbol>
   </defs>
-  <g>
+  <g transform="matrix(1, 0, 0, 1, 6, -13.5)">
     <use width="200" height="200" xlink:href="#node"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 106, 106)" xlink:href="#node"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 212, 212)" xlink:href="#node"/>
     <use width="200" height="200" transform="matrix(1, 0, 0, 1, 318, 318)" xlink:href="#node_last"/>
+    <line style="stroke: black; stroke-linecap: round; stroke-width: 3px;" x1="100" y1="50" x2="100" y2="35"/>
+    <text x="75.119" y="26.292" style="font-size: 14px;">Entrada</text>
   </g>
-  <g>
+  <g transform="matrix(1, 0, 0, 1, 6, -13.5)">
     <g>
       <text x="86.412" y="104.802" style="font-size: 14px; white-space: pre;">RV?</text>
       <text x="186.078" y="210.789" style="font-size: 14px; white-space: pre;">DCM?</text>
