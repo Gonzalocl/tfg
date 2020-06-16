@@ -626,10 +626,23 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 \newpage
 \section{Análisis de objetivos y metodología}
 \subsection{Objetivos}
-El objetivo de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el \textit{dataset} \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
+El objetivo principal de este trabajo es buscar una solución para la clasificación de enfermedades cardiacas en el \textit{dataset} \textit{ACDC} usando \textit{transfer learning} y diferentes enfoques para encontrar la solución que mejores resultados obtenga. Se usa como referencia el paper \textit{Automatic Segmentation and Disease Classification Using Cardiac Cine MR Images} ~\cite{DBLP:journals/corr/abs-1708-01141} en él proponen una solución en la que primero se segmentan las imágenes del corazón y luego se usa un clasificador \textit{random forest} para clasificar la imagen de entrada.
 \bigskip
 
 A diferencia del paper ~\cite{DBLP:journals/corr/abs-1708-01141} en el que se diseña una arquitectura específica y se entrena un modelo exclusivamente para ese problema, en este trabajo se parte de arquitecturas y modelos ya desarrollados y entrenados para resolver otro problema y se usa la técnica de \textit{transfer learning} para adaptarlo al nuevo problema.
+\bigskip
+
+El objetivo principal se divide en 4 objetivos más simples, para alcanzar el objetivo principal de forma más sencilla.
+
+\begin{itemize}
+\item \textbf{Objetivo 1}: Estudiar y analizar la forma en que se preprocesan y preparan los datos de entrada y el efecto que tienen en el rendimiento del modelo. También estudiar y analizar la preparación de un modelo para ser reentrenado.
+
+\item \textbf{Objetivo 2}: Diseñar y probar diferentes enfoques y configuraciones de modelos, para mejorar la precisión de los resultados.
+
+\item \textbf{Objetivo 3}: Implementar \textit{scripts} en \textit{python} y \textit{bash} para probar los diferentes enfoques y configuraciones, usando el \textit{framework} \textit{TensorFlow}. Implementar \textit{scripts} para resumir y analizar la información.
+
+\item \textbf{Objetivo 4}: Analizar y comparar los resultados de las diferentes pruebas, enfoques y configuraciones.
+\end{itemize}
 
 \subsection{Metodología}
 La forma de realizar el trabajo es realizando distintas pruebas de diferentes características para estudiar cuál es la opción más interesante o que obtenga los mejores resultados.
