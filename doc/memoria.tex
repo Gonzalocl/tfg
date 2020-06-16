@@ -985,7 +985,21 @@ Después de realizar todas las pruebas descritas en las secciones anteriores los
 \newpage
 \section{Conclusiones y vías futuras}
 \subsection{Conclusiones}
-En el \textit{machine learning} hay muchos factores que pueden afectar al resultado final, algunos de estos factores son: La arquitectura de la red neuronal. Datos de entrada. Parámetros empleados. Enfoques para resolver un problema, etc. En este trabajo se ha comprobado que todos los factores son importantes a la hora de resolver un problema usando técnicas de \textit{machine learning} y obtener un buen resultado. Por consiguiente, una mala elección de los factores puede llevar a resultados erróneos, como una mala repartición del dataset.
+En el \textit{machine learning} hay muchos factores que pueden afectar al resultado final, algunos de estos factores son: La arquitectura de la red neuronal. Datos de entrada. Parámetros empleados. Enfoques para resolver un problema, etc. En este trabajo se ha comprobado que todos los factores son importantes a la hora de resolver un problema usando técnicas de \textit{machine learning} y obtener un buen resultado. Por consiguiente, una mala elección de los factores, como una mala repartición del \textit{dataset}, puede llevar a resultados erróneos.
+\bigskip
+
+Con la primera prueba realizada en el \textit{dataset} \textit{ACDC} en la que se obtiene un resultado erróneo debido al \textit{overfitting}, usando solo un \textit{slice} por paciente y teniendo en cuenta que el mejor resultado de este trabajo se obtiene aplicando distorsión al \textit{dataset} se cumple el objetivo 1.
+\bigskip
+
+%TODO anexo
+Se han probado distintos enfoques y configuraciones para resolver el problema como: hacer un entrenamiento completo, añadir solo una capa, añadir 3 capas, quitar capas, usar la técnica de cascada o hacer la inferencia por paciente. Cumpliendo el objetivo 2. Ver anexo tal.
+\bigskip
+
+%TODO anexo
+Una serie de \textit{scripts} en \textit{python} y \textit{bash} han sido implementados para poder realizar todas pruebas y poder analizar la información. Ver anexo tal. Con esto se cumple el objetivo 3.
+\bigskip
+
+Para cumplir el objetivo 4, en el apartado ``Diseño y resolución del trabajo realizado’’ se han juntado los resultados en tablas y se han analizado y comparado los resultados con los de otras pruebas. En cada uno de los apartados correspondiente a cada prueba hay una análisis de esa prueba.
 \bigskip
 
 Después de enfocar el problema de diferentes formas, unas con más éxito que otras, se ha conseguido una precisión máxima del 85.7\%, en dos de las pruebas. En concreto en la prueba usando \textit{inception v3} como modelo de partida, añadiendole una capa totalmente conectada que se reentrena, usando distorsión y haciendo la inferencia por paciente. Y en la prueba usando la técnica de cascada usando como modelo base \textit{inception v3}, usando distorsión y haciendo la inferencia por paciente. De estas dos pruebas se elige como mejor la que usa distorsión y añade solo una capa más al modelo, ya que ha demostrado tener mejor rendimiento tambien sin usar distorsión y al ser una técnica más simple requiere de menos recursos.
