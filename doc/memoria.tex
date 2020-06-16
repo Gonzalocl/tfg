@@ -864,11 +864,10 @@ A continuación se muestran los resultados obtenidos de agrupar las clases de la
 Como se puede ver la precisión aumenta ya que el problema a resolver se ha simplificado, ha pasado de tener que resolver un problema de clasificar 5 clases a tener que clasificar 2 grupos.
 \bigskip
 
-Esta idea no se puede considerar una idea completa porque realmente se han entrenado 5 modelos y cada uno da una salida, en el caso de que quisiéramos usarlo, por ejemplo haciendo la inferencia en estos 5 modelos, se pueden dar una situación en la que sí podría dar una solución pero otras dos situaciones en las que daría una respuesta sin solución.
+Esta idea no se puede considerar una idea completa porque realmente se han entrenado 5 modelos y cada uno da una salida. Cada uno de estos modelos da una salida que te dice si la imagen de la entrada pertenece a una clase o al resto. Hay 5 modelos uno por cada clase y cada uno de ellos te dice si la imagen de entrada pertenece a esa clase. En el caso de que quisiéramos usarlo, por ejemplo haciendo la inferencia en estos 5 modelos, se puede dar una situación en la que sí podría dar una solución pero otras dos situaciones en las que daría una respuesta sin solución.
 \bigskip
 
-La mejor situación que se puede presentar es que solo un modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar y el resto de modelos la clasifiquen como que la imagen no identifique la imagen como la enfermedad para la que el modelo ha sido entrenado para identificar.
-\bigskip
+De esta forma si tenemos un modelo por cada clase y cada modelo te dice si la entrada es esa clase o no. La mejor situación que se puede presentar es que solo uno de estos modelos diga que la imagen de entrada sea la clase del modelo y la respuesta del resto de modelos sea que la clase pertenece al resto de modelos. En la siguiente tabla se puede ver un ejemplo de ejecución de los cinco modelos en la que se da una situación favorable.
 
 \begin{table}[H]
 \centering
@@ -883,8 +882,7 @@ La mejor situación que se puede presentar es que solo un modelo identifique la 
 \caption{Ejemplo situación favorable.}
 \end{table}
 
-Las dos situaciones en las que no se puede dar una solución, son que ningún modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar o que más de un modelo identifique la imagen como la enfermedad para la que  el modelo ha sido entrenado para identificar.
-\bigskip
+Las dos situaciones en las que no se puede dar una solución, son que ningún de estos modelos diga que la imagen de entrada es la clase del modelo o que más de uno de estos modelos diga que la imagen de entrada es la clase del modelo. En la siguiente tabla se pueden ver dos ejemplos de ejecución de los cinco modelos en los que se dan las dos situaciones en las que no se puede dar una solución.
 
 \begin{table}[H]
 \centering
@@ -901,7 +899,6 @@ Las dos situaciones en las que no se puede dar una solución, son que ningún mo
 \end{table}
 
 Esta idea se usa como base para hacer la siguiente prueba.
-
 
 \subsubsection{Cascada}
 Esta idea consiste en partiendo de la idea anterior hacer modelos que vayan identificando o descartando enfermedades cada uno una. Los cuales se ejecutan en secuencia uno tras otro, cada uno teniendo solo que identificar entre dos grupos de clases. De esta forma se pretende mejorar la precisión final simplificando el problema para cada uno de los modelos. Cada modelo solo tiene que decir si una imagen pertenece o no a una clase.
