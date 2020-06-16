@@ -937,11 +937,11 @@ Por último cuando ya solo quedan dos clases ya no se entrena un modelo por cada
 
 \item \textbf{Reuso de \textit{bottleneck}}: En esta idea aunque se reentrenan varios modelos distintos el modelo de partida es el mismo para todos por lo tanto los \textit{bottleneck} se calculan una vez y se usan en todos los pasos como entrada de los modelos que se reentrenan.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.3\textwidth]{example-image}
-\caption{Reuso de \textit{bottleneck}.}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.3\textwidth]{example-image}
+%\caption{Reuso de \textit{bottleneck}.}
+%\end{figure}
 
 \end{itemize}
 
@@ -1004,7 +1004,7 @@ Cascada con inferencia por paciente         & 57.1                              
 En general la mejora es pequeña en todas las pruebas, excepto en las que la inferencia se hace por paciente. En esas pruebas se obtiene una precisión del 85.7\%.
 
 \subsubsection{Resultado final}
-Después de realizar todas las pruebas descritas en las secciones anteriores los mejores resultados se obtienen en las pruebas realizadas con inferencia por paciente, en concreto con: añadir una capa totalmente conectada y usando la técnica de cascada. Y aplicado distorsión al \textit{dataset} de entrada, en concreto aplicado las transformaciones de rotación de 90, 180 y 270 grados. En ambos casos usando el modelo de partida inception v3.
+Después de realizar todas las pruebas descritas en las secciones anteriores los mejores resultados se obtienen en las pruebas realizadas con inferencia por paciente, en concreto con: añadir una capa totalmente conectada y usando la técnica de cascada. Y aplicado distorsión al \textit{dataset} de entrada, en concreto aplicado las transformaciones de rotación de 90, 180 y 270 grados. En ambos casos usando el modelo de partida \textit{inception v3}.
 
 \newpage
 \section{Conclusiones y vías futuras}
