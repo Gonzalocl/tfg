@@ -870,8 +870,35 @@ Esta idea no se puede considerar una idea completa porque realmente se han entre
 La mejor situación que se puede presentar es que solo un modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar y el resto de modelos la clasifiquen como que la imagen no identifique la imagen como la enfermedad para la que el modelo ha sido entrenado para identificar.
 \bigskip
 
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+                                           & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ DCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ HCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ MINF\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ NOR\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ RV\end{tabular}} \\ \hline
+\textbf{¿Pertenece a la clase del modelo?} & Sí                                                            & No                                                            & No                                                             & No                                                            & No                                                           \\ \hline
+\textbf{¿Pertenece al resto de clases?}    & No                                                            & Sí                                                            & Sí                                                             & Sí                                                            & Sí                                                           \\ \hline
+\end{tabular}%
+}
+\caption{Ejemplo situación favorable.}
+\end{table}
+
 Las dos situaciones en las que no se puede dar una solución, son que ningún modelo identifique la imagen de entrada como la enfermedad para la que el modelo ha sido entrenado para identificar o que más de un modelo identifique la imagen como la enfermedad para la que  el modelo ha sido entrenado para identificar.
 \bigskip
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+                                                                                     & \multicolumn{5}{c|}{\textbf{Situación 1}}                                                                                                                                                                                                                                                                                     & \multicolumn{5}{c|}{\textbf{Situación 2}}                                                                                                                                                                                                                                                                                     \\ \hline
+                                                                                     & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ DCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ HCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ MINF\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ NOR\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ RV\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ DCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ HCM\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ MINF\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ NOR\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Modelo\\ RV\end{tabular}} \\ \hline
+\textbf{\begin{tabular}[c]{@{}c@{}}¿Pertenece a la\\ clase del modelo?\end{tabular}} & Sí                                                            & Sí                                                            & No                                                             & No                                                            & No                                                           & No                                                            & No                                                            & No                                                             & No                                                            & No                                                           \\ \hline
+\textbf{\begin{tabular}[c]{@{}c@{}}¿Pertenece al\\ resto de clases?\end{tabular}}    & No                                                            & No                                                            & Sí                                                             & Sí                                                            & Sí                                                           & Sí                                                            & Sí                                                            & Sí                                                             & Sí                                                            & Sí                                                           \\ \hline
+\end{tabular}%
+}
+\caption{Ejemplo situación en la que no se puede dar una solución.}
+\end{table}
 
 Esta idea se usa como base para hacer la siguiente prueba.
 
