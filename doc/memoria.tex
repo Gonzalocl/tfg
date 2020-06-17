@@ -855,6 +855,15 @@ Añadir una capa & inception v3    & 5               & 4000                 & 0.
 \end{table}
 
 En este caso se obtiene un resultado más realista ya que las imágenes del set de test no están relacionadas con las del entrenamiento ni las de validación. En las siguientes secciones explicaré otras técnicas que he usado para enfocar el problema de clasificar los pacientes de forma que se puede obtener una mejor precisión. Desde esta prueba y en adelante el reparto de los sets se hará como en esta prueba para no volver a tener el problema del \textit{overfitting}.
+\bigskip
+
+En esta prueba los \textit{scripts} son los mismos que en la anterior pero el \textit{script} \texttt{acdc\_nii\_to\_jpg.py} ha sido modificado para que en el nombre de los ficheros añada ``\texttt{\_nohash\_}'' después del índice de paciente para que a la hora de hacer la repartición de los conjuntos de entrenamiento en el \textit{scritp} \texttt{retrain.py} todos los pacientes vayan al mismo conjunto. De forma que el nombre de un fichero pasa de ser así: \texttt{patient001\_frame00\_slice00.jpg} a ser así: \texttt{patient001\_nohash\_frame00\_slice00.jpg}.
+\bigskip
+
+El \textit{script} \texttt{retrain.py} usa una funcion de dispersión para repartir de forma aleatoria las imágenes del \textit{dataset} de entrada en los conjuntos de entrenamiento. A la función de dispersión se le pasa como entrada el nombre del fichero quitándole lo que tenga después de la cadena ``\texttt{\_nohash\_}’’ en el nombre del fichero. La salida de la función de dispersión se usa para determinar en qué conjunto se incluye la imagen.
+\bigskip
+
+De esta forma para todas las imágenes de un mismo paciente se le pasará como entrada a la función de dispersión los mismos datos que harán que el resultado de la función sea el mismo para todas las imágenes del mismo paciente y por lo tanto incluyendo todas sus imágenes en el mismo conjunto.
 
 \subsubsection{Usar un slice por paciente}
 En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa solo una imagen de cada paciente, de esta forma se pretende reducir el \textit{overfitting} que hay en el modelo al haber muchas imágenes relacionadas de cada paciente, que hace que el modelo converja a algo que no quiero. En esta prueba uso solamente el primer \textit{slice} del primer \textit{frame} de cada paciente.
