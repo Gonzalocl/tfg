@@ -808,6 +808,35 @@ El resultado parece augurar que con esta primera prueba ya he solucionado el pro
 \bigskip
 
 El efecto de esto es que cuando se hace la inferencia sobre imágenes de los pacientes que están en el \textit{dataset}, aunque realmente esa imagen no haya sido usada en el entrenamiento, el modelo funcionará. Pero si se hace la inferencia sobre imágenes de otro paciente totalmente nuevo para este modelo probablemente no funcione bien. En la siguiente sección explicaré cómo solucionar el problema del \textit{overfitting} que he tenido en esta prueba.
+\bigskip
+
+Para esta prueba se ha implementado el script \texttt{acdc\_nii\_to\_jpg.py} que lee los ficheros \texttt{nii}, los extrae, guarda las imágenes en formato \texttt{jpg} y organiza en carpetas según la clase de la imagen para preparar las imágenes para ser usadas en el script \texttt{retrain.py}. Se usa el \textit{script} \texttt{retrain.py} para hacer el \textit{transfer learning}. Y se ha implementado el \textit{script} \texttt{batch\_inference.py} (basado en \texttt{retrain.py}) para evaluar el resultado del modelo entrenado, este \textit{script} hace uso de la api de \textit{TensorFlow} \texttt{saved\_model} para cargar el modelo entrenado en el \textit{script} \texttt{retrain.py} y hacer la inferencia en el conjunto de test.
+\bigskip
+
+En el \textit{script} \texttt{batch\_inference.py}, para cargar un modelo se usa el siguiente código:
+
+\begin{lstlisting}[language=Python]
+    tf.saved_model.loader.load(
+      sess,
+      [tag_constants.SERVING],
+      FLAGS.saved_model_dir
+    )
+\end{lstlisting}
+
+Donde \texttt{FLAGS.saved\_model\_dir} es la carpeta donde está guardado el modelo.
+\bigskip
+
+Y para hacer la inferencia se hace la siguiente llamada con cada una de las imágenes del conjunto de test para ejecutar el modelo que da como salida la clase que se ha predicho.
+
+\begin{lstlisting}[language=Python]
+          result = sess.run(prediction,
+                            {image: resized_image})
+\end{lstlisting}
+
+Donde \texttt{image} es el \textit{tensor} de entrada del modelo, \texttt{prediction} es el \textit{tensor} de salida del modelo y \texttt{resized\_image} es un \textit{array} con la imagen de entrada descodificada y con el tamaño de entrada del modelo. La salida del modelo es almacenada en \texttt{result} como un \textit{array} de probabilidades entre 0 y 1, con tantas posiciones como clases hay, la posición que tenga mayor valor será la clase predicha.
+\bigskip
+
+En el \textit{script} \texttt{acdc\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para la el entrenamiento del modelo.
 
 \subsubsection{Repartir bien los sets}
 Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero teniendo en cuenta que los sets de entrenamiento, validación y test deben de estar repartidos por paciente. Es decir todos las imágenes de un paciente deben de ir al mismo set y no se pueden encontrar en más de un set imagenes del mismo paciente. De esta forma se evita que haya imagenes relacionadas en sets distintos y por lo tanto no se pueda saber la enfermedad relacionándolas.
