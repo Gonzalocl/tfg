@@ -866,7 +866,7 @@ El \textit{script} \texttt{retrain.py} usa una funcion de dispersión para repar
 De esta forma para todas las imágenes de un mismo paciente se le pasará como entrada a la función de dispersión los mismos datos que harán que el resultado de la función sea el mismo para todas las imágenes del mismo paciente y por lo tanto incluyendo todas sus imágenes en el mismo conjunto.
 
 \subsubsection{Usar un slice por paciente}
-En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa solo una imagen de cada paciente, de esta forma se pretende reducir el \textit{overfitting} que hay en el modelo al haber muchas imágenes relacionadas de cada paciente, que hace que el modelo converja a algo que no quiero. En esta prueba uso solamente el primer \textit{slice} del primer \textit{frame} de cada paciente.
+En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa solo una imagen de cada paciente, de esta forma se pretende reducir el \textit{overfitting} que hay en el modelo al haber muchas imágenes relacionadas de cada paciente, que hace que el modelo converja a algo que no se está buscando. En esta prueba uso solamente el primer \textit{slice} del primer \textit{frame} de cada paciente.
 
 \begin{table}[H]
 \centering
@@ -879,6 +879,15 @@ En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa 
 \end{table}
 
 En esta prueba el resultado obtenido es un 42\% de precisión que es bastante malo, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
+\bigskip
+
+Para esta prueba se han modificado los \textit{script} del apartado anterior para que filtren las imágenes de entrada y solo usen una imagen por paciente. A los \textit{script} anteriores se les han añadido la siguiente línea:
+
+\begin{lstlisting}[language=Python]
+file_glob = os.path.join(image_dir, dir_name, '*frame00_slice00.' + extension)
+\end{lstlisting}
+
+En el \textit{script} \texttt{acdc\_one\_slice\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para el entrenamiento del modelo.
 
 \subsubsection{Entrenamiento por subsets}
 La idea consiste en agrupar las clases en varios grupos de esta forma reducir el número de posibilidades entre las que tiene que diferenciar el modelo.
