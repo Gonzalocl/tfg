@@ -836,7 +836,7 @@ Y para hacer la inferencia se hace la siguiente llamada con cada una de las imá
 Donde \texttt{image} es el \textit{tensor} de entrada del modelo, \texttt{prediction} es el \textit{tensor} de salida del modelo y \texttt{resized\_image} es un \textit{array} con la imagen de entrada descodificada y con el tamaño de entrada del modelo. La salida del modelo es almacenada en \texttt{result} como un \textit{array} de probabilidades entre 0 y 1, con tantas posiciones como clases hay, la posición que tenga mayor valor será la clase predicha.
 \bigskip
 
-En el \textit{script} \texttt{acdc\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para la el entrenamiento del modelo.
+En el \textit{script} \texttt{acdc\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para el entrenamiento del modelo.
 
 \subsubsection{Repartir bien los sets}
 Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero teniendo en cuenta que los sets de entrenamiento, validación y test deben de estar repartidos por paciente. Es decir todos las imágenes de un paciente deben de ir al mismo set y no se pueden encontrar en más de un set imagenes del mismo paciente. De esta forma se evita que haya imagenes relacionadas en sets distintos y por lo tanto no se pueda saber la enfermedad relacionándolas.
