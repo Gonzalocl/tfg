@@ -685,10 +685,7 @@ AlexNet         & \multicolumn{1}{c|}{cifar 10} & \multicolumn{1}{c|}{10} & \mul
 \caption{Resultado entrenamiento completo.}
 \end{table}
 
-En esta prueba se obtiene un 86\% de precisión, como veremos más adelante este resultado es mejor que con la técnica de \textit{transfer learning}. Los resultados son mejores porque en este caso estamos entrenando el modelo por completo y de esta forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
-\bigskip
-
-Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
+En esta prueba se obtiene un 86\% de precisión, que es un buen resultado para la prueba que se ha realizado, un entrenamiento completo. De esta forma se ha entrenado un modelo especificamente para ese \textit{dataset}.
 
 \subsubsection{Añadir una capa totalmente conectada y softmax}
 Esta prueba consiste en, a partir del modelo de partida eliminar la última capa y añadir una capa totalmente conectada y una capa de \textit{softmax}, esto se ha realizado con los \textit{datasets}: flores, \textit{cifar 10}, \textit{cifar 100} (20 clases) y \textit{cifar 100} (100 clases). El modelo de partida es \textit{inception v3}. Los resultados se pueden ver en la siguiente tabla:
@@ -722,13 +719,19 @@ A continuación se hace la misma prueba pero usando como modelo de partida \text
 \textbf{Modelo} & \textbf{Dataset}                                                  & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
 resnet v2 152   & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 4000                 & 0.01                   & 100                 & 94.4               \\ \hline
 resnet v2 152   & cifar 10                                                          & 10              & 40000                & 0.01                   & 100                 & 82.9               \\ \hline
-resnet v2 152   & cifar 10                                                          & 20              & 14000                & 0.01                   & 100                 & 70.8               \\ \hline
+resnet v2 152   & cifar 100                                                         & 20              & 14000                & 0.01                   & 100                 & 70.8               \\ \hline
 \end{tabular}%
 }
 \caption{Resultados prueba usando modelo basado en la arquitectura \textit{resnet v2 512}.}
 \end{table}
 
 En los resultados de estas pruebas podemos observar que para el mismo número de clases se obtienen unos resultados ligeramente mejores, esto se debe a que la información a la salida del modelo de partida es más significativa ya que a pasado por más capas, por lo tanto la información de entrada ha sido más procesada.
+\bigskip
+
+En comparación, el resultado del entrenamiento completo, para la prueba equivalente (10 clases, 86.0\% entrenamiento completo, 82.9\% \textit{transfer learning}), es ligeramente mejor que con la técnica de \textit{transfer learning}. El resultado de la prueba del entrenamiento completo es mejor porque en ese caso se está entrenando el modelo por completo y de esa forma se consigue un modelo específico para ese \textit{dataset}, al contrario que con \textit{transfer learning} en el que se parte de un modelo ya entrenado en otro \textit{dataset} y solo se entrenan las últimas capas con el nuevo \textit{dataset}.
+\bigskip
+
+Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
 
 \subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
