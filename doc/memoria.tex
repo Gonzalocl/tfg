@@ -913,7 +913,7 @@ En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa 
 En esta prueba el resultado obtenido es un 42\% de precisión que es bastante malo, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
 \bigskip
 
-Para esta prueba se han modificado los \textit{script} del apartado anterior para que filtren las imágenes de entrada y solo usen una imagen por paciente. A los \textit{script} anteriores se les han añadido la siguiente línea:
+Para esta prueba se han modificado los \textit{scripts} del apartado anterior para que filtren las imágenes de entrada y solo usen una imagen por paciente. A los \textit{script} anteriores se les han añadido la siguiente línea:
 
 \begin{lstlisting}[language=Python]
 file_glob = os.path.join(image_dir, dir_name, '*frame00_slice00.' + extension)
