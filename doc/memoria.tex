@@ -810,7 +810,7 @@ El resultado parece augurar que con esta primera prueba ya he solucionado el pro
 El efecto de esto es que cuando se hace la inferencia sobre imágenes de los pacientes que están en el \textit{dataset}, aunque realmente esa imagen no haya sido usada en el entrenamiento, el modelo funcionará. Pero si se hace la inferencia sobre imágenes de otro paciente totalmente nuevo para este modelo probablemente no funcione bien. En la siguiente sección explicaré cómo solucionar el problema del \textit{overfitting} que he tenido en esta prueba.
 \bigskip
 
-Para esta prueba se ha implementado el script \texttt{acdc\_nii\_to\_jpg.py} que lee los ficheros \texttt{nii}, los extrae, guarda las imágenes en formato \texttt{jpg} y organiza en carpetas según la clase de la imagen para preparar las imágenes para ser usadas en el script \texttt{retrain.py}. Se usa el \textit{script} \texttt{retrain.py} para hacer el \textit{transfer learning}. Y se ha implementado el \textit{script} \texttt{batch\_inference.py} (basado en \texttt{retrain.py}) para evaluar el resultado del modelo entrenado, este \textit{script} hace uso de la api de \textit{TensorFlow} \texttt{saved\_model} para cargar el modelo entrenado en el \textit{script} \texttt{retrain.py} y hacer la inferencia en el conjunto de test.
+Para esta prueba se ha implementado el script \texttt{acdc\_nii\_to\_jpg.py} que lee los ficheros \texttt{nii}, los extrae, guarda las imágenes en formato \texttt{jpg} y organiza en carpetas según la clase de la imagen para preparar las imágenes para ser usadas en el script \texttt{retrain.py}. Se usa el \textit{script} \texttt{retrain.py} para hacer el \textit{transfer learning}. Y se ha implementado el \textit{script} \texttt{batch\_inference.py} (basado en \texttt{retrain.py}) para evaluar el resultado del modelo entrenado, este \textit{script} hace uso de la \textit{api} de \textit{TensorFlow} \texttt{saved\_model} para cargar el modelo entrenado en el \textit{script} \texttt{retrain.py} y hacer la inferencia en el conjunto de test.
 \bigskip
 
 En el \textit{script} \texttt{batch\_inference.py}, para cargar un modelo se usa el siguiente código:
@@ -913,7 +913,7 @@ En esta prueba en vez de usar todas las imágenes de todos los pacientes se usa 
 En esta prueba el resultado obtenido es un 42\% de precisión que es bastante malo, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
 \bigskip
 
-Para esta prueba se usan los \textit{scripts} \texttt{acdc\_one\_slice\_retrain.py} y \texttt{acdc\_one\_slice\_batch\_inference.py} que parten de los \textit{scripts} del apartado anterior para que filtren las imágenes de entrada y solo usen una imagen por paciente. A los \textit{script} anteriores se les han añadido la siguiente línea:
+Para esta prueba se usan los \textit{scripts} \texttt{acdc\_one\_slice\_retrain.py} y \\ \texttt{acdc\_one\_slice\_batch\_inference.py} que parten de los \textit{scripts} del apartado anterior para que filtren las imágenes de entrada y solo usen una imagen por paciente. A los \textit{script} anteriores se les han añadido la siguiente línea:
 
 \begin{lstlisting}[language=Python]
 file_glob = os.path.join(image_dir, dir_name, '*frame00_slice00.' + extension)
@@ -1077,7 +1077,48 @@ Cascada         & \multicolumn{1}{c|}{inception v3} & \multicolumn{1}{c|}{5} & \
 \end{table}
 
 El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el mejor resultado que había obtenido hasta ahora (63.2\% de precisión con la prueba, añadir una capa totalmente conectada). Esta prueba no ha supuesto ningún avance ya que se han obtenido resultados muy parecidos a los que ya tenía. Incluso el resultado es ligeramente peor, pero no es significativo ya que puede estar dentro de lo que puede variar la precisión de una ejecución a otra.
+\bigskip
 
+Para esta prueba se han implementado los \textit{scripts} \texttt{acdc\_cascade\_test.sh} y \\ \texttt{acdc\_cascade\_batch\_inference.py}. En el primero se hace el entrenamiento de los modelos como se describe anteriormente en este apartado y el otro hace la inferencia de las imágenes de un conjunto. El \textit{script} \texttt{acdc\_cascade\_test.sh} hace usao del \textit{script} \texttt{acdc\_subset\_retrain.py} de la prueba anterior para entrenar los modelos de esta prueba. A continuación se muestra una parte el código principal del \textit{script} \texttt{acdc\_cascade\_test.sh}:
+
+\begin{lstlisting}[language=Bash]
+(...)
+for step in $(seq 0 $steps); do
+  for l in $(seq "$label_count"); do
+    set1="$(echo $labels | cut -d ' ' -f $l | tr ' ' ',')"
+    set2="$(echo $labels | cut -d ' ' -f $l --complement | tr ' ' ',')"
+    subset_retrain "$set1:$set2"
+    (...)
+    if fgt "$percentage" "$best_percentage"; then
+      best_percentage="$percentage"
+      best_set1="$set1"
+      best_set2="$set2"
+    fi
+  done
+  labels="$(echo $best_set2 | tr ',' ' ')"
+  ((label_count--))
+done
+\end{lstlisting}
+
+Donde la función \texttt{subset\_retrain} hace el entrenamiento de un modelo haciendo uso del \textit{script} \texttt{acdc\_subset\_retrain.py}, donde se pueden ver los parámetros usados para el entrenamiento del modelo. En el \textit{script} \texttt{acdc\_cascade\_test.sh} también se hace uso del \textit{script} \texttt{acdc\_cascade\_batch\_inference.py} para hacer la evaluación.
+\bigskip
+
+En el \textit{script} \texttt{acdc\_cascade\_batch\_inference.py} se cargan todos los modelos que se han entrenado haciendo uso de la \textit{api} de \textit{TensorFlow} \texttt{saved\_model} y a continuación se hace la inferencia de las imágenes del conjunto. Se llama a la función \texttt{cascade\_inference()} con cada imagen del conjunto. Esta función se ocupa de hacer la inferencia como se ha descrito anteriormente en este apartado.
+
+\begin{lstlisting}[language=Python]
+def cascade_inference(graphs, image_path):
+  image_data = tf.gfile.GFile(image_path, 'rb').read()
+  for graph, sess, image, prediction, jpeg_data_tensor, decoded_image_tensor, labels, is_last_step in zip(graphs['graph'], graphs['sess'], graphs['image'], graphs['prediction'], graphs['jpeg_data_tensor'], graphs['decoded_image_tensor'], graphs['labels'], graphs['is_last_step']):
+    with graph.as_default():
+      with sess.as_default():
+        resized_image = sess.run(decoded_image_tensor,
+                                 {jpeg_data_tensor: image_data})
+        result = sess.run(prediction,
+                          {image: resized_image})
+        label = get_lab(result[0], labels)
+        if is_last_step or label == labels[0]:
+          return label
+\end{lstlisting}
 
 \subsubsection{Inferencia por paciente}
 En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida en todas las imágenes de cada paciente. También de esta forma se tiene en cuenta que las imagenes estan relacionadas por paciente y se da un resultado por cada paciente, no como en pruebas anteriores donde las imágenes que pertenecen a un mismo paciente, podían ser clasificadas como enfermedades distintas.
