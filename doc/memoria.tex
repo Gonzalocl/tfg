@@ -1135,6 +1135,12 @@ Cascada         & 62.9                                                      & 57
 \end{table}
 
 En este caso se puede ver que en una prueba ha tenido un efecto positivo y en otra ha tenido un efecto negativo. En la prueba, añadir una capa totalmente conectada, hacer la inferencia por paciente ha resultado en una mejora del 8.2\% respecto de la prueba sin hacer la inferencia por paciente lo que es una mejora significativa, mejorando el mejor resultado hasta ahora. Por el contrario en la prueba usando la técnica de cascada ha tenido un efecto negativo.
+\bigskip
+
+Para esta prueba se ha implementado el \textit{script} \texttt{per\_patient\_prediction.py} y se han modificado los \textit{scripts} \texttt{batch\_inference.py} y \texttt{acdc\_cascade\_batch\_inference.py}. A los \textit{scripts} modificados se les ha añadido una opción para que guarden en un fichero con formato \texttt{csv} la predicción del modelo y la clase correcta para cada imagen a la que se ha realizado la inferencia.
+\bigskip
+
+Después de realizar la inferencia en el conjunto de datos, el \textit{script} \texttt{per\_patient\_prediction.py} lee el fichero \texttt{csv} generado y cuenta para cada paciente la clase más repetida. El \textit{script} muestra por la salida el resultado obtenido y una matriz de confusión.
 
 \subsubsection{Distorsión}
 Con el fin de mejorar los resultados hago las mismas pruebas anteriores pero antes aplicando unas transformaciones en todas las imágenes de entrada del dataset. En el dataset las imágenes de entrada de los pacientes vienen en diferentes posiciones. En este caso las transformaciones que se han realizado a las imágenes es rotarlas 90, 180 y 270 grados cada una.
