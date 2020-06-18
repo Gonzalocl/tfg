@@ -1168,6 +1168,9 @@ Cascada con inferencia por paciente         & 57.1                              
 \end{table}
 
 En general la mejora es pequeña en todas las pruebas, excepto en las que la inferencia se hace por paciente. En esas pruebas se obtiene una precisión del 85.7\%.
+\bigskip
+
+Para llevar a cabo esta prueba se ha implementado el \textit{script} \texttt{acdc\_distortion.sh}. Este \textit{script} aplica rotacion de 90, 180 y 270 grados a cada imagen del \textit{dataset}. La imagen se rota y se guarda en el mismo directorio, de esta forma cuando el \textit{script} del entrenamiento vaya a hacer los conjuntos hará uso de esas imágenes.
 
 \subsubsection{Resultado final}
 Después de realizar todas las pruebas descritas en las secciones anteriores los mejores resultados se obtienen en las pruebas realizadas con inferencia por paciente, en concreto con: añadir una capa totalmente conectada y usando la técnica de cascada. Y aplicado distorsión al \textit{dataset} de entrada, en concreto aplicado las transformaciones de rotación de 90, 180 y 270 grados. En ambos casos usando el modelo de partida \textit{inception v3}.
