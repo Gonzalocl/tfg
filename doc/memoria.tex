@@ -981,6 +981,43 @@ Las dos situaciones en las que no se puede dar una solución, son que ningún de
 \end{table}
 
 Esta idea se usa como base para hacer la siguiente prueba.
+\bigskip
+
+Para esta prueba se ha modificado el \textit{script} \texttt{retrian.py} para que acepte un parámetro en el que se le puede especificar cómo se organizan los subsets. El \textit{script} para ejecutar el entrenamiento de esta prueba es \texttt{acdc\_subset\_retrain.py}. En concreto en el método \texttt{create\_image\_lists()} se ha modificado para que reparta los conjuntos de entrenamiento según se especifica en el parámetro.
+
+\begin{lstlisting}[language=Python]
+def create_image_lists(image_dir, subsets, testing_percentage, validation_percentage):
+  (...)
+  subsets_list = []
+  for subset in subsets.split(":"):
+    subset_list = []
+    for sub_dir in subset.split(","):
+      subset_list.append(sub_dir)
+    subsets_list.append(subset_list)
+
+  for subset_list in subsets_list:
+    label_name = "_".join([re.sub(r'[^a-z0-9]+', ' ', dir_name.lower()) for dir_name in subset_list])
+    (...)
+    training_images = []
+    for dir_name in subset_list:
+      file_list = []
+      file_glob = os.path.join(image_dir, dir_name, '*')
+      file_list.extend(tf.gfile.Glob(file_glob))
+      (...)
+      for file_name in file_list:
+        base_name = os.path.basename(file_name)
+        base_name = os.path.join(dir_name, base_name)
+        (...)
+        training_images.append(base_name)
+    result[label_name] = {
+        'training': training_images,
+    }
+  return result
+\end{lstlisting}
+
+Para hacer la inferencia se usa el \textit{script} \texttt{acdc\_subset\_batch\_inference.py} que es una modificción del \textit{script} \texttt{batch\_inference.py} que también incorpara los cambios descritos anteriormente.
+
+En el \textit{script} \texttt{acdc\_subset\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para el entrenamiento de cada modelo. En este caso se entrenan cinco modelos, uno por cada clase.
 
 \subsubsection{Cascada}
 Esta idea consiste en partiendo de la idea anterior hacer modelos que vayan identificando o descartando enfermedades cada uno una. Los cuales se ejecutan en secuencia uno tras otro, cada uno teniendo solo que identificar entre dos grupos de clases. De esta forma se pretende mejorar la precisión final simplificando el problema para cada uno de los modelos. Cada modelo solo tiene que decir si una imagen pertenece o no a una clase.
