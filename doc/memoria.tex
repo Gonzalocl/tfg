@@ -856,6 +856,30 @@ inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabul
 \end{table}
 
 En estas pruebas se puede ver que no se obtienen diferencias en cuanto a la precisión, quitar dos capas no ha producido ningún resultado notablemente distinto. Mediante esta prueba se puede deducir que el modelo de partida es tan grande que aunque le quitemos dos capas sigue teniendo el mismo rendimiento, la capa que se ha quitado se puede pensar como redundante y no comprimía la información más de lo que ya estaba.
+\bigskip
+
+Para esta prueba se ha modificado el \textit{script} \texttt{retrain.py}, para que acepte un parámetro en el que se le especifique la capa desde la que se quiere reentrenar. Para especificar la capa se a modificado la parte de donde se hace la carga del modelo:
+
+\begin{lstlisting}[language=Python]
+module_spec = hub.load_module_spec(module_url)
+input_tensor = tf.placeholder(tf.float32, [None, height, width, 3])
+m = hub.Module(module_spec)
+outputs = m(input_tensor, signature=model_signature, as_dict=True)
+output_tensor = outputs[retrain_from_layer]
+\end{lstlisting}
+
+Al quitar más capas es posible que se de la situación de que la capa de salida del modelo de partida tenga más dimensiones, por lo que antes de añadir la última capa se añade también una capa de \textit{pooling} para reducir una dimensión:
+
+\begin{lstlisting}[language=Python]
+# tensores de entrada
+bottleneck_input = tf.placeholder_with_default(
+    output_tensor,
+    shape=output_tensor.get_shape())
+
+bottleneck_input = tf.nn.avg_pool(bottleneck_input)
+bottleneck_input = tf.reshape(bottleneck_input)
+\end{lstlisting}
+
 
 \subsubsection{Quitar 3 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito tres capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
