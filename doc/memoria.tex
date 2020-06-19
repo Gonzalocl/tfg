@@ -898,6 +898,9 @@ inception v3    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabul
 \end{table}
 
 En este caso, al contrario que en el anterior sí que se puede observar una degradación de la precisión en el resultado, en el caso del problema de tres clases sigue obteniendo un resultado parecido pero en el problema de diez clases si se puede apreciar un importante pérdida de precisión.
+\bigskip
+
+Para esta prueba se ha usado el mismo \textit{script} que en el apartado anterior pero con otros parámetros.
 
 \subsection{Pruebas en el dataset ACDC}
 A continuación detallo las diferentes pruebas realizadas sobre el dataset \textit{ACDC} y analizo los resultados obtenidos.
@@ -1004,7 +1007,19 @@ En esta prueba los \textit{scripts} son los mismos que en la anterior pero el \t
 \bigskip
 
 El \textit{script} \texttt{retrain.py} usa una función de dispersión para repartir de forma aleatoria las imágenes del \textit{dataset} de entrada en los conjuntos de entrenamiento. A la función de dispersión se le pasa como entrada el nombre del fichero quitándole lo que tenga después de la cadena ``\texttt{\_nohash\_}’’ en el nombre del fichero. La salida de la función de dispersión se usa para determinar en qué conjunto se incluye la imagen.
-\bigskip
+
+\begin{lstlisting}[language=Python]
+base_name = os.path.basename(file_name)
+name = re.sub(r'_nohash_.*$', '', file_name)
+hash = hashlib.sha1(tf.compat.as_bytes(name)).hexdigest()
+percentage = ((int(hash, 16) % (MAX + 1)) * (100.0 / MAX))
+if percentage < validation_percentage:
+  validation_images.append(base_name)
+elif percentage < (testing_percentage + validation_percentage):
+  testing_images.append(base_name)
+else:
+  training_images.append(base_name)
+\end{lstlisting}
 
 De esta forma para todas las imágenes de un mismo paciente se le pasará como entrada a la función de dispersión los mismos datos que harán que el resultado de la función sea el mismo para todas las imágenes del mismo paciente y por lo tanto incluyendo todas sus imágenes en el mismo conjunto.
 
