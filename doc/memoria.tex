@@ -778,7 +778,7 @@ sess.run(train_step,
              ground_truth_input: train_ground_truth})
 \end{lstlisting}
 
-Donde \texttt{train\_step} es el último nodo del grafo que se ha construido, y por lo tanto para ejecutar ese nodo se ejecutará todo el grafo que hará que se ejecute una iteración. \texttt{train\_bottlenecks} y \texttt{train\_ground\_truth} son las entrada del conjunto de datos y las clases correctas para cada clase del \textit{batch} que se está ejecutando respectivamente.
+Donde \texttt{train\_step} es el último nodo del grafo que se ha construido, y por lo tanto para ejecutar ese nodo se ejecutará todo el grafo que depende de él, que hará que se ejecute una iteración. \texttt{train\_bottlenecks} y \texttt{train\_ground\_truth} son las entrada del conjunto de datos y las clases correctas para cada clase del \textit{batch} que se está ejecutando respectivamente.
 
 \subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
