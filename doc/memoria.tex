@@ -759,7 +759,7 @@ ground_truth_input = tf.placeholder(tf.int64, [batch_size])
 
 # añadir una capa totalmente conectada y softmax
 layer_weights = tf.Variable(initial_value)
-layer_biases = tf.Variable(tf.zeros([class_count]))
+layer_biases = tf.Variable(tf.zeros([bottleneck_tensor_size]))
 logits = tf.matmul(bottleneck_input, layer_weights) + layer_biases
 final_tensor = tf.nn.softmax(logits)
 
@@ -798,6 +798,46 @@ inception v3    & cifar 100        & 100             & 60000                & 0.
 \end{table}
 
 En estos resultados podemos ver que al poner más capas, especialmente capas totalmente conectadas, el entrenamiento requiere más iteraciones (en la primera prueba el modelo no llegó a converger en la configuración más óptima), y por lo tanto más tiempo para obtener los mismos resultados que con una capa. También podemos ver que los resultados son similares o incluso ligeramente peores que solo con una capa totalmente conectada.
+\bigskip
+
+En esta prueba se ha modificado el \textit{script} \texttt{retrain.py} para añadir 3 capas totalmente conectadas:
+
+\begin{lstlisting}[language=Python]
+# tensores de entrada
+bottleneck_input = tf.placeholder_with_default(
+    output_tensor,
+    shape=output_tensor.get_shape())
+ground_truth_input = tf.placeholder(
+    tf.int64, [batch_size])
+
+# añadir tres capas totalmente conectada y softmax
+# layer0
+with tf.name_scope('final_retrain_ops0'):
+    layer_weights = tf.Variable(initial_value)
+    layer_biases = tf.Variable(tf.zeros([bottleneck_tensor_size]))
+    logits = tf.matmul(bottleneck_input, layer_weights) + layer_biases
+
+# layer1
+with tf.name_scope('final_retrain_ops1'):
+    layer_weights = tf.Variable(initial_value)
+    layer_biases = tf.Variable(tf.zeros([bottleneck_tensor_size]))
+    logits = tf.matmul(logits, layer_weights) + layer_biases
+
+# layer 2
+with tf.name_scope('final_retrain_ops'):
+    layer_weights = tf.Variable(initial_value)
+    layer_biases = tf.Variable(tf.zeros([class_count]))
+    logits = tf.matmul(logits, layer_weights) + layer_biases
+
+final_tensor = tf.nn.softmax(logits)
+
+# añadir funcion de error y operaciones de optimizacion
+cross_entropy_mean = tf.losses.sparse_softmax_cross_entropy(
+    labels=ground_truth_input, logits=logits)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+train_step = optimizer.minimize(cross_entropy_mean)
+\end{lstlisting}
+
 
 \subsubsection{Quitar 2 capas}
 Esta prueba consiste en, del modelo de partida en vez de quitarle una capa quitarle más capas y ver que pasa. En este caso quito dos capas y añado una capa de \textit{average pool} y a continuación añadir tres capas totalmente conectadas. La capa \textit{average pool} la añado para reducir los valores en una dimensión, el \textit{tensor} pasa de ser de dos dimensiones a una. Los resultados son los siguientes:
