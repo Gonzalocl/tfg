@@ -732,6 +732,53 @@ En comparación, el resultado del entrenamiento completo, para la prueba equival
 \bigskip
 
 Esto tiene sus ventajas y desventajas, por un lado entrenar un modelo completo requiere más recursos pero se pueden obtener mejores resultados, sin embargo en \textit{transfer learning} los recursos necesarios son menos y se puede obtener resultados parecidos.
+\bigskip
+
+Para esta prueba se ha usado el \textit{script} \texttt{retrain.py} ~\cite{retrainpy}, el cual hace uso de la técnica de \textit{bottleneck} y de la herramienta \textit{TensorFlow Hub}.
+\bigskip
+
+Para cargar un modelo de \textit{TensorFlow Hub} se hace de la siguiente forma:
+
+\begin{lstlisting}[language=Python]
+module_spec = hub.load_module_spec(module_url)
+input_tensor = tf.placeholder(tf.float32, [None, height, width, 3])
+m = hub.Module(module_spec)
+output_tensor = m(input_tensor)
+\end{lstlisting}
+
+Donde \texttt{module\_url} es la \textit{url} del módulo que se quiere cargar, los modelos disponibles se pueden encontrar en la pagina \url{https://tfhub.dev} e \texttt{input\_tensor} y \texttt{output\_tensor} son referencias a los tensores de entrada y salida respectivamente.
+\bigskip
+
+Una vez cargado el modelo se puede añadir la última capa y la función de optimización.
+
+\begin{lstlisting}[language=Python]
+# tensores de entrada
+bottleneck_input = tf.placeholder_with_default(output_tensor,
+  shape=[batch_size, bottleneck_tensor_size],)
+ground_truth_input = tf.placeholder(tf.int64, [batch_size])
+
+# añadir una capa totalmente conectada y softmax
+layer_weights = tf.Variable(initial_value)
+layer_biases = tf.Variable(tf.zeros([class_count]))
+logits = tf.matmul(bottleneck_input, layer_weights) + layer_biases
+final_tensor = tf.nn.softmax(logits)
+
+# añadir funcion de error y operaciones de optimizacion
+cross_entropy_mean = tf.losses.sparse_softmax_cross_entropy(
+  labels=ground_truth_input, logits=logits)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+train_step = optimizer.minimize(cross_entropy_mean)
+\end{lstlisting}
+
+Por último para ejecutar una iteración del entrenamiento se hace de la siguiente forma.
+
+\begin{lstlisting}[language=Python]
+sess.run(train_step,
+  feed_dict={bottleneck_input: train_bottlenecks,
+             ground_truth_input: train_ground_truth})
+\end{lstlisting}
+
+Donde \texttt{train\_step} es el último nodo del grafo que se ha construido, y por lo tanto para ejecutar ese nodo se ejecutará todo el grafo que hará que se ejecute una iteracion. \texttt{train\_bottlenecks} y \texttt{train\_ground\_truth} son las entrada del conjunto de datos y las clases correctas para cada clase del \textit{batch} que se está ejecutando respectivamente.
 
 \subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
