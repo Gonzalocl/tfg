@@ -405,7 +405,7 @@ Para ello parte de unos datos de muestra o datos de entrada de los que aprender�
 Hay principalmente tres formas de hacer que un modelo aprenda a resolver el problema cada enfoque es más apropiado para resolver un tipo de problema.
 
 \subsubsection{Aprendizaje supervisado}
-El aprendizaje supervisado consiste en aplicar \textit{machine learning} a unos datos de entrada que están etiquetados y por lo tanto el modelo aprenderá a etiquetar esas clases. Aplicaciones comunes del aprendizaje supervisado son la clasificacion y regresion. En la clasificación la salida de los modelo es un número limitado de valores que son los que los datos de entrada están etiquetados. En la regresión la salida puede tener cualquier valor numérico en un rango.
+El aprendizaje supervisado consiste en aplicar \textit{machine learning} a unos datos de entrada que están etiquetados y por lo tanto el modelo aprenderá a etiquetar esas clases. Aplicaciones comunes del aprendizaje supervisado son la clasificación y regresión. En la clasificación la salida de los modelo es un número limitado de valores que son los que los datos de entrada están etiquetados. En la regresión la salida puede tener cualquier valor numérico en un rango.
 
 \subsubsection{Aprendizaje no supervisado}
 El aprendizaje no supervisado consiste en aplicar \textit{machine learning} a unos datos de entrada que no estén etiquetados y el modelo aprenda a encontrar patrones en esos datos y a agruparlos de forma automática.
@@ -417,7 +417,7 @@ El aprendizaje por refuerzo consisten en agentes que se mueven por un entorno re
 Inspiradas en el funcionamiento de las redes neuronales biológicas, una red neuronal es una forma de organizar los modelos de inteligencia artificial para abordar ciertos problemas que son difíciles de resolver con la programación ordinaria basada en ``Reglas'' obteniendo muy buenos resultados en una amplia variedad de tareas como por ejemplo: la visión por ordenador o el reconocimiento de la voz.
 \bigskip
 
-Este tipo de inteligencia artificial se organiza en varias capas interconectadas entre sí. Las capas se suelen nombrar como capa de entrada, que es la primera capa, a la que se le pasan directamente los datos de entrada, capa de salida, que es la última capa, la que da el resultado de la predicción que hace la red neural y capas ocultas, que son las que están entre la primera y la última.
+Este tipo de inteligencia artificial se organiza en varias capas interconectadas entre sí. Las capas se suelen nombrar como capa de entrada, que es la primera capa, a la que se le pasan directamente los datos de entrada, capa de salida, que es la última capa, la que da el resultado de la predicción que hace la red neuronal y capas ocultas, que son las que están entre la primera y la última.
 \bigskip
 
 Las capas de una red neuronal están compuestas por neuronas artificiales.
@@ -470,7 +470,7 @@ y = \begin{cases}
 \end{figure}
 %TODO que es alpha y en este caso alpha es 0
 
-\item \textbf{Combinación lineal}: En esta función la salida simplemente se le suma un bias. Esta función aplica una transformación lineal a la entrada
+\item \textbf{Combinación lineal}: En esta función la salida simplemente se le suma un \textit{bias}. Esta función aplica una transformación lineal a la entrada
 %TODO formula
 
 \item \textbf{Sigmoide}: Una función sigmoide es una función matemática que tiene la característica que su curva tiene forma de \textit{s}. Con esta función las entradas negativas tienden a cero y conforme la entrada se acerca a cero la salida va aumentando hasta que el valor de entrada es positivo, conforme se aleja de cero tiende a uno. La función más utilizada es la función logística pero otras funciones matemáticas con forma de \textit{s} también se usan como la tangente o la tangente hiperbólica.
@@ -552,7 +552,7 @@ Hay distintos tipos de capas con diferentes características y funciones.
 \end{itemize}
 
 \subsubsection{Backpropagation}
-Es el proceso en el que se calculan los errores para cada etapa del entrenamiento y según el error se ajustan los pesos de cada capa para reducir el error al maximo. En este proceso se calcula el gradiente de la función \textit{loss} con respecto a los pesos de la red. Uno de los métodos para actualizar los pesos de la red es \textit{stochastic gradient descent}.
+Es el proceso en el que se calculan los errores para cada etapa del entrenamiento y según el error se ajustan los pesos de cada capa para reducir el error al máximo. En este proceso se calcula el gradiente de la función \textit{loss} con respecto a los pesos de la red. Uno de los métodos para actualizar los pesos de la red es \textit{stochastic gradient descent}.
 
 \begin{itemize}
 \item \textbf{\textit{Stochastic gradient descent}}: Es un método iterativo para optimizar una función objetivo.
@@ -597,7 +597,7 @@ Las ventajas de usar distorsión son, aumentar el tamaño del conjunto de datos 
 Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia artificial son los siguientes.
 
 \begin{itemize}
-\item \textbf{Flores}: Este conjunto de datos está compuesto de aproximadamente 3500 fotos de flores divididas en 5 clases de fotos, cada una aproximadamente 700 fotos. Las imagenes estan en formato comprimido \textit{jpg} y son a color. Las clases son: \textit{daisy}, \textit{dandelion}, \textit{roses}, \textit{sunflowers} y \textit{tulips}.
+\item \textbf{Flores}: Este conjunto de datos está compuesto de aproximadamente 3500 fotos de flores divididas en 5 clases de fotos, cada una aproximadamente 700 fotos. Las imágenes están en formato comprimido \textit{jpg} y son a color. Las clases son: \textit{daisy}, \textit{dandelion}, \textit{roses}, \textit{sunflowers} y \textit{tulips}.
 
 \begin{figure}[H]
 \centering
@@ -605,7 +605,7 @@ Algunos de los conjuntos de datos que hay para entrenar modelos de inteligencia 
 \caption{Muestra del \textit{dataset} flores.}
 \end{figure}
 
-\item \textbf{\textit{ACDC}}: El \textit{dataset} se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los frames claves de las resonancias. El \textit{dataset} pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imagenes estan en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
+\item \textbf{\textit{ACDC}}: El \textit{dataset} se compone de 150 pacientes reales de los que se les ha sacado unas resonancias magnéticas del corazón las cuales han sido anonimizadas. Las resonancias de los 150 pacientes están divididas en 5 clases (4 enfermedades y una normal). También incluye información adicional del paciente como el peso la altura, y los \textit{frames} claves de las resonancias. El \textit{dataset} pertenece a un reto (\textit{Automated Cardiac Diagnosis Challenge}) por eso solo se proporciona la segmentación de referencia de 100 pacientes las del resto son parte del reto. Las imágenes están en escala de grises y el formato es sin compresión. Las clases son: \textit{normal} (\textit{NOR}), \textit{myocardial infarction} (\textit{MINF}), \textit{dilated cardiomyopathy} (\textit{DCM}), \textit{hypertrophic cardiomyopathy} (\textit{HCM}) y \textit{abnormal right ventricle} (\textit{RV}).
 
 \begin{figure}[H]
 \centering
@@ -685,7 +685,7 @@ AlexNet         & \multicolumn{1}{c|}{cifar 10} & \multicolumn{1}{c|}{10} & \mul
 \caption{Resultado entrenamiento completo.}
 \end{table}
 
-En esta prueba se obtiene un 86\% de precisión, que es un buen resultado para la prueba que se ha realizado, un entrenamiento completo. De esta forma se ha entrenado un modelo especificamente para ese \textit{dataset}.
+En esta prueba se obtiene un 86\% de precisión, que es un buen resultado para la prueba que se ha realizado, un entrenamiento completo. De esta forma se ha entrenado un modelo específicamente para ese \textit{dataset}.
 
 \subsubsection{Añadir una capa totalmente conectada y softmax}
 Esta prueba consiste en, a partir del modelo de partida eliminar la última capa y añadir una capa totalmente conectada y una capa de \textit{softmax}, esto se ha realizado con los \textit{datasets}: flores, \textit{cifar 10}, \textit{cifar 100} (20 clases) y \textit{cifar 100} (100 clases). El modelo de partida es \textit{inception v3}. Los resultados se pueden ver en la siguiente tabla:
@@ -778,7 +778,7 @@ sess.run(train_step,
              ground_truth_input: train_ground_truth})
 \end{lstlisting}
 
-Donde \texttt{train\_step} es el último nodo del grafo que se ha construido, y por lo tanto para ejecutar ese nodo se ejecutará todo el grafo que hará que se ejecute una iteracion. \texttt{train\_bottlenecks} y \texttt{train\_ground\_truth} son las entrada del conjunto de datos y las clases correctas para cada clase del \textit{batch} que se está ejecutando respectivamente.
+Donde \texttt{train\_step} es el último nodo del grafo que se ha construido, y por lo tanto para ejecutar ese nodo se ejecutará todo el grafo que hará que se ejecute una iteración. \texttt{train\_bottlenecks} y \texttt{train\_ground\_truth} son las entrada del conjunto de datos y las clases correctas para cada clase del \textit{batch} que se está ejecutando respectivamente.
 
 \subsubsection{Añadir 3 capas totalmente conectadas}
 En esta prueba al modelo de partida se le añaden tres capas totalmente conectadas, los resultados son los siguientes:
@@ -918,10 +918,10 @@ python batch_inference.py \
 \end{lstlisting}
 
 \subsubsection{Repartir bien los sets}
-Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero teniendo en cuenta que los sets de entrenamiento, validación y test deben de estar repartidos por paciente. Es decir todos las imágenes de un paciente deben de ir al mismo set y no se pueden encontrar en más de un set imagenes del mismo paciente. De esta forma se evita que haya imagenes relacionadas en sets distintos y por lo tanto no se pueda saber la enfermedad relacionándolas.
+Esta prueba es básicamente lo mismo que la anterior en cuanto al modelo, pero teniendo en cuenta que los sets de entrenamiento, validación y test deben de estar repartidos por paciente. Es decir todos las imágenes de un paciente deben de ir al mismo set y no se pueden encontrar en más de un set imágenes del mismo paciente. De esta forma se evita que haya imágenes relacionadas en sets distintos y por lo tanto no se pueda saber la enfermedad relacionándolas.
 \bigskip
 
-También se tiene en cuenta que todas las clases deben de estar representadas por igual en todos los sets, es decir no debe de haber una diferencia muy grande entre la cantidad de pacientes en cada set, de lo contrario se podría generar \textit{overfitting} porque hay más imágenes de una clase que harían que el modelo tendiese a dar más resultados de la clase que más imagenes tiene simplemente porque aparece más.
+También se tiene en cuenta que todas las clases deben de estar representadas por igual en todos los sets, es decir no debe de haber una diferencia muy grande entre la cantidad de pacientes en cada set, de lo contrario se podría generar \textit{overfitting} porque hay más imágenes de una clase que harían que el modelo tendiese a dar más resultados de la clase que más imágenes tiene simplemente porque aparece más.
 
 \begin{table}[H]
 \centering
@@ -939,7 +939,7 @@ En este caso se obtiene un resultado más realista ya que las imágenes del set 
 En esta prueba los \textit{scripts} son los mismos que en la anterior pero el \textit{script} \texttt{acdc\_nii\_to\_jpg.py} ha sido modificado para que en el nombre de los ficheros añada ``\texttt{\_nohash\_}'' después del índice de paciente para que a la hora de hacer la repartición de los conjuntos de entrenamiento en el \textit{scritp} \texttt{retrain.py} todos los pacientes vayan al mismo conjunto. De forma que el nombre de un fichero pasa de ser así: \texttt{patient001\_frame00\_slice00.jpg} a ser así: \texttt{patient001\_nohash\_frame00\_slice00.jpg}.
 \bigskip
 
-El \textit{script} \texttt{retrain.py} usa una funcion de dispersión para repartir de forma aleatoria las imágenes del \textit{dataset} de entrada en los conjuntos de entrenamiento. A la función de dispersión se le pasa como entrada el nombre del fichero quitándole lo que tenga después de la cadena ``\texttt{\_nohash\_}’’ en el nombre del fichero. La salida de la función de dispersión se usa para determinar en qué conjunto se incluye la imagen.
+El \textit{script} \texttt{retrain.py} usa una función de dispersión para repartir de forma aleatoria las imágenes del \textit{dataset} de entrada en los conjuntos de entrenamiento. A la función de dispersión se le pasa como entrada el nombre del fichero quitándole lo que tenga después de la cadena ``\texttt{\_nohash\_}’’ en el nombre del fichero. La salida de la función de dispersión se usa para determinar en qué conjunto se incluye la imagen.
 \bigskip
 
 De esta forma para todas las imágenes de un mismo paciente se le pasará como entrada a la función de dispersión los mismos datos que harán que el resultado de la función sea el mismo para todas las imágenes del mismo paciente y por lo tanto incluyendo todas sus imágenes en el mismo conjunto.
@@ -1062,7 +1062,7 @@ def create_image_lists(image_dir, subsets, testing_percentage, validation_percen
   return result
 \end{lstlisting}
 
-Para hacer la inferencia se usa el \textit{script} \texttt{acdc\_subset\_batch\_inference.py} que es una modificción del \textit{script} \texttt{batch\_inference.py} que también incorpara los cambios descritos anteriormente.
+Para hacer la inferencia se usa el \textit{script} \texttt{acdc\_subset\_batch\_inference.py} que es una modificación del \textit{script} \texttt{batch\_inference.py} que también incorpara los cambios descritos anteriormente.
 
 En el \textit{script} \texttt{acdc\_subset\_test.sh} se llaman a los \textit{scripts} anteriores donde se pueden ver los parámetros usados para el entrenamiento de cada modelo. En este caso se entrenan cinco modelos, uno por cada clase.
 
@@ -1168,7 +1168,7 @@ def cascade_inference(graphs, image_path):
 \end{lstlisting}
 
 \subsubsection{Inferencia por paciente}
-En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida en todas las imágenes de cada paciente. También de esta forma se tiene en cuenta que las imagenes estan relacionadas por paciente y se da un resultado por cada paciente, no como en pruebas anteriores donde las imágenes que pertenecen a un mismo paciente, podían ser clasificadas como enfermedades distintas.
+En esta prueba en vez de dar una predicción por \textit{slice} o imagen de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida en todas las imágenes de cada paciente. También de esta forma se tiene en cuenta que las imágenes están relacionadas por paciente y se da un resultado por cada paciente, no como en pruebas anteriores donde las imágenes que pertenecen a un mismo paciente, podían ser clasificadas como enfermedades distintas.
 
 \begin{table}[H]
 \centering
@@ -1190,10 +1190,10 @@ Para esta prueba se ha implementado el \textit{script} \texttt{per\_patient\_pre
 Después de realizar la inferencia en el conjunto de datos, el \textit{script} \texttt{per\_patient\_prediction.py} lee el fichero \texttt{csv} generado y cuenta para cada paciente la clase más repetida. El \textit{script} muestra por la salida el resultado obtenido y una matriz de confusión.
 
 \subsubsection{Distorsión}
-Con el fin de mejorar los resultados hago las mismas pruebas anteriores pero antes aplicando unas transformaciones en todas las imágenes de entrada del dataset. En el dataset las imágenes de entrada de los pacientes vienen en diferentes posiciones. En este caso las transformaciones que se han realizado a las imágenes es rotarlas 90, 180 y 270 grados cada una.
+Con el fin de mejorar los resultados hago las mismas pruebas anteriores pero antes aplicando unas transformaciones en todas las imágenes de entrada del \textit{dataset}. En el \textit{dataset} las imágenes de entrada de los pacientes vienen en diferentes posiciones. En este caso las transformaciones que se han realizado a las imágenes es rotarlas 90, 180 y 270 grados cada una.
 \bigskip
 
-La distorsión se puede usar en dos casos, en el caso de que los datos del dataset de entrada sea reducido y se pretenda aumentar o como en este caso se pretenda que el dataset de entrada tenga cierta característica como en este caso en el que las imágenes del dataset están rotadas cada una con unos grados. De esta forma se pretende neutralizar que los pacientes en el dataset de entrada estén cada uno con una rotación distinta y que los modelos generalicen para aprender a clasificar independientemente de la posición en la que esté la imagen de entrada.
+La distorsión se puede usar en dos casos, en el caso de que los datos del \textit{dataset} de entrada sea reducido y se pretenda aumentar o como en este caso se pretenda que el \textit{dataset} de entrada tenga cierta característica como en este caso en el que las imágenes del \textit{dataset} están rotadas cada una con unos grados. De esta forma se pretende neutralizar que los pacientes en el \textit{dataset} de entrada estén cada uno con una rotación distinta y que los modelos generalicen para aprender a clasificar independientemente de la posición en la que esté la imagen de entrada.
 
 \begin{table}[H]
 \centering
@@ -1217,7 +1217,7 @@ Cascada con inferencia por paciente         & 57.1                              
 En general la mejora es pequeña en todas las pruebas, excepto en las que la inferencia se hace por paciente. En esas pruebas se obtiene una precisión del 85.7\%.
 \bigskip
 
-Para llevar a cabo esta prueba se ha implementado el \textit{script} \texttt{acdc\_distortion.sh}. Este \textit{script} aplica rotacion de 90, 180 y 270 grados a cada imagen del \textit{dataset}. La imagen se rota y se guarda en el mismo directorio, de esta forma cuando el \textit{script} del entrenamiento vaya a hacer los conjuntos hará uso de esas imágenes.
+Para llevar a cabo esta prueba se ha implementado el \textit{script} \texttt{acdc\_distortion.sh}. Este \textit{script} aplica rotación de 90, 180 y 270 grados a cada imagen del \textit{dataset}. La imagen se rota y se guarda en el mismo directorio, de esta forma cuando el \textit{script} del entrenamiento vaya a hacer los conjuntos hará uso de esas imágenes.
 
 \subsubsection{Resultado final}
 Después de realizar todas las pruebas descritas en las secciones anteriores los mejores resultados se obtienen en las pruebas realizadas con inferencia por paciente, en concreto con: añadir una capa totalmente conectada y usando la técnica de cascada. Y aplicado distorsión al \textit{dataset} de entrada, en concreto aplicado las transformaciones de rotación de 90, 180 y 270 grados. En ambos casos usando el modelo de partida \textit{inception v3}.
@@ -1242,7 +1242,7 @@ Una serie de \textit{scripts} en \textit{python} y \textit{bash} han sido implem
 Para cumplir el objetivo 4, en el apartado ``Diseño y resolución del trabajo realizado’’ se han juntado los resultados en tablas y se han analizado y comparado los resultados con los de otras pruebas. En cada uno de los apartados correspondiente a cada prueba hay una análisis de esa prueba.
 \bigskip
 
-Después de enfocar el problema de diferentes formas, unas con más éxito que otras, se ha conseguido una precisión máxima del 85.7\%, en dos de las pruebas. En concreto en la prueba usando \textit{inception v3} como modelo de partida, añadiendole una capa totalmente conectada que se reentrena, usando distorsión y haciendo la inferencia por paciente. Y en la prueba usando la técnica de cascada usando como modelo base \textit{inception v3}, usando distorsión y haciendo la inferencia por paciente. De estas dos pruebas se elige como mejor la que usa distorsión y añade solo una capa más al modelo, ya que ha demostrado tener mejor rendimiento tambien sin usar distorsión y al ser una técnica más simple requiere de menos recursos.
+Después de enfocar el problema de diferentes formas, unas con más éxito que otras, se ha conseguido una precisión máxima del 85.7\%, en dos de las pruebas. En concreto en la prueba usando \textit{inception v3} como modelo de partida, añadiéndole una capa totalmente conectada que se reentrena, usando distorsión y haciendo la inferencia por paciente. Y en la prueba usando la técnica de cascada usando como modelo base \textit{inception v3}, usando distorsión y haciendo la inferencia por paciente. De estas dos pruebas se elige como mejor la que usa distorsión y añade solo una capa más al modelo, ya que ha demostrado tener mejor rendimiento también sin usar distorsión y al ser una técnica más simple requiere de menos recursos.
 
 \subsection{Vías futuras}
 Algunas de las posibles vías futuras para poder mejorar la precisión son las siguientes:
