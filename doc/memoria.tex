@@ -1338,91 +1338,119 @@ Algunas de las posibles vías futuras para poder mejorar la precisión son las s
 \addappheadtotoc
 \appendixpage
 \section{Anexo I: Código}\label{anexo1}
-El código de este trabajo se puede encontrar en aquí: https://drive.google.com/drive/folders/1q71pmSSp85m0L4aWFQi78J12YuodHoXS?usp=sharing.
+El código de este trabajo se puede encontrar en aquí: \url{https://drive.google.com/drive/folders/1q71pmSSp85m0L4aWFQi78J12YuodHoXS?usp=sharing}.
+\bigskip
 
 En el código hay una serie de script que se usan para hacer las pruebas, también hay algunos scripts para resumir la información, visualizar los datos y para ejecutarlo todo.
+\bigskip
 
 Los scitps de transfer learning estan basados en el script retrain.py.
 
-Prueba añadir una capa totalmente conectada y softmax
+\begin{itemize}
 
-retrain.py: aplica la técnica de transfer learning.
+\item Prueba añadir una capa totalmente conectada y softmax
 
-
-Prueba añadir 3 capas totalmente conectadas
-
-retrain\_3fc.py: script basado en retrain.py, en vez de añadir una sola capa añade 3.
-
-
-Prueba quitar capas
-
-retrain\_3fc.py: script basado en retrain.py, acepta una opción para especificar la capa desde la que se quiere entrenar.
+\begin{itemize}
+\item retrain.py: aplica la técnica de transfer learning.
+\end{itemize}
 
 
-Prueba añadir una capa sets bien repartidos
+\item Prueba añadir 3 capas totalmente conectadas
 
-acdc\_test.sh: llama a los scripts retrain.py, batch\_inference.py y per\_patient\_prediction.py.
-
-retrain.py: aplica la técnica de transfer learning en el dataset ACDC.
-
-batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\begin{itemize}
+\item retrain\_3fc.py: script basado en retrain.py, en vez de añadir una sola capa añade 3.
+\end{itemize}
 
 
-Prueba usar un slice por paciente
+\item Prueba quitar capas
 
-acdc\_one\_slice\_test.sh: llama a los scripts acdc\_one\_slice\_retrain.py y acdc\_one\_slice\_batch\_inference.py.
-
-acdc\_one\_slice\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC usando solo un slice por paciente.
-
-acdc\_one\_slice\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\begin{itemize}
+\item retrain\_3fc.py: script basado en retrain.py, acepta una opción para especificar la capa desde la que se quiere entrenar.
+\end{itemize}
 
 
-Prueba entrenamiento por subsets
+\item Prueba añadir una capa sets bien repartidos
 
-acdc\_subset\_test.sh: llama a los scripts acdc\_subset\_retrain.py y acdc\_subset\_batch\_inference.py una vez por cada clase del dataset ACDC.
+\begin{itemize}
+\item acdc\_test.sh: llama a los scripts retrain.py, batch\_inference.py y per\_patient\_prediction.py.
 
-acdc\_subset\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC, acepta un parámetro para dividir las clases del dataset ACDC en subconjuntos.
+\item retrain.py: aplica la técnica de transfer learning en el dataset ACDC.
 
-acdc\_subset\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
-
-
-Prueba cascada
-
-acdc\_cascade\_test.sh: aplica la técnica de cascada haciendo uso del script acdc\_subset\_retrain.py y llama al script acdc\_cascade\_batch\_inference.py.
-
-acdc\_cascade\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto, usando la técnica de cascada.
+\item batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\end{itemize}
 
 
-Prueba inferencia por paciente
+\item Prueba usar un slice por paciente
 
-per\_patient\_prediction.py: usa los csv generados por los scripts de inferencia para dar un resultado por paciente.
+\begin{itemize}
+\item acdc\_one\_slice\_test.sh: llama a los scripts acdc\_one\_slice\_retrain.py y acdc\_one\_slice\_batch\_inference.py.
 
+\item acdc\_one\_slice\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC usando solo un slice por paciente.
 
-Prueba distorsión
-
-acdc\_distortion.sh: aplica rotacion de 90, 180 y 270 grados a todas las imágenes del dataset ACDC.
-
-
-Otras pruebas
-
-flowers\_test.sh: llama a los scripts retrain.py y batch\_inference.py, con el dataset flowers.
+\item acdc\_one\_slice\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\end{itemize}
 
 
-Otros scripts
+\item Prueba entrenamiento por subsets
 
-run.sh: script principal que ejecuta todo, prepara los datasets, llama a los scripts para reunir la información y llama al script test\_all.sh, que ejecuta todas las pruebas.
+\begin{itemize}
+\item acdc\_subset\_test.sh: llama a los scripts acdc\_subset\_retrain.py y acdc\_subset\_batch\_inference.py una vez por cada clase del dataset ACDC.
 
-acdc\_extract.sh: descomprime el zip del dataset ACDC y llama al script acdc\_nii\_to\_jpg.py.
+\item acdc\_subset\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC, acepta un parámetro para dividir las clases del dataset ACDC en subconjuntos.
 
-acdc\_nii\_to\_jpg.py: convierte las imágenes del dataset ACDC que están en formato nii a formato jpg.
+\item acdc\_subset\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\end{itemize}
 
-cines.sh: a partir de las imagenes extraidas del dataset ACDC, las convierte en videos para poder visualizar el dataset.
 
-info.sh: genera un csv con la información que se proporciona de cada paciente del dataset ACDC.
+\item Prueba cascada
 
-test\_all.sh: ejecuta todas las pruebas, el script de distorsión, vuelve a ejecutar todas las pruebas y llama al script summary.sh.
+\begin{itemize}
+\item acdc\_cascade\_test.sh: aplica la técnica de cascada haciendo uso del script acdc\_subset\_retrain.py y llama al script acdc\_cascade\_batch\_inference.py.
 
-summary.sh: genera un csv donde reúne los resultados de las pruebas ejecutadas.
+\item acdc\_cascade\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto, usando la técnica de cascada.
+\end{itemize}
+
+
+\item Prueba inferencia por paciente
+
+\begin{itemize}
+\item per\_patient\_prediction.py: usa los csv generados por los scripts de inferencia para dar un resultado por paciente.
+\end{itemize}
+
+
+\item Prueba distorsión
+
+\begin{itemize}
+\item acdc\_distortion.sh: aplica rotacion de 90, 180 y 270 grados a todas las imágenes del dataset ACDC.
+\end{itemize}
+
+
+\item Otras pruebas
+
+\begin{itemize}
+\item flowers\_test.sh: llama a los scripts retrain.py y batch\_inference.py, con el dataset flowers.
+\end{itemize}
+
+
+\item Otros scripts
+
+\begin{itemize}
+\item run.sh: script principal que ejecuta todo, prepara los datasets, llama a los scripts para reunir la información y llama al script test\_all.sh, que ejecuta todas las pruebas.
+
+\item acdc\_extract.sh: descomprime el zip del dataset ACDC y llama al script acdc\_nii\_to\_jpg.py.
+
+\item acdc\_nii\_to\_jpg.py: convierte las imágenes del dataset ACDC que están en formato nii a formato jpg.
+
+\item cines.sh: a partir de las imagenes extraidas del dataset ACDC, las convierte en videos para poder visualizar el dataset.
+
+\item info.sh: genera un csv con la información que se proporciona de cada paciente del dataset ACDC.
+
+\item test\_all.sh: ejecuta todas las pruebas, el script de distorsión, vuelve a ejecutar todas las pruebas y llama al script summary.sh.
+
+\item summary.sh: genera un csv donde reúne los resultados de las pruebas ejecutadas.
+\end{itemize}
+
+\end{itemize}
 
 
 \newpage
