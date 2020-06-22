@@ -1338,116 +1338,116 @@ Algunas de las posibles vías futuras para poder mejorar la precisión son las s
 \addappheadtotoc
 \appendixpage
 \section{Anexo I: Código}\label{anexo1}
-El código de este trabajo se puede encontrar en aquí: \url{https://drive.google.com/drive/folders/1q71pmSSp85m0L4aWFQi78J12YuodHoXS?usp=sharing}.
+El código de este trabajo se puede encontrar en: \url{https://drive.google.com/drive/folders/1q71pmSSp85m0L4aWFQi78J12YuodHoXS?usp=sharing}.
 \bigskip
 
-En el código hay una serie de script que se usan para hacer las pruebas, también hay algunos scripts para resumir la información, visualizar los datos y para ejecutarlo todo.
+En el código consiste en una serie de \textit{scripts} que se usan para hacer las pruebas, también hay algunos \textit{scripts} para resumir la información, visualizar los datos y para ejecutarlo todo.
 \bigskip
 
-Los scitps de transfer learning estan basados en el script retrain.py.
+Los \textit{scripts} de \textit{transfer learning} estan basados en el \textit{script} \texttt{retrain.py}.
 
 \begin{itemize}
 
-\item Prueba añadir una capa totalmente conectada y softmax
+\item \textbf{Prueba añadir una capa totalmente conectada y \textit{softmax}}
 
 \begin{itemize}
-\item retrain.py: aplica la técnica de transfer learning.
+\item \texttt{retrain.py}: aplica la técnica de \textit{transfer learning}.
 \end{itemize}
 
 
-\item Prueba añadir 3 capas totalmente conectadas
+\item \textbf{Prueba añadir 3 capas totalmente conectadas}
 
 \begin{itemize}
-\item retrain\_3fc.py: script basado en retrain.py, en vez de añadir una sola capa añade 3.
+\item \texttt{retrain\_3fc.py}: \textit{script} basado en \texttt{retrain.py}, en vez de añadir una sola capa añade 3.
 \end{itemize}
 
 
-\item Prueba quitar capas
+\item \textbf{Prueba quitar capas}
 
 \begin{itemize}
-\item retrain\_3fc.py: script basado en retrain.py, acepta una opción para especificar la capa desde la que se quiere entrenar.
+\item \texttt{retrain\_3fc.py}: \textit{script} basado en \texttt{retrain.py}, acepta una opción para especificar la capa desde la que se quiere entrenar.
 \end{itemize}
 
 
-\item Prueba añadir una capa sets bien repartidos
+\item \textbf{Prueba añadir una capa, sets bien repartidos}
 
 \begin{itemize}
-\item acdc\_test.sh: llama a los scripts retrain.py, batch\_inference.py y per\_patient\_prediction.py.
+\item \texttt{acdc\_test.sh}: llama a los \textit{scripts} \texttt{retrain.py}, \texttt{batch\_inference.py} y \\ \texttt{per\_patient\_prediction.py}.
 
-\item retrain.py: aplica la técnica de transfer learning en el dataset ACDC.
+\item \texttt{retrain.py}: aplica la técnica de \textit{transfer learning} en el \textit{dataset} \textit{ACDC}.
 
-\item batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\item \texttt{batch\_inference.py}: ejecuta la inferencia en todas las imágenes de un conjunto.
 \end{itemize}
 
 
-\item Prueba usar un slice por paciente
+\item \textbf{Prueba usar un \textit{slice} por paciente}
 
 \begin{itemize}
-\item acdc\_one\_slice\_test.sh: llama a los scripts acdc\_one\_slice\_retrain.py y acdc\_one\_slice\_batch\_inference.py.
+\item \texttt{acdc\_one\_slice\_test.sh}: llama a los \textit{scripts} \texttt{acdc\_one\_slice\_retrain.py} y \texttt{acdc\_one\_slice\_batch\_inference.py}.
 
-\item acdc\_one\_slice\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC usando solo un slice por paciente.
+\item \texttt{acdc\_one\_slice\_retrain.py}: aplica la técnica de \textit{transfer learning} en el \textit{dataset} \textit{ACDC} usando solo un \textit{slice} por paciente.
 
-\item acdc\_one\_slice\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\item \texttt{acdc\_one\_slice\_batch\_inference.py}: ejecuta la inferencia en todas las imágenes de un conjunto.
 \end{itemize}
 
 
-\item Prueba entrenamiento por subsets
+\item \textbf{Prueba entrenamiento por subsets}
 
 \begin{itemize}
-\item acdc\_subset\_test.sh: llama a los scripts acdc\_subset\_retrain.py y acdc\_subset\_batch\_inference.py una vez por cada clase del dataset ACDC.
+\item \texttt{acdc\_subset\_test.sh}: llama a los \textit{scripts} \texttt{acdc\_subset\_retrain.py} y \\ \texttt{acdc\_subset\_batch\_inference.py} una vez por cada clase del \textit{dataset} \textit{ACDC}.
 
-\item acdc\_subset\_retrain.py: aplica la técnica de transfer learning en el dataset ACDC, acepta un parámetro para dividir las clases del dataset ACDC en subconjuntos.
+\item \texttt{acdc\_subset\_retrain.py}: aplica la técnica de \textit{transfer learning} en el \textit{dataset} \textit{ACDC}, acepta un parámetro para dividir las clases del \textit{dataset} \textit{ACDC} en subconjuntos.
 
-\item acdc\_subset\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto.
+\item \texttt{acdc\_subset\_batch\_inference.py}: ejecuta la inferencia en todas las imágenes de un conjunto.
 \end{itemize}
 
 
-\item Prueba cascada
+\item \textbf{Prueba cascada}
 
 \begin{itemize}
-\item acdc\_cascade\_test.sh: aplica la técnica de cascada haciendo uso del script acdc\_subset\_retrain.py y llama al script acdc\_cascade\_batch\_inference.py.
+\item \texttt{acdc\_cascade\_test.sh}: aplica la técnica de cascada haciendo uso del \textit{script} \\ \texttt{acdc\_subset\_retrain.py} y llama al \textit{script} \texttt{acdc\_cascade\_batch\_inference.py}.
 
-\item acdc\_cascade\_batch\_inference.py: ejecuta la inferencia en todas las imágenes de un conjunto, usando la técnica de cascada.
+\item \texttt{acdc\_cascade\_batch\_inference.py}: ejecuta la inferencia en todas las imágenes de un conjunto, usando la técnica de cascada.
 \end{itemize}
 
 
-\item Prueba inferencia por paciente
+\item \textbf{Prueba inferencia por paciente}
 
 \begin{itemize}
-\item per\_patient\_prediction.py: usa los csv generados por los scripts de inferencia para dar un resultado por paciente.
+\item \texttt{per\_patient\_prediction.py}: usa los \texttt{csv} generados por los \textit{scripts} de inferencia para dar un resultado por paciente.
 \end{itemize}
 
 
-\item Prueba distorsión
+\item \textbf{Prueba distorsión}
 
 \begin{itemize}
-\item acdc\_distortion.sh: aplica rotacion de 90, 180 y 270 grados a todas las imágenes del dataset ACDC.
+\item \texttt{acdc\_distortion.sh}: aplica rotacion de 90, 180 y 270 grados a todas las imágenes del \textit{dataset} \textit{ACDC}.
 \end{itemize}
 
 
-\item Otras pruebas
+\item \textbf{Otras pruebas}
 
 \begin{itemize}
-\item flowers\_test.sh: llama a los scripts retrain.py y batch\_inference.py, con el dataset flowers.
+\item \texttt{flowers\_test.sh}: llama a los \textit{scripts} \texttt{retrain.py} y \texttt{batch\_inference.py}, con el \textit{dataset} \textit{flowers}.
 \end{itemize}
 
 
-\item Otros scripts
+\item \textbf{Otros \textit{scripts}}
 
 \begin{itemize}
-\item run.sh: script principal que ejecuta todo, prepara los datasets, llama a los scripts para reunir la información y llama al script test\_all.sh, que ejecuta todas las pruebas.
+\item \texttt{run.sh}: \textit{script} principal que ejecuta todo, prepara los \textit{datasets}, llama a los \textit{scripts} para reunir la información y llama al \textit{script} \texttt{test\_all.sh,} que ejecuta todas las pruebas.
 
-\item acdc\_extract.sh: descomprime el zip del dataset ACDC y llama al script acdc\_nii\_to\_jpg.py.
+\item \texttt{acdc\_extract.sh}: descomprime el \texttt{zip} del \textit{dataset} \textit{ACDC} y llama al \textit{script} \\ \texttt{acdc\_nii\_to\_jpg.py}.
 
-\item acdc\_nii\_to\_jpg.py: convierte las imágenes del dataset ACDC que están en formato nii a formato jpg.
+\item \texttt{acdc\_nii\_to\_jpg.py}: convierte las imágenes del \textit{dataset} \textit{ACDC} que están en formato \texttt{nii} a formato \texttt{jpg}.
 
-\item cines.sh: a partir de las imagenes extraidas del dataset ACDC, las convierte en videos para poder visualizar el dataset.
+\item \texttt{cines.sh}: a partir de las imagenes extraidas del \textit{dataset} \textit{ACDC}, las convierte en videos para poder visualizar el \textit{dataset}.
 
-\item info.sh: genera un csv con la información que se proporciona de cada paciente del dataset ACDC.
+\item \texttt{info.sh}: genera un \texttt{csv} con la información que se proporciona de cada paciente del \textit{dataset} \textit{ACDC}.
 
-\item test\_all.sh: ejecuta todas las pruebas, el script de distorsión, vuelve a ejecutar todas las pruebas y llama al script summary.sh.
+\item \texttt{test\_all.sh}: ejecuta todas las pruebas, el \textit{script} de distorsión, vuelve a ejecutar todas las pruebas y llama al \textit{script} \texttt{summary.sh}.
 
-\item summary.sh: genera un csv donde reúne los resultados de las pruebas ejecutadas.
+\item \texttt{summary.sh}: genera un \texttt{csv} donde reúne los resultados de las pruebas ejecutadas.
 \end{itemize}
 
 \end{itemize}
