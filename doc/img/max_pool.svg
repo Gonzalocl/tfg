@@ -1,0 +1,16 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <symbol id="big_grid" viewBox="0 0 100 100" bx:pinned="true">
+      <line style="stroke: rgb(209, 209, 209); stroke-linecap: square;" x1="1" y1="25.5" x2="99" y2="25.5"></line>
+      <line style="stroke: rgb(209, 209, 209); stroke-linecap: square;" x1="1" y1="74.5" x2="99" y2="74.5"></line>
+      <line style="stroke: rgb(209, 209, 209); stroke-linecap: square;" x1="25.5" y1="1" x2="25.5" y2="99"></line>
+      <line style="stroke: rgb(209, 209, 209); stroke-linecap: square;" x1="74.5" y1="1" x2="74.5" y2="99"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="99" y2="1"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="50" x2="99" y2="50"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="99" x2="99" y2="99"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="99"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="50" y1="1" x2="50" y2="99"></line>
+      <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="99" y1="1" x2="99" y2="99"></line>
+    </symbol>
+  </defs>
+</svg>
