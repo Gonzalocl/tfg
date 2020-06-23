@@ -110,6 +110,7 @@
     urlcolor=blue,
     linkbordercolor=white
 }
+
 % diccionario de acrónimos
 \usepackage[acronym,toc,shortcuts]{glossaries}
 \setlength{\glsdescwidth}{0.8\textwidth}
@@ -134,6 +135,7 @@
 \hrule
 \vspace{0.5cm}}
 }
+
 % Configuración de la portada del documento
 \newcommand{\doctitle}{Análisis y clasificación de imágenes médicas mediante redes neuronales}
 \newcommand{\docauthor}{Gonzalo Caparrós Laiz}
@@ -143,6 +145,7 @@
 \title{\doctitle}
 \author{\docauthor}
 \date{\docdate}
+
 % Documento 
 \begin{document}
 \renewcommand*\listtablename{Índice de tablas}
@@ -153,6 +156,7 @@
 \vspace*{\fill}
 {\centering Esta página ha sido intencionadamente dejada en blanco\par}
 \vspace{\fill}}
+
 % *********************** Portada del Documento
 \begin{titlepage}
 \begin{center}
@@ -185,19 +189,19 @@ GRADO EN INGENIERÍA INFORMÁTICA\\
 \vspace{1cm}
 \end{center}
 \end{titlepage}
-\pagenumbering{roman}
 % *********************** Fin Portada del Documento
+
+\pagenumbering{roman}
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.0pt}
 \fancyhead[L]{}
 \fancyfoot[C]{}
+
 \newpage
 \blankpage
-%**************************************************
 
 \newpage
 \section*{\centerline{Declaración firmada sobre originalidad del trabajo}}
-%\fancyhead[L]{Declaración firmada sobre originalidad del trabajo}
 \addcontentsline{toc}{section}{Declaración firmada sobre originalidad del trabajo}
 \thispagestyle{empty}
 
@@ -226,6 +230,9 @@ Que el Trabajo Fin de Grado presentado para su evaluación es original y de elab
 \end{figure}
 \centerline{Fdo.: \docauthor}
 \centerline{\textit{Autor del TF}}
+
+\newpage
+\blankpage
 
 \newpage
 \fancyhead[L]{\nouppercase{\leftmark}}
