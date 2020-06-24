@@ -2,6 +2,17 @@
   <defs>
     <symbol id="big_grid" viewBox="0 0 120 120" bx:pinned="true">
       <g>
+        <rect width="20" height="20" style="fill: url(#color-0);"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" y="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40" y="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80" y="80"></rect>
+      </g>
+      <g>
         <g>
           <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="119"></line>
           <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="20.667" y1="1" x2="20.667" y2="119"></line>
@@ -23,6 +34,7 @@
       </g>
     </symbol>
     <symbol id="grid" viewBox="0 0 80 80" bx:pinned="true">
+      <rect width="60" height="60" style="fill: url(#color-0);"></rect>
       <g>
         <g>
           <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="79"></line>
@@ -41,6 +53,7 @@
       </g>
     </symbol>
     <symbol id="little_grid" viewBox="0 0 40 40" bx:pinned="true">
+      <rect width="20" height="20" style="fill: url(#color-0);"></rect>
       <g>
         <g>
           <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="39"></line>
@@ -54,5 +67,8 @@
         </g>
       </g>
     </symbol>
+    <linearGradient id="color-0" bx:pinned="true">
+      <stop style="stop-color: #d8d8d8;"></stop>
+    </linearGradient>
   </defs>
 </svg>
