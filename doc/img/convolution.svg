@@ -1,4 +1,4 @@
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+<svg viewBox="0 0 165 104" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
   <defs>
     <symbol id="big_grid" viewBox="0 0 120 120" bx:pinned="true">
       <g>
@@ -70,5 +70,19 @@
     <linearGradient id="color-0" bx:pinned="true">
       <stop style="stop-color: #d8d8d8;"></stop>
     </linearGradient>
+    <linearGradient id="color-1" bx:pinned="true">
+      <stop style="stop-color: rgb(170, 170, 170);"></stop>
+    </linearGradient>
+    <symbol id="convolution" viewBox="0 0 123 90" bx:pinned="true">
+      <use width="80" height="80" xlink:href="#grid"></use>
+      <g>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="1" y1="1" x2="84" y2="51"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="59.391" y1="1.392" x2="102.632" y2="50.95"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="1.299" y1="59.485" x2="84.741" y2="69.946"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="59.612" y1="59.595" x2="103.074" y2="70.498"></line>
+      </g>
+      <use width="40" height="40" transform="matrix(1, 0, 0, 1, 83, 50)" xlink:href="#little_grid"></use>
+    </symbol>
   </defs>
+  <use width="123" height="90" style="" transform="matrix(1.329715, -0.286541, 0, 1, 0, 23.244545)" xlink:href="#convolution"></use>
 </svg>
