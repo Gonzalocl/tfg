@@ -1,0 +1,88 @@
+<svg viewBox="0 0 164 115" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <symbol id="big_grid" viewBox="0 0 120 120" bx:pinned="true">
+      <g>
+        <rect width="20" height="20" style="fill: url(#color-0);"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80" y="40"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" y="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="40" y="80"></rect>
+        <rect width="20" height="20" style="fill: url(#color-0);" x="80" y="80"></rect>
+      </g>
+      <g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="20.667" y1="1" x2="20.667" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="40.334" y1="1" x2="40.334" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="60.001" y1="1" x2="60.001" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="79.668" y1="1" x2="79.668" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="99.335" y1="1" x2="99.335" y2="119"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="119" y1="1" x2="119" y2="119"></line>
+        </g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="119" y2="1"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="20.667" x2="119" y2="20.667"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="40.334" x2="119" y2="40.334"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="60.001" x2="119" y2="60.001"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="79.668" x2="119" y2="79.668"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="99.335" x2="119" y2="99.335"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="119" x2="119" y2="119"></line>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="grid" viewBox="0 0 80 80" bx:pinned="true">
+      <rect width="60" height="60" style="fill: url(#color-0);"></rect>
+      <g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="79"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="20.5" y1="1" x2="20.5" y2="79"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="40" y1="1" x2="40" y2="79"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="59.5" y1="1" x2="59.5" y2="79"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="79" y1="1" x2="79" y2="79"></line>
+        </g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="79" y2="1"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="20.5" x2="79" y2="20.5"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="40" x2="79" y2="40"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="59.5" x2="79" y2="59.5"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="79" x2="79" y2="79"></line>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="little_grid" viewBox="0 0 40 40" bx:pinned="true">
+      <rect width="20" height="20" style="fill: url(#color-0);"></rect>
+      <g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="1" y2="39"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="20" y1="1" x2="20" y2="39"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="39" y1="1" x2="39" y2="39"></line>
+        </g>
+        <g>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="1" x2="39" y2="1"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="20" x2="39" y2="20"></line>
+          <line style="stroke: rgb(0, 0, 0); stroke-width: 2px; stroke-linecap: round;" x1="1" y1="39" x2="39" y2="39"></line>
+        </g>
+      </g>
+    </symbol>
+    <linearGradient id="color-0" bx:pinned="true">
+      <stop style="stop-color: #d8d8d8;"></stop>
+    </linearGradient>
+    <linearGradient id="color-1" bx:pinned="true">
+      <stop style="stop-color: rgb(170, 170, 170);"></stop>
+    </linearGradient>
+    <symbol id="convolution" viewBox="0 0 165 120" bx:pinned="true">
+      <use width="120" height="120" xlink:href="#big_grid"></use>
+      <g>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="1" y1="1" x2="126.327" y2="72.45"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="98.858" y1="1.392" x2="144.673" y2="72.114"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="1.871" y1="99.238" x2="126.496" y2="90.538"></line>
+        <line style="stroke-linecap: round; stroke: url(#color-1);" x1="98.793" y1="99.062" x2="144.829" y2="91.09"></line>
+      </g>
+      <use width="40" height="40" transform="matrix(1, 0, 0, 1, 125.02079, 71)" xlink:href="#little_grid"></use>
+    </symbol>
+  </defs>
+  <use width="123" height="90" style="" transform="matrix(1.329715, -0.286541, 0, 1, 0, 25.244545)" xlink:href="#convolution"></use>
+</svg>
