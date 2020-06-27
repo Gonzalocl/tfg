@@ -11,6 +11,11 @@ presentacion.pdf: presentacion.tex $(PDF)
 img/%.pdf: img/%.svg
 	rsvg-convert -f pdf -o $@ $<
 
+convert: presentacion.pdf
+	mkdir -p out
+	convert -density 288 presentacion.pdf -resize 2000x2000 out/slide.png
+
 clean:
 	rm -f *.acn *.aux *.glo *.ist *.lof *.log *.lot *.out *.pdf *.toc *.bbl *.blg *.nav *.snm *.vrb $(PDF)
+	rm -rf out
 
