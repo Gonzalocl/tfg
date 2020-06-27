@@ -134,11 +134,14 @@ Programas que intentan simular el comportamiento humano para resolver un problem
 \frametitle{Tipos de capas}
 
 \begin{itemize}
-\item Capa totalmente conectada
-\item Conv
-\item Conv dilatadas
-\item Concatenación, pool, dropout softmax
+\item Totalmente conectada: neuronas conectadas todas con todas.
+\item Convolución: combina un grupo de salidas de la capa anterior en uno.
+\item Convolución dilatada: similar a la convolución, entrada dispersa.
 \end{itemize}
+
+\begin{block}{Concatenación, pool, dropout y softmax}
+No hacen tienen la función de aprender pero, hacen diferentes funciones: agrupar, reducir tamaño, modificar valores aleatorios y redistribuir la salida.
+\end{block}
 
 \end{frame}
 
