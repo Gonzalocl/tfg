@@ -20,7 +20,12 @@ function get_out_path {
 }
 
 function get_timestamp {
-  echo "01:02:03.0"
+  ts_format="$(echo $1 | tr -d -c ':')"
+  if [[ $ts_format ]]; then
+    echo "$1"
+  else
+    echo "00:00:$1"
+  fi
 }
 
 function ffcut {
@@ -32,5 +37,13 @@ function ffcut {
 
 mkdir -p "$out_dir"
 
-ffcut VID_20200626_144413.mp4 0 16
+get_timestamp 00
+get_timestamp 02
+get_timestamp 02.55
+get_timestamp 12
+get_timestamp "00:01:09"
+get_timestamp "00:01:09.777"
+
+#ffcut VID_20200626_144413.mp4 0 3
+#ffcut VID_20200626_144413.mp4 2 5
 
