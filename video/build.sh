@@ -11,6 +11,7 @@ echo "Video folder: $2"
 cut_timestamps="$1"
 video_src="$2"
 out_dir="out"
+batch_sh="batch.sh"
 
 function get_out_path {
   filename="$(echo $1 | tr -d -c '[:alnum:]')"
@@ -32,10 +33,11 @@ function ffcut {
   filename="$1"
   t0="$2"
   t1="$3"
-  ffmpeg -i "$video_src/$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
+  echo ffmpeg -i "$video_src/$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)" >> "$batch_sh"
 }
 
 mkdir -p "$out_dir"
+echo "#!/bin/bash" > "$batch_sh"
 
 while read l; do
   filename="$(echo $l | cut -d ',' -f 1)"
