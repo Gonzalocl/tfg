@@ -29,15 +29,28 @@ function get_timestamp {
 }
 
 function ffcut {
-  filename="$video_src/$1"
-  t0="$(get_timestamp $2)"
-  t1="$(get_timestamp $3)"
-  ffmpeg -i "$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
+  filename="$1"
+  t0="$2"
+  t1="$3"
+  echo ffmpeg -i "$video_src/$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
 }
 
 mkdir -p "$out_dir"
 
-ffcut VID_20200626_144413.mp4 0 3
-ffcut VID_20200626_144413.mp4 0.5 1.5
-ffcut VID_20200626_144413.mp4 2.5 4.5
+while read l; do
+  filename="$(echo $l | cut -d ',' -f 1)"
+  t0="$(get_timestamp $(echo $l | cut -d ',' -f 2))"
+  t1="$(get_timestamp $(echo $l | cut -d ',' -f 3))"
+  
+  file_path="$(get_out_path $filename $t0 $t1)"
+  
+  if [[ -f $file_path ]]; then
+    echo "File already processed: $filename"
+  else
+    echo "Processing: $filename"
+    ffcut "$filename" "$t0" "$t1"
+  fi
+  
+done < "$cut_timestamps"
+
 
