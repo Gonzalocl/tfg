@@ -412,7 +412,7 @@ Cascada con inferencia por paciente         & 57.1                              
 \caption{Resultados pruebas con distorsión.}
 \end{table}
 
-Ligera mejora en general todas las pruebas, excepto en las que la inferencia se hace por paciente. En las esas pruebas se obtiene una precisión del 85.7\%.
+En las pruebas en las que se hace la inferencia por paciente se obtiene una mejora significativa, se obtiene una precisión del 85.7\%.
 
 \end{frame}
 
@@ -420,6 +420,19 @@ Ligera mejora en general todas las pruebas, excepto en las que la inferencia se 
 
 \begin{frame}
 \frametitle{Resultado final}
+
+\begin{block}{Resultado final}
+\begin{itemize}
+\item Modelo de partida inception v3.
+\item Añadir una capa totalmente conectada.
+\item Inferencia por paciente.
+\item Distorsión, rotar 90, 180, 270 grados.
+\end{itemize}
+\end{block}
+
+\bigskip
+
+En la prueba de cascada también se obtiene un resultado muy parecido, pero la prueba de añadir una capa tiene la ventaja que es más simple y por lo tanto requiere menos recursos.
 
 \end{frame}
 
