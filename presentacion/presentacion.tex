@@ -76,7 +76,8 @@
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
 
-\usepackage[english,spanish]{babel}\usepackage{graphicx} % Allows including images
+\usepackage[english,spanish]{babel}
+\usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 \usepackage{subfig}
 \usepackage[export]{adjustbox}
@@ -207,6 +208,22 @@ Dividir el entrenamiento en dos pasos: primero obtener los valores del \textit{t
 
 \begin{frame}
 \frametitle{Entrenamiento completo}
+
+En esta prueba se entrena de 0 la arquitectura \textit{AlexNet} para clasificar las imágenes del \textit{dataset} \textit{cifar 10}.
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\textbf{Modelo} & \textbf{Dataset}              & \textbf{Clases}         & \textbf{Iteraciones}        & \textbf{Learning rate}   & \textbf{Batch size}      & \textbf{Precisión}        \\ \hline
+AlexNet         & \multicolumn{1}{c|}{cifar 10} & \multicolumn{1}{c|}{10} & \multicolumn{1}{c|}{100000} & \multicolumn{1}{c|}{0.1} & \multicolumn{1}{c|}{128} & \multicolumn{1}{c|}{86.0} \\ \hline
+\end{tabular}%
+}
+\caption{Resultado entrenamiento completo.}
+\end{table}
+
+En esta prueba se obtiene un 86\% de precisión, que es un buen resultado para la prueba que se ha realizado, un entrenamiento completo. De esta forma se ha entrenado un modelo específicamente para ese \textit{dataset}.
 
 \end{frame}
 
