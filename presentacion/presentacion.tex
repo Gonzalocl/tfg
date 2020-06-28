@@ -394,6 +394,8 @@ En una prueba ha tenido un efecto positivo y en otra ha tenido un efecto negativ
 \begin{frame}
 \frametitle{Distorsión}
 
+Aplicar transformaciones en todas las imágenes del \textit{dataset} y repetir las pruebas anteriores. Rotar 90, 180 y 270 grados cada imagen.
+
 \begin{table}[H]
 \centering
 \resizebox{\textwidth}{!}{%
@@ -409,6 +411,8 @@ Cascada con inferencia por paciente         & 57.1                              
 }
 \caption{Resultados pruebas con distorsión.}
 \end{table}
+
+Ligera mejora en general todas las pruebas, excepto en las que la inferencia se hace por paciente. En las esas pruebas se obtiene una precisión del 85.7\%.
 
 \end{frame}
 
