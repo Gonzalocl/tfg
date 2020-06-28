@@ -310,6 +310,8 @@ En la primera prueba se ha producido overfitting, que se soluciona en la segunda
 \begin{frame}
 \frametitle{Usar un slice}
 
+Usar solo una imagen de cada paciente, usar el primer \textit{slice} del primer \textit{frame} de cada paciente.
+
 \begin{table}[H]
 \centering
 \resizebox{\textwidth}{!}{%
@@ -322,12 +324,16 @@ En la primera prueba se ha producido overfitting, que se soluciona en la segunda
 \caption{Resultado usar un \textit{slice} por paciente.}
 \end{table}
 
+En esta prueba el resultado obtenido es un 42\% de precisión, por lo que esta prueba no ha tenido éxito. Esto puede deberse a que si se cojo únicamente un \textit{slice} por paciente el tamaño del \textit{dataset} de entrada se reduce considerablemente y puede que no haya suficientes muestras para poder hacer un entrenamiento lo suficientemente bueno.
+
 \end{frame}
 
 
 
 \begin{frame}
 \frametitle{Cascada}
+
+Organizar una serie de modelos en secuencia, el entrenamiento se hace por pasos, en cada paso se entrena un modelo por cada clase restante y después se selecciona el que mejor precisión obtenga. En la inferencia se usan los modelos seleccionadas, se ejecutan en secuencia hasta que uno de un resultado final.
 
 \begin{figure}[H]
 \centering
