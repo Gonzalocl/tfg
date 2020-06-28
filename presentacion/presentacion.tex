@@ -361,12 +361,16 @@ Cascada         & \multicolumn{1}{c|}{inception v3} & \multicolumn{1}{c|}{5} & \
 \caption{Resultado cascada.}
 \end{table}
 
+El resultado de esta prueba es un 62.9\% de precisión que es muy parecido a el mejor resultado que había obtenido hasta ahora (63.2\% de precisión con la prueba, añadir una capa totalmente conectada). Esta prueba no ha supuesto ningún avance ya que se han obtenido resultados muy parecidos a los que ya tenía. Incluso el resultado es ligeramente peor, pero no es significativo ya que puede estar dentro de lo que puede variar la precisión de una ejecución a otra.
+
 \end{frame}
 
 
 
 \begin{frame}
 \frametitle{Inferencia por paciente}
+
+En vez de dar una predicción por \textit{slice} de un paciente se hace la inferencia en todos las imágenes de un paciente y a continuación se ponen en común todos los resultados y se da como resultado final la clase más repetida entre todas las imágenes de cada paciente.
 
 \begin{table}[H]
 \centering
@@ -380,6 +384,8 @@ Cascada         & 62.9                                                      & 57
 }
 \caption{Resultados inferencia por paciente.}
 \end{table}
+
+En una prueba ha tenido un efecto positivo y en otra ha tenido un efecto negativo. En la prueba, añadir una capa totalmente conectada, hacer la inferencia por paciente ha resultado en una mejora del 8.2\%. Por el contrario en la prueba usando la técnica de cascada ha tenido un efecto negativo.
 
 \end{frame}
 
