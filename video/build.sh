@@ -32,18 +32,12 @@ function ffcut {
   filename="$video_src/$1"
   t0="$(get_timestamp $2)"
   t1="$(get_timestamp $3)"
-  echo ffmpeg -ss "$t0" -i "$filename" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
+  ffmpeg -i "$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
 }
 
 mkdir -p "$out_dir"
 
-get_timestamp 00
-get_timestamp 02
-get_timestamp 02.55
-get_timestamp 12
-get_timestamp "00:01:09"
-get_timestamp "00:01:09.777"
-
-#ffcut VID_20200626_144413.mp4 0 3
-#ffcut VID_20200626_144413.mp4 2 5
+ffcut VID_20200626_144413.mp4 0 3
+ffcut VID_20200626_144413.mp4 0.5 1.5
+ffcut VID_20200626_144413.mp4 2.5 4.5
 
