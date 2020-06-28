@@ -32,7 +32,7 @@ function ffcut {
   filename="$1"
   t0="$2"
   t1="$3"
-  echo ffmpeg -i "$video_src/$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
+  ffmpeg -i "$video_src/$filename" -ss "$t0" -to "$t1" -filter:v "crop=1080:1080:0:420" -preset ultrafast "$(get_out_path $filename $t0 $t1)"
 }
 
 mkdir -p "$out_dir"
@@ -40,7 +40,7 @@ mkdir -p "$out_dir"
 while read l; do
   filename="$(echo $l | cut -d ',' -f 1)"
   t0="$(get_timestamp $(echo $l | cut -d ',' -f 2))"
-  t1="$(get_timestamp $(echo $l | cut -d ',' -f 3))"
+  t1="$(get_timestamp $(echo $l | cut -d ',' -f 3 | tr -d '\r'))"
   
   file_path="$(get_out_path $filename $t0 $t1)"
   
