@@ -76,8 +76,10 @@
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
 
-\usepackage{graphicx} % Allows including images
+\usepackage[english,spanish]{babel}\usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -189,9 +191,15 @@ Aplicar algunas transformaciones al conjunto de datos de entrada.
 \begin{frame}
 \frametitle{Bottleneck}
 
-\begin{block}{Bottleneck}
-Bottleneck
-\end{block}
+Dividir el entrenamiento en dos pasos: primero obtener los valores del \textit{tensor} de salida de todo el dataset y después entrenar las ultimas capas usando como entrada los valores obtenidos.
+
+\begin{figure}[H]
+\centering
+\subfloat[Entrenamiento]{{\includegraphics[valign=c, width=0.3\textwidth]{img/entrenamiento_bottleneck} }}%
+\qquad
+\subfloat[Inferencia]{{\includegraphics[valign=c, width=0.3\textwidth]{img/inferencia_bottleneck} }}%
+\caption{Pasos para realizar el entrenamiento usando la técnica de \textit{bottleneck} y para la inferencia.}
+\end{figure}
 
 \end{frame}
 
