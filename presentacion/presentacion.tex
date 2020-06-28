@@ -256,14 +256,25 @@ resnet v2 152   & cifar 100                                                     
 
 
 \begin{frame}
-\frametitle{Añadir 3 capas}
+\frametitle{Añadir y quitar capas}
 
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Quitar capas}
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{Dataset} & \textbf{Clases} & \textbf{Iteraciones} & \textbf{Learning rate} & \textbf{Batch size} & \textbf{Precisión} \\ \hline
+inception + 3 capas    & cifar 10         & 10              & 4000                 & 0.01                   & 100                 & 34.1               \\ \hline
+inception + 3 capas    & cifar 10         & 10              & 50000                & 0.01                   & 100                 & 79.9               \\ \hline
+inception + 3 capas    & cifar 100        & 100             & 60000                & 0.01                   & 100                 & 45.5               \\ \hline
+inception - 2 capas    & cifar 10                                                          & 10              & 100000               & 0.01                   & 100                 & 79.8               \\ \hline
+inception - 2 capas    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 70000                & 0.01                   & 100                 & 95.5               \\ \hline
+inception - 3 capas    & cifar 10                                                          & 10              & 90000                & 0.01                   & 100                 & 56.0               \\ \hline
+inception - 3 capas    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\end{tabular} & 3               & 70000                & 0.01                   & 100                 & 95.9               \\ \hline
+\end{tabular}%
+}
+\caption{Resultados añadir y quitar capas.}
+\end{table}
 
 \end{frame}
 
