@@ -12,6 +12,7 @@ cut_timestamps="$1"
 video_src="$2"
 out_dir="out"
 batch_sh="batch.sh"
+list_file="list.txt"
 
 function get_out_path {
   filename="$(echo $1 | tr -d -c '[:alnum:]')"
@@ -38,6 +39,7 @@ function ffcut {
 
 mkdir -p "$out_dir"
 echo "#!/bin/bash" > "$batch_sh"
+rm -f "$list_file"
 
 while read l; do
   filename="$(echo $l | cut -d ',' -f 1)"
@@ -52,6 +54,7 @@ while read l; do
     echo "Processing: $filename"
     ffcut "$filename" "$t0" "$t1"
   fi
+  echo "file '$file_path'" >> "$list_file"
   
 done < "$cut_timestamps"
 
