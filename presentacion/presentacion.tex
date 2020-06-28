@@ -283,6 +283,11 @@ inception - 3 capas    & \begin{tabular}[c]{@{}l@{}}subconjunto\\ de cifar 10\en
 \begin{frame}
 \frametitle{Añadir una capa}
 
+Primera prueba, extraer todas las imágenes y repartirlas en los conjuntos de entrenamiento, validación y test.
+\bigskip
+
+Segunda prueba, repartir los conjuntos por pacientes, todas las imágenes de un mismo paciente se incluyen en el mismo conjunto.
+
 \begin{table}[H]
 \centering
 \resizebox{\textwidth}{!}{%
@@ -293,8 +298,10 @@ Añadir una capa & inception v3    & 5               & 4000                 & 0.
 Añadir una capa & inception v3    & 5               & 4000                 & 0.01                   & 63.2               \\ \hline
 \end{tabular}%
 }
-\caption{Resultado añadir una capa.}
+\caption{Resultados añadir una capa.}
 \end{table}
+
+En la primera prueba se ha producido overfitting, que se soluciona en la segunda prueba obteniendo un resultado correcto.
 
 \end{frame}
 
